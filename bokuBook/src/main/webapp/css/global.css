@@ -1,0 +1,102 @@
+a {
+	text-decoration: none;
+}
+
+.layui-container {
+	padding: 0px;
+}
+
+.common-header {
+    position: fixed;
+    left: 0;
+    top: 0;
+    z-index: 10000;
+    background-color: #fbfaf8;
+    height: 36px;
+    line-height: 36px;
+    width: 100%;
+    border-bottom: 1px solid #eae6e2;
+    border-right: 1px solid #eae6e2;
+    border-radius: 0;
+}
+
+.welcome-text {
+	height: 24px;
+	color: #8c8c8c;
+}
+
+.header-direct {
+	float: right;
+	color: #613f23;
+}
+
+.header-direct li {
+	float: left;
+	padding: 0 5px;
+}
+
+.separate {
+	color: #dbd4cd;
+    font-size: 10px!important;
+}
+
+.ico-header {
+	height: 90px;
+	margin-top: 37px;
+    padding: 20px 0;
+}
+
+.common-logo img {
+	width: 160px;
+    height: 90px;
+    margin-left: -17px;
+}
+
+.search-input {
+	position: absolute;
+	right: 0%;
+    top: 50%;
+    height: 30px;
+    width: 221px;
+    transform: translateY(-50%);
+    background-color: #fff;
+    border: 2px solid #fa7a20;
+    border-radius: 4px;
+    z-index: 10;
+}
+
+.layui-input {
+	margin-top: 2px;
+	height: 26px;
+	width: 60%;
+	border-width: 0px;
+}
+
+.search-btn {
+	position: absolute;
+	right: 5%;
+	top: 50%;
+	transform: translateY(-50%);
+	cursor: pointer;
+}
+
+.nav-color {
+	background-color: #fa7a20;
+	border-radius: 3px;
+}
+
+.nav-color .layui-this {
+	background-color: #f16300;
+}
+
+.nav-color .layui-this:after {
+	display: none;
+}
+
+.layui-nav .layui-nav-item {
+	line-height: 42px;
+}
+
+
+
+
