@@ -11,27 +11,29 @@
 				placeholder="搜索书名..." autocomplete="off" class="layui-input">
 			<i class="layui-icon search-btn">&#xe615;</i>
 		</div>
+		<div class="suggestion-list">
+			<ul>
+				<li><a class="list-item" href="javascript:void(0)"
+					hidefocus="hidefocus"><span>谁说江湖好</span></a></li>
+				<li><a class="list-item" href="javascript:void(0)"
+					hidefocus="hidefocus"><span>谁说你不能坚持</span></a></li>
+				<li><a class="list-item" href="javascript:void(0)"
+					hidefocus="hidefocus"><span>谁说80/90不靠谱</span></a></li>
+				<li><a class="list-item" href="javascript:void(0)"
+					hidefocus="hidefocus"><span>谁说大象不能跳舞？</span></a></li>
+				<li><a class="list-item" href="javascript:void(0)"
+					hidefocus="hidefocus"><span>谁说现实不是梦境</span></a></li>
+			</ul>
+		</div>
 	</div>
 </div>
+
 <!-- 导航栏 -->
 <div class="layui-container">
 	<ul class="layui-nav nav-color" lay-filter="">
-		<li class="layui-nav-item"><a href="">最新活动</a></li>
-		<li class="layui-nav-item layui-this"><a href="">产品</a></li>
-		<li class="layui-nav-item"><a href="">大数据</a></li>
-		<li class="layui-nav-item"><a href="javascript:;">解决方案</a>
-			<dl class="layui-nav-child">
-				<!-- 二级菜单 -->
-				<dd>
-					<a href="">移动模块</a>
-				</dd>
-				<dd>
-					<a href="">后台模版</a>
-				</dd>
-				<dd>
-					<a href="">电商平台</a>
-				</dd>
-			</dl></li>
-		<li class="layui-nav-item"><a href="">社区</a></li>
+		<li class="layui-nav-item layui-this"><a href="">首页</a></li>
+		<li class="layui-nav-item"><a href="">销量排行</a></li>
+		<li class="layui-nav-item"><a href="">分类</a></li>
+		<li class="layui-nav-item"><a href="">浏览榜单</a>
 	</ul>
 </div>

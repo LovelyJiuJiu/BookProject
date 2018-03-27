@@ -72,6 +72,31 @@ a {
 	border-width: 0px;
 }
 
+.suggestion-list {
+	visibility: hidden;
+	position: absolute;
+	top: 62px;
+	right: 0px;
+	width: 221px;
+	text-align: left;
+    border: 1px solid #e6e0da;
+    background: #fff;
+    z-index: 2010
+}
+
+.suggestion-list .list-item {
+	display: block;
+	font-size: 13px;
+	height: 28px;
+    line-height: 28px;
+    padding: 0 10px;
+}
+
+a.list-item:hover {
+	background-color: #f5f5f5;
+    color: #ed6c00;
+}
+
 .search-btn {
 	position: absolute;
 	right: 5%;
@@ -80,9 +105,14 @@ a {
 	cursor: pointer;
 }
 
+.layui-carousel {
+	margin-top: 10px;
+}
+
 .nav-color {
 	background-color: #fa7a20;
 	border-radius: 3px;
+	padding: 0 127px;
 }
 
 .nav-color .layui-this {
