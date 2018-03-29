@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 	<div class="common-header">
 		<div class="layui-container">
@@ -15,12 +17,21 @@
 					</a>
 				</li>
 				<li class="separate">|</li>
-				<li>
-					<a href="user/cart">
+				<li class="cart">
+				<c:choose>
+					<c:when test="${currentUser != null }">
+						<c:set var="href" value="user/cart" />
+					</c:when>
+					<c:otherwise>
+						<c:set var="href" value="user/login" />
+					</c:otherwise>
+				</c:choose>
+				<a href="${href }">
 					<i class="layui-icon">&#xe657;</i>
 						购物车
-						<span class="layui-badge layui-bg-orange">0</span>
-					</a>
+					<span class="layui-badge layui-bg-orange">0</span>
+				</a>
+					
 				</li>
 			</ul>
 		</div>

@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -46,16 +47,10 @@ public class CategoryController {
 		return modelAndView;
 	}
 	
-	@RequestMapping("demo/table/user")
-	@ResponseBody
-	public String demo(@RequestParam(value = "page")int page, @RequestParam(value = "limit")int limit){
-		Gson gson = new Gson();
-		PageHelper.startPage(page, limit);
-		List<Category> cs= categoryService.list(10);
-		PageInfo<Category> pageInfo = new PageInfo<Category>(cs);
-		String resData = gson.toJson(pageInfo);
-		System.out.println(resData);
-		return resData;
+	@RequestMapping("user/test")
+	public void demo(String sl, int lo){
+		System.out.println(sl);
+		System.out.println(lo);
 	}
 	
 	@RequestMapping("login")

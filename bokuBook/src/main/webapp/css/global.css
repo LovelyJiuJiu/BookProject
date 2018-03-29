@@ -31,9 +31,19 @@ a {
 	padding: 0 5px;
 }
 
+.cart {
+	line-height: 35px;
+}
+
 .separate {
 	color: #dbd4cd;
     font-size: 10px!important;
+}
+
+.layui-badge {
+	line-height: 16px;
+    height: 16px;
+    padding: 0 5px;
 }
 
 .ico-header {
