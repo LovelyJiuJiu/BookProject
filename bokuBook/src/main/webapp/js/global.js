@@ -88,12 +88,49 @@ bkyd.search = {
 };
 //搜索end
 
+bkyd.btn_back_top = {
+	    'content_width': 1000,
+	    'init': function () {
+	        var btn = $('.scroll-top');
+	        var self = this;
+	        $(window).on({
+	            'resize': function () {
+	                btn.css('left', self.getLeft());
+	            },
+	            'scroll': function () {
+	                var top = $(window).scrollTop();
+	                if (top > 0) {
+	                    btn.css('left', self.getLeft());
+	                    self.btnShow();
+	                } else {
+	                    self.btnHide();
+	                }
+	            }
+	        });
+	        btn.on('click', function () {
+	            $('body, html').animate({scrollTop: 0}, 200);
+	        });
+	    },
+	    'getLeft': function () {
+	        var b_width = $(window).width();
+	        return (b_width + this.content_width)/2 + 20;
+	    },
+	    'btnHide': function () {
+	        $('.scroll-top').stop(false, true).fadeOut(300);
+	    },
+	    'btnShow': function () {
+	        $('.scroll-top').fadeIn(300);
+	    }
+};
+
 
 
 (function (bkyd){
 
     $(document).ready(function () {
         bkyd.search.init();
+        
+        bkyd.btn_back_top.init();
     });
 
 })(bkyd);

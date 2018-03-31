@@ -24,13 +24,38 @@
 	<div class="layui-container">
 		<div class="layui-carousel" id="test1">
 			<div carousel-item>
-				<div>条目1</div>
-				<div>条目2</div>
-				<div>条目3</div>
-				<div>条目4</div>
-				<div>条目5</div>
+				<div>
+					<a href="#">
+						<img alt="图片" src="image/carousel-1.png" title="幽默与荒诞" />						
+					</a>
+				</div>
+				<div>
+					<a href="#">
+						<img alt="图片" src="image/carousel-1.png" title="幽默与荒诞" />						
+					</a>
+				</div>
+				<div>
+					<a href="#">
+						<img alt="图片" src="image/carousel-1.png" title="幽默与荒诞" />						
+					</a>
+				</div>
+				<div>
+					<a href="#">
+						<img alt="图片" src="image/carousel-1.png" title="幽默与荒诞" />						
+					</a>
+				</div>
+				<div>
+					<a href="#">
+						<img alt="图片" src="image/carousel-1.png" title="幽默与荒诞" />						
+					</a>
+				</div>
 			</div>
 	</div>
+	</div>
+	
+	<div class="scroll-top">
+		<i class="layui-icon">&#xe619;</i> 
+		<p>顶部</p>  
 	</div>
 
 	<script>
@@ -40,12 +65,12 @@
 			carousel.render({
 				elem : '#test1',
 				width : '100%',  //设置容器宽度
+				height: '320px',
 				arrow : 'hover',  //始终显示箭头
 				anim: 'fade'
 			});
 		});
 		
-		$('#keyWords')
 	</script>
 	<script src="js/global.js"></script>
 

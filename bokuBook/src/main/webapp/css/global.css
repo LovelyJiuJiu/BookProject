@@ -47,13 +47,17 @@ a {
 }
 
 .ico-header {
-	height: 90px;
+	height: 120px;
     padding: 20px 0;
+}
+
+.v-align {
+	padding: 10px 0px;
 }
 
 .common-logo img {
 	width: 160px;
-    height: 90px;
+    height: 100px;
     margin-left: -17px;
 }
 
@@ -79,8 +83,8 @@ a {
 
 .suggestion-list {
 	visibility: hidden;
-	position: absolute;
-	top: 62px;
+	position: absolute;	
+	top: 77px;
 	right: 0px;
 	width: 221px;
 	text-align: left;
@@ -130,6 +134,29 @@ a.list-item:hover {
 
 .layui-nav .layui-nav-item {
 	line-height: 42px;
+}
+
+.layui-carousel {
+	float: right;
+}
+
+.layui-carousel img {
+	width: 1170px;
+	height: 320px;	
+}
+
+.scroll-top {
+	position: fixed;
+	display: none;
+	text-align: center;
+	padding-top: 4px;
+	color: #ffffff;
+	background-color: #c9c8c6;
+    width: 40px;
+    height: 36px;
+    right: 10px;
+    bottom: 10px;
+    cursor: pointer;
 }
 
 
