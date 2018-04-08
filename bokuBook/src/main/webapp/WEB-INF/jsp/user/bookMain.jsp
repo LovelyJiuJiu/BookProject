@@ -25,7 +25,7 @@
 		<div class="layui-carousel" id="test1">
 			<div carousel-item>
 				<div>
-					<a href="#">
+					<a href="">
 						<img alt="图片" src="image/carousel-1.png" title="幽默与荒诞" />						
 					</a>
 				</div>
@@ -50,7 +50,7 @@
 					</a>
 				</div>
 			</div>
-	</div>
+		</div>
 	</div>
 	
 	<div class="scroll-top">
