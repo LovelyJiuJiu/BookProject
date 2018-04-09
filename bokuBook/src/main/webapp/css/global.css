@@ -52,6 +52,7 @@ a {
 }
 
 .v-align {
+	position: relative;
 	padding: 10px 0px;
 }
 
@@ -136,10 +137,6 @@ a.list-item:hover {
 	line-height: 42px;
 }
 
-.layui-carousel {
-	float: right;
-}
-
 .layui-carousel img {
 	width: 1170px;
 	height: 320px;	
@@ -157,6 +154,20 @@ a.list-item:hover {
     right: 10px;
     bottom: 10px;
     cursor: pointer;
+}
+
+.new-book {
+	height: 38px;
+	line-height: 38px;
+	overflow: hidden;
+	padding: 10px 20px 0;
+	border: 1px
+}
+
+h3 {
+	font-size: 14px;
+	font-weight: bold;
+	color: #fa7a20;
 }
 
 

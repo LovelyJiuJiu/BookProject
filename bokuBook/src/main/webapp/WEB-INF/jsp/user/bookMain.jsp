@@ -20,42 +20,45 @@
 </head>
 <body>
 	<jsp:include page="./header.jsp"></jsp:include>
-	<jsp:include page="./ico-seacher-header.jsp"></jsp:include>
-	<div class="layui-container">
+	<div class="layui-container"> 
+		<jsp:include page="./ico-seacher-header.jsp"></jsp:include>
 		<div class="layui-carousel" id="test1">
 			<div carousel-item>
 				<div>
-					<a href="#">
-						<img alt="图片" src="image/carousel-1.png" title="幽默与荒诞" />						
+					<a href="#"> <img alt="图片" src="image/carousel-1.png"
+						title="幽默与荒诞" />
 					</a>
 				</div>
 				<div>
-					<a href="#">
-						<img alt="图片" src="image/carousel-1.png" title="幽默与荒诞" />						
+					<a href="#"> <img alt="图片" src="image/carousel-1.png"
+						title="幽默与荒诞" />
 					</a>
 				</div>
 				<div>
-					<a href="#">
-						<img alt="图片" src="image/carousel-1.png" title="幽默与荒诞" />						
+					<a href="#"> <img alt="图片" src="image/carousel-1.png"
+						title="幽默与荒诞" />
 					</a>
 				</div>
 				<div>
-					<a href="#">
-						<img alt="图片" src="image/carousel-1.png" title="幽默与荒诞" />						
+					<a href="#"> <img alt="图片" src="image/carousel-1.png"
+						title="幽默与荒诞" />
 					</a>
 				</div>
 				<div>
-					<a href="#">
-						<img alt="图片" src="image/carousel-1.png" title="幽默与荒诞" />						
+					<a href="#"> <img alt="图片" src="image/carousel-1.png"
+						title="幽默与荒诞" />
 					</a>
 				</div>
 			</div>
+		</div>
+		<div class="new-book">
+			<h3>新书上架</h3>
+		</div>
 	</div>
-	</div>
-	
+
 	<div class="scroll-top">
-		<i class="layui-icon">&#xe619;</i> 
-		<p>顶部</p>  
+		<i class="layui-icon">&#xe619;</i>
+		<p>顶部</p>
 	</div>
 
 	<script>
@@ -64,13 +67,12 @@
 			//建造实例
 			carousel.render({
 				elem : '#test1',
-				width : '100%',  //设置容器宽度
-				height: '320px',
-				arrow : 'hover',  //始终显示箭头
-				anim: 'fade'
+				width : '100%', //设置容器宽度
+				height : '320px',
+				arrow : 'hover', //始终显示箭头
+				anim : 'fade'
 			});
 		});
-		
 	</script>
 	<script src="js/global.js"></script>
 

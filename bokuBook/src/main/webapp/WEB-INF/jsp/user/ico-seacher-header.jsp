@@ -2,7 +2,7 @@
 	pageEncoding="UTF-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <div class="ico-header">
-	<div class="layui-container v-align">
+	<div class="v-align">
 		<a class="common-logo" href=""> <img alt="web-logo"
 			src="image/web-logo.png" title="博库书城">
 		</a>
@@ -29,7 +29,7 @@
 </div>
 
 <!-- 导航栏 -->
-<div class="layui-container">
+<div>
 	<ul class="layui-nav nav-color" lay-filter="">
 		<li class="layui-nav-item layui-this"><a href="">首页</a></li>
 		<li class="layui-nav-item"><a href="">销量排行</a></li>

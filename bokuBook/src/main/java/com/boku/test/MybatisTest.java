@@ -35,6 +35,4 @@ public class MybatisTest {
 			System.out.println(c.getName());
 		}
 	}
-	
-
 }
