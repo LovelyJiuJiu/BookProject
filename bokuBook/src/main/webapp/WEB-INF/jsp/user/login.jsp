@@ -8,31 +8,54 @@ String path = request.getContextPath();
 String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
 pageContext.setAttribute("path", basePath);
 %>
-<link rel="stylesheet" href="layui/css/layui.css" media="all">
-<script src="layui/layui.js"></script>
 <base href="${path }"/>
+<link rel="stylesheet" href="layui/css/layui.css" media="all">
+<link rel="stylesheet" href="css/login.css">
+<link rel="stylesheet" href="css/home.css">
+<script src="layui/layui.js"></script>
+<script src="jquery/jquery-2.2.4.min.js"></script>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>--登录--</title>
+<script>
+	layui.use('form', function(){
+		  var form = layui.form;
+	});
+</script>
 </head>
 <body>
 	<div class="loginContainer">
-	
-		<form action="">
-			<div class="userNameContext">
-				<span>userName:</span>
-				<input name="userName" value="请输入用户名..."/>
-			</div>
-			
-			<div class="passwordContext">
-				<span>password:</span>
-				<i class="layui-icon">&#xe612;</i> 
-				<input name="password" type="password" />
-			</div>
-			
-			
-		</form>
-	
-	
+ 		<div class="logo">
+			<img alt="web-logo" src="image/web-logo.png" title="博库书城">
+		</div>
+		<div class="formContetn">
+			<form  class="layui-form" action="">
+				<div class="layui-form-item">
+					<span class="layui-form-label">用户名:</span>
+					<div class="layui-input-block">
+						<input type="text" name="title" required lay-verify="required"
+							placeholder="请输入用户名" autocomplete="off"
+							class="layui-input">
+			        </div>
+				</div>				
+				<div class="layui-form-item">
+					<span class="layui-form-label">密码:</span>					
+					<div class="layui-input-block">
+						<input type="password" name="password" required lay-verify="required"
+							placeholder="请输入密码" autocomplete="off"
+							class="layui-input">
+			        </div>
+				</div>
+				<div class="layui-form-item">
+					<label class="layui-form-label">记住密码</label>
+					<div class="layui-input-block">
+						<input type="checkbox" name="switch" lay-skin="switch">
+					</div>
+				</div>
+				<div class="layui-form-item">
+					<button class="layui-btn layui-btn-radius layui-btn-warm" lay-submit>登录</button>
+				</div>
+			</form>
+		</div>	
 	</div>
 </body>
 </html>
