@@ -1,4 +1,4 @@
-.loginContainer{
+.registerContainer{
   position: fixed;
   top: 0;
   left: 0;
@@ -14,8 +14,9 @@
 .formContent{
   opacity: 0.9;
   position: relative;
-  left: 50%;
-  top: 34%;
+  left: 40%;
+  margin-top: 100px;
+  height:auto;
   width: 40%;
   padding-top: 20px;
   padding-bottom: 20px;
@@ -50,16 +51,14 @@
   border-radius: 5px;	
 }
 .layui-btn-radius{
-  width: 100px;	
-}
-.layui-form-onswitch{
-  border-color: #ffcc00;
-  background-color: #ffcc00;
+  width: 150px;	
 }
 .buttonCombination{
-  margin-left: 50px;
-
+  margin-left: 105px;
 }
 .layui-btn-warm{
   margin-left: 30px !important;	
+}
+.layui-textarea{
+  resize: none !important;		
 }

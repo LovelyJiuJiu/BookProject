@@ -26,8 +26,11 @@
 <body>
 
 	<div class="loginContainer">
-		<div class="formContetn">
+		<div class="formContent">
 			<div class="title">博库阅读</div>
+			<div class="iconContent">
+				<i class="layui-icon">&#xe68e;</i>
+			</div>
 			<form class="layui-form" action="">
 				<div class="layui-form-item">
 					<span class="layui-form-label">用户名:</span>
