@@ -51,11 +51,16 @@
 				</div>
 			</div>
 		</div>
+<<<<<<< HEAD
 		<div class="new-book">
 			<h3>新书上架</h3>
 		</div>
 	</div>
 
+=======
+	</div>
+	
+>>>>>>> abb570857ac13ab8597177a71dc2860a095d5743
 	<div class="scroll-top">
 		<i class="layui-icon">&#xe619;</i>
 		<p>顶部</p>

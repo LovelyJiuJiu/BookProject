@@ -1,0 +1,101 @@
+
+@media screen and (min-width: 1200px){
+.bookInfoContainer{
+  position: relative;
+  width: 1100px;
+  margin: 25px auto 0;	
+  background: white;
+}	
+}
+
+.headContainer{
+  height: 400px;
+}
+
+.leftContainer{
+  margin-left: 55px;
+  width: auto;
+  display: inline-block !important;
+  display: inline;
+} 
+.bookImage{
+  width: auto;
+  display: inline-block !important;
+  display: inline;
+  margin:20px auto;
+  margin-left: 20px;
+  overflow: hidden;
+  height: 400px;
+  width: 300px;
+}
+ 
+.rightContainer{
+  position: relative;
+  left: 38%;
+  top: -400px;
+  max-width: 600px;
+}
+.footerContainer{
+  margin-top: 50px;
+  position: relative;
+  margin-left: 55px;
+}
+.moreChoice{
+  position: relative;
+  padding-top: 100px;	
+}
+.readBook{	
+}
+.footerLContainer{
+  font-size: 18px;
+  margin-left: 30px;
+  font-weight: bold;
+}
+.bookTitle,.bookContent,.moreChoice,.purchse,.readBook{
+  margin-bottom: 5px;
+}
+.purchse{
+  margin-left: 80px !important;
+}
+.bookTitle{
+  font-size: 21px;	
+}
+.summary{	
+}
+.commentContent{
+  margin-bottom: 30px;	
+}
+.oneComment{
+  margin-bottom: 10px;
+  border-bottom: 1px solid;
+  padding-bottom: 10px;
+}
+img{
+  width: 100%;
+  border: none;
+  height: 100%;
+}
+.commentInfo{
+  margin-left: 20px;	
+}
+.writeComment{
+  margin-bottom: 20px;
+}
+.writeCommentTitle{
+  margin-bottom: 10px;	
+  font-weight: bold;
+  font-size: 16px;
+  margin-left: 30px;
+}
+.layui-colla-title{
+  top:50%;
+  height: 33px !important;
+  line-height: 35px !important;	
+}
+.submitComment{
+  position: relative;
+  left: 93%;
+}
+.commentNumber{
+  font-size: 16px;	
+}
