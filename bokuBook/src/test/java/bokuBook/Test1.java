@@ -29,4 +29,6 @@ public class Test1 {
 	public void sendSingleTest(){   
         sender.sendMail("1743497583@qq.com", "验证你的邮箱", "请验证你的邮箱");  
     }  
+	
+	
 }

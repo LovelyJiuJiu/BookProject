@@ -1,19 +1,27 @@
 package com.boku.test;
 
-import java.text.SimpleDateFormat;
-import java.util.Date;
+import java.io.InputStream;
+import java.util.ArrayList;
+import java.util.List;
 
-import org.springframework.scheduling.annotation.Scheduled;
-import org.springframework.stereotype.Component;
+import org.mybatis.generator.api.MyBatisGenerator;
+import org.mybatis.generator.config.Configuration;
+import org.mybatis.generator.config.xml.ConfigurationParser;
+import org.mybatis.generator.internal.DefaultShellCallback;
 
-@Component  
+
 public class Test {  
 
-    @Scheduled(cron = "0/2 * * * * ?")
-    public void schTest1() {  
-        Date date = new Date();  
-        SimpleDateFormat sim = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");  
-        String dateStr = sim.format(date);  
-        System.out.println("这是spring定时器1，每五秒执行一次,当前时间：" + dateStr);  
-    }  
+    public static void main(String[] args) throws Exception {
+    	List<String> warnings = new ArrayList<String>();
+        boolean overwrite = true;
+        InputStream is= Test.class.getClassLoader().getResource("generatorConfig.xml").openStream();
+        ConfigurationParser cp = new ConfigurationParser(warnings);
+        Configuration config = cp.parseConfiguration(is);
+        is.close();
+        DefaultShellCallback callback = new DefaultShellCallback(overwrite);
+        MyBatisGenerator myBatisGenerator = new MyBatisGenerator(config, callback, warnings);
+        myBatisGenerator.generate(null);
+        System.out.println("生成代码成功，刷新项目，查看文件,然后执行TestMybatis.java");
+	}
 }  
