@@ -8,9 +8,9 @@ String path = request.getContextPath();
 String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
 pageContext.setAttribute("path", basePath);
 %>
+<base href="${path }"/>
 <link rel="stylesheet" href="layui/css/layui.css" media="all">
 <script src="layui/layui.js"></script>
-<base href="${path }"/>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>--登录--</title>
 </head>
