@@ -21,6 +21,13 @@
 	layui.use('form', function() {
 		var form = layui.form;
 	});
+	
+	function backToHome() {
+		window.location.href="bookMain";
+	}
+	function goToRegister() {
+		window.location.href="user/register";
+	}
 </script>
 </head>
 <body>
@@ -28,7 +35,7 @@
 	<div class="loginContainer">
 		<div class="formContent">
 			<div class="title">博库阅读</div>
-			<div class="iconContent">
+			<div class="iconContent" onclick="backToHome();">
 				<i class="layui-icon">&#xe68e;</i>
 			</div>
 			<form class="layui-form" action="">
@@ -55,7 +62,7 @@
 				</div>
 				<div class="buttonCombination">
 					<button class="layui-btn layui-btn-radius layui-btn-warm" lay-submit>登录</button>
-					<button class="layui-btn layui-btn-radius" lay-submit>注册</button>
+					<button class="layui-btn layui-btn-radius" lay-submit onclick="goToRegister();">注册</button>
 				</div>
 
 			</form>

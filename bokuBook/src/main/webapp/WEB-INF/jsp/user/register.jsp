@@ -20,13 +20,17 @@ pageContext.setAttribute("path", basePath);
 		var element = layui.element();
 		element.init();
 	});
+	
+	function backToHome() {
+		window.location.href="bookMain";
+	}
 </script>
 </head>
 <body>
 	<div class="registerContainer">
 		<div class="formContent">
 			<div class="title">博库阅读</div>
-			<div class="iconContent">
+			<div class="iconContent" onclick="backToHome();">
 				<i class="layui-icon">&#xe68e;</i>  
 			</div>
 			<form class="layui-form" action="">
