@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50171
 File Encoding         : 65001
 
-Date: 2018-04-09 15:10:41
+Date: 2018-04-09 16:19:46
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -197,7 +197,7 @@ DELIMITER ;
 DROP TRIGGER IF EXISTS `insert`;
 DELIMITER ;;
 CREATE TRIGGER `insert` AFTER INSERT ON `reply` FOR EACH ROW BEGIN
-           update count set replycount=replycount+1 where msgid=new.msgid;
+           update count set replycount=replycount+1 where book_id=new.book_id;
 END
 ;;
 DELIMITER ;
