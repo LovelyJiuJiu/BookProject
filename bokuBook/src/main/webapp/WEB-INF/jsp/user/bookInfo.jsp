@@ -29,8 +29,8 @@
 </head>
 <body>
 	<jsp:include page="./header.jsp"></jsp:include>
-	<jsp:include page="./ico-seacher-header.jsp"></jsp:include>
-	<div class="bookInfoContainer">
+	<div class="bookInfoContainer layui-container">
+		<jsp:include page="./ico-seacher-header.jsp"></jsp:include>
 		<div class="headContainer">
 			<div class="leftContainer">
 				<div class="bookImage">
