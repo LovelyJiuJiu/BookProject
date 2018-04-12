@@ -40,7 +40,7 @@ pageContext.setAttribute("path", basePath);
 				<div class="layui-form-item">
 					<span class="layui-form-label">密码:</span>
 					<div class="layui-input-block">
-						<input type="password" name="password"
+						<input type="password" name="password" id="password1"
 							lay-verify="required" placeholder="请输入密码" autocomplete="off"
 							class="layui-input">
 					</div>
@@ -48,7 +48,7 @@ pageContext.setAttribute("path", basePath);
 				<div class="layui-form-item">
 					<span class="layui-form-label">确认密码:</span>
 					<div class="layui-input-block">
-						<input type="password" name="password"
+						<input type="password" name="password" id="password2"
 							lay-verify="required" placeholder="请再次输入密码" autocomplete="off" class="layui-input">
 					</div>
 				</div>

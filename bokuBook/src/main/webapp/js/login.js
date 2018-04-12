@@ -13,7 +13,7 @@ function backToHome() {
 
 function goToRegister() {
 	window.location.href = "user/register";
-	return;
+	return false;
 }
 
 function login(data) {
