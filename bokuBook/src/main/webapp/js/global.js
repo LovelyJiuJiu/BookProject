@@ -123,11 +123,44 @@ bkyd.btn_back_top = {
 	    }
 };
 
+function logout() {
+	$.ajax({
+		url : 'user/logout',
+		async : true,
+		type : 'POST',
+		dataType : 'json',
+		success : function(data) {
+			if (data.result === 1) {
+				window.location.href = "bookMain";
+			} else {
+				console.log(data.result);
+			}
+		},
+		error : function(err) {
+			console.log(err);
+		}
+	});
+}
+
 
 
 (function (bkyd){
 
     $(document).ready(function () {
+    	layui.use('element', function(){
+    		var element = layui.element;
+    	});
+    	
+    	$('#currentUser').on({
+    		'mouseover': function () {
+        		$('.current-user-list').css('visibility', 'visible');
+        	}
+    	});
+    	
+    	$('#userLogout').on('click', function () {
+    		logout();
+    	});
+    	
         bkyd.search.init();
         
         bkyd.btn_back_top.init();

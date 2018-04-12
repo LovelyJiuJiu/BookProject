@@ -12,16 +12,15 @@
   width: 200px;
 }
 .formContent{
-  opacity: 0.9;
-  position: relative;
-  left: 40%;
-  margin-top: 100px;
-  height:auto;
-  width: 40%;
-  padding-top: 20px;
-  padding-bottom: 20px;
-  background:#fcfcfc;
-  border-radius: 15px;
+   opacity: 0.9;
+   position: relative;
+   top: 20%;
+   margin: auto;
+   width: 500px;
+   padding-top: 20px;
+   padding-bottom: 20px;
+   background: #fcfcfc;
+   border-radius: 15px;
 }
 .title{
   color: #fa7a20;
@@ -32,17 +31,18 @@
 .iconContent{
   position: absolute;
   left: 93%;
-  margin-top: -30px;
+  margin-top: -24px;
   color: #fa7a20;
 	
 }
 .layui-icon{
   font-size: 25px !important;		
+  cursor: pointer;
 }
 .layui-form{
-  margin-top: 10px;	
-  margin-left: 55px;
-  position: relative;
+   margin-top: 34px;
+   margin-left: 65px;
+   position: relative;
 }
 .layui-form-label{
   font-size: 15px;
@@ -57,7 +57,7 @@
   margin-left: 105px;
 }
 .layui-btn-warm{
-  margin-left: 30px !important;	
+  margin-left: 18px !important;	
 }
 .layui-textarea{
   resize: none !important;		

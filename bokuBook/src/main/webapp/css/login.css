@@ -16,9 +16,9 @@
   position: relative;
   left: 50%;
   top: 34%;
-  width: 40%;
+  width: 472px;
   padding-top: 20px;
-  padding-bottom: 20px;
+  padding-bottom: 40px;
   background:#fcfcfc;
   border-radius: 15px;
 }
@@ -31,12 +31,13 @@
 .iconContent{
   position: absolute;
   left: 93%;
-  margin-top: -30px;
+  margin-top: -24px;
   color: #fa7a20;
 	
 }
 .layui-icon{
   font-size: 25px !important;		
+  cursor: pointer;
 }
 .layui-form{
   margin-top: 10px;	
