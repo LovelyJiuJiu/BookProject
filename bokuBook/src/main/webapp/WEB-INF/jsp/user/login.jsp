@@ -62,7 +62,7 @@
 				</div>
 				<div class="buttonCombination">
 					<button class="layui-btn layui-btn-radius layui-btn-warm" lay-submit>登录</button>
-					<button class="layui-btn layui-btn-radius" lay-submit onclick="goToRegister();">注册</button>
+					<button class="layui-btn layui-btn-radius" onclick="goToRegister();">注册</button>
 				</div>
 
 			</form>

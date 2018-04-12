@@ -1,13 +1,12 @@
 
-@media screen and (min-width: 1200px){
 .bookInfoContainer{
   position: relative;
-  width: 1100px;
   margin: 25px auto 0;	
   background: white;
-}	
 }
-
+.ico-header{
+  background: #fbfaf8;	
+}
 .headContainer{
   height: 400px;
 }
