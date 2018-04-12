@@ -41,7 +41,7 @@ pageContext.setAttribute("path", basePath);
 					<span class="layui-form-label">密码:</span>
 					<div class="layui-input-block">
 						<input type="password" name="password" id="password1"
-							lay-verify="required" placeholder="请输入密码" autocomplete="off"
+							lay-verify="required|password" placeholder="请输入密码" autocomplete="off"
 							class="layui-input">
 					</div>
 				</div>
@@ -49,7 +49,7 @@ pageContext.setAttribute("path", basePath);
 					<span class="layui-form-label">确认密码:</span>
 					<div class="layui-input-block">
 						<input type="password" name="password" id="password2"
-							lay-verify="required" placeholder="请再次输入密码" autocomplete="off" class="layui-input">
+							lay-verify="required|password" placeholder="请再次输入密码" autocomplete="off" class="layui-input">
 					</div>
 				</div>
 				<div class="layui-form-item layui-form-text">
@@ -60,6 +60,7 @@ pageContext.setAttribute("path", basePath);
 				</div>
 				<div class="buttonCombination">
 					<button class="layui-btn layui-btn-radius layui-btn-warm" lay-submit id="regSub" lay-filter="register-btn">注册</button>
+					<button type="reset" class="layui-btn layui-btn-warm layui-btn-radius">重置</button>
 				</div>
 			</form>
 		</div>

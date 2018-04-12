@@ -12,6 +12,10 @@ layui.use('form', function() {
 		register(data.field);
 		return false;
 	});
+	
+	form.verify({ 
+		password: [/^(?=.*[a-z])(?=.*\d)[^]{8,16}$/, '密码应为字母和数字的组合，且不少于8位'],
+	})
 });
 function backToHome() {
 	window.location.href = "bookMain";
