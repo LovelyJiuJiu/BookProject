@@ -15,8 +15,6 @@
 <link rel="stylesheet" href="layui/css/layui.css" media="all">
 <link rel="stylesheet" href="css/global.css">
 <link rel="stylesheet" href="css/home.css">
-<script src="jquery/jquery-2.2.4.min.js"></script>
-<script src="layui/layui.js"></script>
 </head>
 <body>
 	<jsp:include page="./header.jsp"></jsp:include>
@@ -61,6 +59,9 @@
 		<p>顶部</p>
 	</div>
 
+	<script src="jquery/jquery-2.2.4.min.js"></script>
+	<script src="layui/layui.js"></script>
+	<script src="js/global.js"></script>
 	<script>
 		layui.use('carousel', function() {
 			var carousel = layui.carousel;
@@ -74,7 +75,6 @@
 			});
 		});
 	</script>
-	<script src="js/global.js"></script>
 
 </body>
 </html>

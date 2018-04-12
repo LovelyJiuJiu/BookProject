@@ -23,4 +23,14 @@ public class UserServiceImpl implements UserService {
 		return null;
 	}
 
+	@Override
+	public User login(User user) {
+		User user1 = userMapper.selectByUserNameAndPassword(user);
+		if (user1 != null) {
+			user1.setPassword(null);
+			return user1;
+		}
+		return null;
+	}
+
 }

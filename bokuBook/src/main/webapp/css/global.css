@@ -31,6 +31,15 @@ a {
 	padding: 0 5px;
 }
 
+.current-user-list {
+	position: absolute;
+	visibility: hidden;
+	color: #8c8c8c;
+	top: 29px;
+    right: 103px;
+    z-index: 1000;
+}
+
 .cart {
 	line-height: 35px;
 }

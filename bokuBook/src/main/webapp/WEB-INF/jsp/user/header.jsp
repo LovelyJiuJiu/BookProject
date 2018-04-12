@@ -7,15 +7,27 @@
 		<div class="layui-container">
 			<span class="welcome-text">欢迎光临博库书城</span>
 			<ul class="header-direct">
-				<li>
-					<a href="user/login">
-						登录
-					</a>
-					/
-					<a href="user/register">
-						注册
-					</a>
-				</li>
+				<c:choose>
+					<c:when test="${currentUser != null }">
+						<li>
+					    	<div id="currentUser">${currentUser.username }</div>
+						</li>
+						<div class="current-user-list">
+					    	<span style="cursor: pointer;" id="userLogout">退出</span>
+					    </div>
+					</c:when>
+					<c:otherwise>
+						<li>
+							<a href="user/login">
+								登录
+							</a>
+							/
+							<a href="user/register">
+								注册
+							</a>
+						</li>
+					</c:otherwise>
+				</c:choose>
 				<li class="separate">|</li>
 				<li class="cart">
 				<c:choose>
