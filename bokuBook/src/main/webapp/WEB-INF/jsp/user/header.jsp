@@ -1,6 +1,16 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<head>
+<%
+	String path = request.getContextPath();
+	String basePath = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort()
+			+ path + "/";
+	pageContext.setAttribute("path", basePath);
+%>
+<base href="${path }" />
+<link rel="stylesheet" href="css/global.css">
+</head>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 	<div class="common-header">
@@ -13,7 +23,12 @@
 					    	<div id="currentUser">${currentUser.username }</div>
 						</li>
 						<div class="current-user-list">
-					    	<span style="cursor: pointer;" id="userLogout">退出</span>
+							<div class="nav"></div>
+							<ul class="">
+								<li class="editUserInfo" id="editUserInfo">查看个人信息</li>
+								<li class="dropdown-divider"></li>
+						    	<li class="logout" id="userLogout">退 出</li>
+						    </ul>
 					    </div>
 					</c:when>
 					<c:otherwise>

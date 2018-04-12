@@ -157,6 +157,15 @@ function logout() {
         	}
     	});
     	
+    	$('.current-user-list').on({
+    		'mouseover': function () {
+        		$('.current-user-list').css('visibility', 'visible');
+        	},
+    		'mouseout': function () {
+        		$('.current-user-list').css('visibility', 'hidden');
+        	}
+    	});
+    	
     	$('#userLogout').on('click', function () {
     		logout();
     	});

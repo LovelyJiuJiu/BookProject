@@ -35,11 +35,42 @@ a {
 	position: absolute;
 	visibility: hidden;
 	color: #8c8c8c;
-	top: 29px;
-    right: 103px;
+	top: 35px;
+    right: 95px;
     z-index: 1000;
+    background-color: white;
+    border-radius: 4px;
+    opacity: 0.8;
+}
+.dropdown-divider{
+	height: 1px;
+	margin: 8px 1px;
+	background-color: #e1e4e8;
+	margin-bottom: 0px;
+	cursor: pointer;
+    float: none !important;
+}
+.editUserInfo,.logout{
+	cursor: pointer;
+	float: none !important;
+  	height: 23px;	
 }
 
+.nav{
+	position   :absolute;
+	top    :-8px;
+	left    :65px;
+	overflow   :hidden;
+	width    :13px;
+	height   :13px;
+	background  :white;
+	border-left  :1px solid #DACE7C;
+	border-top  :1px solid #DACE7C;
+	-webkit-transform :rotate(45deg);
+	-moz-transform :rotate(45deg);
+	-o-transform  :rotate(45deg);
+	 transform   :rotate(45deg);
+}
 .cart {
 	line-height: 35px;
 }
@@ -178,6 +209,7 @@ h3 {
 	font-weight: bold;
 	color: #fa7a20;
 }
+
 
 
 
