@@ -24,7 +24,7 @@
 			<div class="iconContent" onclick="backToHome();">
 				<i class="layui-icon">&#xe68e;</i>
 			</div>
-			<form class="layui-form" action="">
+			<form class="layui-form" onsubmit="return false;">
 				<div class="layui-form-item">
 					<span class="layui-form-label">用户名:</span>
 					<div class="layui-input-block">
