@@ -104,4 +104,9 @@ public class UserController {
 	public String registerTemp(){
 		return "user/register";
 	}
+	
+	@RequestMapping("eidtUserInfo")
+	public String eidtUserInfoTemp(){
+		return "user/userInfo";
+	}
 }

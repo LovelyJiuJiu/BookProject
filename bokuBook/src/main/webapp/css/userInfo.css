@@ -1,0 +1,85 @@
+.userInfoContainer{
+  position: relative;
+  margin: 25px auto 0;	
+  background: white;
+}
+.ico-header{
+  background: #fbfaf8;	
+}
+.layui-elem-field{
+
+}
+.titleContent{
+  font-size: 17px !important;
+}
+
+.mainContainer{
+  margin-top: 20px;	
+  height: 500px;
+}
+img{
+  width: 100%;
+}
+.layui-upload-list{
+  padding-left: 20px;
+  padding-right: 20px;
+  width: 160px;
+  height: 200px;
+  overflow: hidden;
+}
+.layui-btn{
+  margin-top: 20px !important;
+  margin-left: 40px !important;
+}
+.leftContainer{
+  position: absolute;
+  width: 200px;
+  border-right: 1px solid;
+  height: auto;
+}
+.rightContainer{
+  position: relative;
+  left: 17%;
+  padding-top: 35px;
+  width: 800px;
+}
+.layui-textarea{
+  resize: none !important;
+  width: 50% !important;		
+}
+.layui-input1{
+  background-color: white;
+  border: 1px solid #D2D2D2 !important;
+  width: 50% !important;	
+}
+.buttonCombination{
+  margin-top: 0px !important;
+  width: 100px;
+  margin-left: 240px !important;
+  margin-top: 0px !important;	
+}
+.editPassword{
+  position: relative;
+  left: 17%;
+  padding-top: 35px;
+  width: 800px;	
+}
+#edit-pwd-btn{
+  width: 100px !important;
+  margin-left: 180px !important;
+}
+.userImg{
+  margin-left: 200px;
+  width: 60px;
+  height: 100px;
+  overflow: hidden;
+  margin-bottom: 0px !important;
+}
+#uploadPic{
+  margin-top: 0px !important;
+  height: 16px !important;
+  line-height: 16px !important;
+  padding: 0 8px !important;
+  margin-left: 200px !important;
+  margin-bottom: 10px;
+}

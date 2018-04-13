@@ -18,9 +18,9 @@
 			<span class="welcome-text">欢迎光临博库书城</span>
 			<ul class="header-direct">
 				<c:choose>
-					<c:when test="${currentUser != null }">
+					<c:when test="${currentUser != null}">
 						<li>
-					    	<div id="currentUser">${currentUser.username }</div>
+					    	<div id="currentUser">${currentUser.username}</div>
 						</li>
 						<div class="current-user-list">
 							<div class="nav"></div>
@@ -46,7 +46,7 @@
 				<li class="separate">|</li>
 				<li class="cart">
 				<c:choose>
-					<c:when test="${currentUser != null }">
+					<c:when test="${currentUser != null}">
 						<c:set var="href" value="user/cart" />
 					</c:when>
 					<c:otherwise>

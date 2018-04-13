@@ -170,6 +170,10 @@ function logout() {
     		logout();
     	});
     	
+    	$('#editUserInfo').on('click', function () {
+    		window.location.href="user/eidtUserInfo";
+    	});
+    	
         bkyd.search.init();
         
         bkyd.btn_back_top.init();
