@@ -105,8 +105,8 @@ public class UserController {
 		return "user/register";
 	}
 	
-	@RequestMapping("eidtUserInfo")
-	public String eidtUserInfoTemp(){
+	@RequestMapping("editUserInfo")
+	public String editUserInfoTemp(){
 		return "user/userInfo";
 	}
 }
