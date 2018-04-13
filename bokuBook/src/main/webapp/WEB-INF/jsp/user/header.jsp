@@ -47,7 +47,7 @@
 				<li class="cart">
 				<c:choose>
 					<c:when test="${currentUser != null}">
-						<c:set var="href" value="user/cart" />
+						<c:set var="href" value="user/cartPage" />
 					</c:when>
 					<c:otherwise>
 						<c:set var="href" value="user/login" />

@@ -2,10 +2,13 @@ package com.boku.controller;
 
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
@@ -17,6 +20,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.boku.pojo.User;
+import com.boku.pojo.UserCart;
 import com.boku.service.UserService;
 import com.google.gson.Gson;
 
@@ -108,5 +112,31 @@ public class UserController {
 	@RequestMapping("editUserInfo")
 	public String editUserInfoTemp(){
 		return "user/userInfo";
+	}
+
+	@RequestMapping("cartPage")
+	public String cartPageTemp(){
+		return "user/cart";
+	}
+	
+	
+	@RequestMapping("cart")
+	@ResponseBody
+	public String cart(HttpServletRequest request){
+		String pageNumStr = request.getParameter("page");//得到第几页
+		String limitStr = request.getParameter("limit");//得到每页多少个
+		System.out.println(pageNumStr+"~~~~~~" + limitStr);
+		//模拟数据的
+		List<UserCart> cartList = new ArrayList<UserCart>();
+		for(int i = 1; i<=20; i++) {
+			UserCart userCart = new UserCart(i, "书名", "bookInfo",3.0, i, 3*i);
+			cartList.add(userCart);
+		}
+		Gson gson = new Gson();
+		String json = gson.toJson(cartList);
+		//写一个查询数量的  放在count变量中传到前台
+		int count = cartList.size();		
+		String result = "{\"code\":0,\"msg\":\"\",\"count\":"+ count +",\"data\":" + json + "}";
+		return result;
 	}
 }

@@ -39,7 +39,7 @@ layui.use('table', function(){
 	  table.render({
 	    elem: '#cartTable'
 	    ,height: 500
-	    ,url: 'user/register' //数据接口
+	    ,url: 'user/cart' //数据接口
 	    ,limit:5 //这里控制的是选择多少条默认显示的 不是实际显示的
 	    ,limits:[5,10,15]
 	    ,page: true //开启分页

@@ -142,8 +142,6 @@ function logout() {
 	});
 }
 
-
-
 (function (bkyd){
 
     $(document).ready(function () {
@@ -173,6 +171,8 @@ function logout() {
     	$('#editUserInfo').on('click', function () {
     		window.location.href="user/editUserInfo";
     	});
+    	
+
     	
         bkyd.search.init();
         
