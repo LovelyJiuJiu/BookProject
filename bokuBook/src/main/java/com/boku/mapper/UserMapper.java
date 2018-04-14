@@ -52,4 +52,6 @@ public interface UserMapper {
      * @mbg.generated
      */
     int updateByPrimaryKey(User record);
+
+	void editUserInfo();
 }

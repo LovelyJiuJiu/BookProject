@@ -1,7 +1,14 @@
 package com.boku.service.impl;
 
+import java.io.File;
+import java.io.IOException;
+
+import javax.servlet.http.HttpServletRequest;
+
+import org.apache.commons.lang.RandomStringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.boku.mapper.UserMapper;
 import com.boku.pojo.User;
@@ -31,6 +38,19 @@ public class UserServiceImpl implements UserService {
 			return user1;
 		}
 		return null;
+	}
+
+	@Override
+	public boolean editUserInfo(User user, HttpServletRequest request, MultipartFile file) throws IllegalStateException, IOException {
+		String name = RandomStringUtils.randomAlphanumeric(10);
+        String newFileName = name + ".jpg";
+        System.out.println(newFileName);
+        File newFile = new File(request.getServletContext().getRealPath("/image"), newFileName);
+        newFile.getParentFile().mkdirs();
+        file.transferTo(newFile);
+        user.setImgName(newFileName);
+//		userMapper.editUserInfo();
+		return false;
 	}
 
 }
