@@ -16,6 +16,8 @@ public class User {
 
     
     private String briefIntroduction;
+    
+    private String imgName;
 
     
     private Date createTime;
@@ -91,12 +93,24 @@ public class User {
     public void setLastUpdateTime(Date lastUpdateTime) {
     	this.lastUpdateTime = lastUpdateTime;
     }
-    
-    @Override
+
+	public String getImgName() {
+		return imgName;
+	}
+
+
+	public void setImgName(String imgName) {
+		this.imgName = imgName;
+	}
+
+
+	@Override
 	public String toString() {
 		return "User [id=" + id + ", username=" + username + ", password=" + password + ", email=" + email
-				+ ", briefIntroduction=" + briefIntroduction + ", createTime=" + createTime + ", lastUpdateTime="
-				+ lastUpdateTime + "]";
+				+ ", briefIntroduction=" + briefIntroduction + ", imgName=" + imgName + ", createTime=" + createTime
+				+ ", lastUpdateTime=" + lastUpdateTime + "]";
 	}
+	
+	
 
 }

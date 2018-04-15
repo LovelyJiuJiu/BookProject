@@ -8,13 +8,12 @@ layui.use('form', function() {
 			layer.msg('两次密码输入的不一致');
 			return false;
 		}
-		console.log('ecex  ss');
 		register(data.field);
 		return false;
 	});
 	
 	form.verify({ 
-		password: [/^(?=.*[a-z])(?=.*\d)[^]{8,16}$/, '密码应为字母和数字的组合，且不少于8位'],
+		password: [/^(?=.*[a-z])(?=.*\d)[^]{8,16}$/i, '密码应为字母和数字的组合，且不少于8位'],
 	})
 });
 function backToHome() {
@@ -45,8 +44,9 @@ function register(registerData) {
 }
 
 $(function() {
+	
 	$('#password2').on('blur', function () {
-		if ($(this).val() !== $('#password1').val()) {
+		if ($(this).val() && $(this).val() !== $('#password1').val()) {
 			layer.msg('两次密码输入的不一致');
 		}
 	});
