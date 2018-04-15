@@ -188,23 +188,26 @@ layui.use('upload', function(){
 			</form>
 			<form class="layui-form" lay-filter="pwdInfo">
 				<div class="editPassword" id="editPassword">
-					<div class="layui-form-item">
-						<span class="layui-form-label">密码:</span>
-						<div class="layui-input-block">
-							<input type="password" name="password" id="password1"
-								lay-verify="required|password" placeholder="请输入密码"
-								autocomplete="off" class="layui-input layui-input1">
+					<div class="itemContainer">
+						<div class="layui-form-item">
+							<span class="layui-form-label">密码:</span>
+							<div class="layui-input-block">
+								<input type="password" name="password" id="password1"
+									lay-verify="required|password" placeholder="请输入密码"
+									autocomplete="off" class="layui-input layui-input1">
+							</div>
 						</div>
-					</div>
-					<div class="layui-form-item">
-						<span class="layui-form-label">确认密码:</span>
-						<div class="layui-input-block">
-							<input type="password" name="password" id="password2"
-								lay-verify="required|password" placeholder="请再次输入密码"
-								autocomplete="off" class="layui-input layui-input1">
+						<div class="layui-form-item">
+							<span class="layui-form-label">确认密码:</span>
+							<div class="layui-input-block">
+								<input type="password" name="password" id="password2"
+									lay-verify="required|password" placeholder="请再次输入密码"
+									autocomplete="off" class="layui-input layui-input1">
+							</div>
 						</div>
+						<button class="layui-btn layui-btn-radius" lay-submit
+							id="edit-pwd-btn" lay-filter="edit-pwd-btn">修改</button>
 					</div>
-					<button class="layui-btn layui-btn-radius" lay-submit id="edit-pwd-btn" lay-filter="edit-pwd-btn">修改</button>
 				</div>
 			</form>
 		</div>
