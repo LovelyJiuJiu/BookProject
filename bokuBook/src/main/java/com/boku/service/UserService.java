@@ -14,4 +14,7 @@ public interface UserService {
 	User login(User user);
 	
 	boolean editUserInfo(User user, HttpServletRequest request, MultipartFile file) throws IllegalStateException, IOException;
+	boolean checkPasswordByUserId(Integer id, String password);
+	boolean updatePasswordByUserId(Integer id, String password);
+
 }

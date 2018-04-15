@@ -41,7 +41,54 @@ $(document).ready(function() {
 		$('#editPassword').css('display', "none");		
 	});
 	
+	$("#oldPassword").blur(function(){
+		$('#newPassword').attr('disabled',true);
+		$('#newPassword2').attr('disabled',true);
+		checkPassword();
+	});
+	
 })
+
+
+function checkPassword() {
+	$.ajax({ 
+		url : 'user/checkPassword',		
+		dataType : 'json',
+		data: {
+			password: $('input[name=oldPassword]').val(),
+	    },
+	    success : function(data) {
+	    	if (data.result === 1) {
+				layer.msg('密码匹配，请输入新密码');
+				$('#newPassword').attr('disabled',false);
+				$('#newPassword2').attr('disabled',false);
+			} else {
+				layer.msg('密码错误，请再次输入');
+				$('input[name=oldPassword]').val("");
+			}
+	    }
+	})
+	
+}
+
+function updatePassword() {
+	$.ajax({ 
+		url : 'user/updatePassword',		
+		dataType : 'json',
+		data: {
+			password: $('input[name=newPassword]').val(),
+	    },
+	    success : function(data) {
+	    	if (data.result === 1) {
+				layer.msg('修改成功');
+				window.location.href="user/login"
+			} else {
+				layer.msg('修改失败');
+			}
+	    }
+	});	
+}
+
 
 function editProfileWithoutImg () {
 	$.ajax({
@@ -77,10 +124,18 @@ layui.use('form', function() {
 		return false;
 	});
 	
-	form.on('submit(edit-pwd-btn)', function(data) {
-		alert(data.field.toString());//密码的修改
+	form.on('submit(edit-pwd-btn)', function(data) {		
+		if ($('#newPassword').val() !== $('#newPassword2').val()) {
+			layer.msg('两次密码输入的不一致');
+			return false;
+		}
+		updatePassword();	
 		return false;
 	});
+	
+	form.verify({ 
+		password: [/^(?=.*[a-z])(?=.*\d)[^]{8,16}$/i, '密码应为字母和数字的组合，且不少于8位'],
+	})
 	
 });
 
@@ -190,9 +245,17 @@ layui.use('upload', function(){
 				<div class="editPassword" id="editPassword">
 					<div class="itemContainer">
 						<div class="layui-form-item">
-							<span class="layui-form-label">密码:</span>
+							<span class="layui-form-label">原密码:</span>
 							<div class="layui-input-block">
-								<input type="password" name="password" id="password1"
+								<input type="password" name="oldPassword" id="oldPassword"
+									lay-verify="required|password" placeholder="请输入密码"
+									autocomplete="off" class="layui-input layui-input1">
+							</div>
+						</div>
+						<div class="layui-form-item">
+							<span class="layui-form-label">新密码:</span>
+							<div class="layui-input-block">
+								<input type="password" name="newPassword" id="newPassword"
 									lay-verify="required|password" placeholder="请输入密码"
 									autocomplete="off" class="layui-input layui-input1">
 							</div>
@@ -200,7 +263,7 @@ layui.use('upload', function(){
 						<div class="layui-form-item">
 							<span class="layui-form-label">确认密码:</span>
 							<div class="layui-input-block">
-								<input type="password" name="password" id="password2"
+								<input type="password" name="newPassword" id="newPassword2"
 									lay-verify="required|password" placeholder="请再次输入密码"
 									autocomplete="off" class="layui-input layui-input1">
 							</div>
