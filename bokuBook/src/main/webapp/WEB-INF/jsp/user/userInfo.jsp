@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <head>
 <%
@@ -10,9 +11,9 @@
 %>
 <base href=${path } />
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<link rel="stylesheet" href="css/userInfo.css">
 <title>--用户信息--</title>
 <link rel="stylesheet" href="layui/css/layui.css" media="all">
+<link rel="stylesheet" href="css/userInfo.css">
 <link rel="stylesheet" href="css/global.css">
 <link rel="stylesheet" href="css/home.css">
 <script src="jquery/jquery-2.2.4.min.js"></script>
@@ -20,8 +21,14 @@
 <script src="js/global.js"></script>
 <script>
 $(document).ready(function() { 
-	$('#uploadImg2').attr('src', "image/deafultPhoto.jpg"); 
-	$('#uploadImg').attr('src', "image/deafultPhoto.jpg"); 
+	if (!$('#imgName').val()) {
+		$('#uploadImg2').attr('src', "image/deafultPhoto.jpg"); 
+		$('#uploadImg').attr('src', "image/deafultPhoto.jpg"); 
+	} else {
+		$('#uploadImg2').attr('src', "image/" + $('#imgName').val()); 
+		$('#uploadImg').attr('src', "image/" + $('#imgName').val()); 
+	}
+	
 	$('#editPassword').css('display', "none");	
 	
 	$('#editPwd').on('click', function () {
@@ -36,14 +43,43 @@ $(document).ready(function() {
 	
 })
 
+function editProfileWithoutImg () {
+	$.ajax({
+		url : 'user/editProfileWithoutImg',
+		async : true,
+		type : 'POST',
+		dataType : 'json',
+		data: {
+	    	username: $('input[name=username]').val(),
+	    	email: $('input[name=email]').val(),
+	    	briefIntroduction: $('input[name=desc]').val()
+	    },
+		success : function(data) {
+			if (data.result === 0) {
+				layer.msg('上传成功');
+			} else {
+				console.log(data);
+			}
+		},
+		error : function(err) {
+			console.log(err);
+		}
+	});
+}
+
 layui.use('form', function() {
 	var form = layui.form;
 	form.on('submit(edit-basic-btn)', function(data) {
-		alert(data.field);//提交头像+基本信息
+		console.log(data.field);//提交头像+基本信息
+		if (!$('input[name=file]').val()) {
+			editProfileWithoutImg();
+		}
+		return false;
 	});
 	
 	form.on('submit(edit-pwd-btn)', function(data) {
 		alert(data.field.toString());//密码的修改
+		return false;
 	});
 	
 });
@@ -55,8 +91,10 @@ layui.use('upload', function(){
 	  //普通图片上传
 	  var uploadInst = upload.render({
 	    elem: '#uploadPic'
-	    ,url: '/upload/'
-	    ,before: function(obj){
+	    ,url: 'user/editProfileWithImg'
+	    ,auto: false
+	    ,bindAction: '#edit-basic-btn'
+	    ,choose: function(obj){
 	      //预读本地文件示例，不支持ie8
 	      obj.preview(function(index, file, result){
 	        $('#uploadImg').attr('src', result); //图片链接（base64）
@@ -64,14 +102,22 @@ layui.use('upload', function(){
 	        $('#photoUrl').attr('value', file.name);
 	      });
 	    }
+	    ,data: {
+	    	username: $('input[name=username]').val(),
+	    	email: $('input[name=email]').val(),
+	    	briefIntroduction: $('input[name=desc]').val()
+	    }
 	    ,done: function(res){
 	      //如果上传失败
-	      if(res.code > 0){
-	        return layer.msg('上传失败');
+	      if(res.code !== 0){
+	      	  return layer.msg('上传失败');
+	      } else {
+	    	  return layer.msg('上传成功');
 	      }
-	      //上传成功
+	      
 	    }
-	    ,error: function(){
+	    ,error: function(err){
+	    	console.log(err);
 	      //演示失败状态，并实现重传
 /*  	      var uploadHelpText = $('#uploadHelpText');
 	      uploadHelpText.html('<span style="color: #FF5722;">上传失败</span> <a class="layui-btn layui-btn-mini demo-reload">重试</a>');
@@ -105,37 +151,40 @@ layui.use('upload', function(){
 			</div>
 			<form class="layui-form" lay-filter="basicInfo">
 				<div class="rightContainer" id="rightContainer">
-					<div class="layui-form-item  userImg">
-						<img class="layui-upload-img" id="uploadImg2">						
-					</div>
-					<button type="button" class="layui-btn layui-btn-radius" id="uploadPic">编辑头像</button>
-					<input type="hidden" name="photoUrl" id="photoUrl"/>
-					<div class="layui-form-item">
-						<span class="layui-form-label">用户名:</span>
-						<div class="layui-input-block">
-							<input type="text" value="${currentUser.username}"
-								name="username" lay-verify="required" autocomplete="off"
-								class="layui-input layui-input1">
+					<div class="edit-profile">
+						<div class="layui-form-item  userImg">
+							<img class="layui-upload-img" id="uploadImg2">						
 						</div>
-					</div>
-					<div class="layui-form-item">
-						<span class="layui-form-label">邮箱:</span>
-						<div class="layui-input-block">
-							<input type="text" value="${currentUser.email}" name="email" lay-verify="required|email"
-								autocomplete="off" class="layui-input layui-input1">
+						<button type="button" class="layui-btn layui-btn-radius" id="uploadPic">编辑头像</button>
+						<input type="hidden" name="photoUrl" id="photoUrl"/>
+						<div class="layui-form-item">
+							<span class="layui-form-label">用户名:</span>
+							<div class="layui-input-block">
+								<input type="text" value="${currentUser.username}"
+									name="username" lay-verify="required" autocomplete="off"
+									class="layui-input layui-input1">
+							</div>
 						</div>
-					</div>
-					<div class="layui-form-item layui-form-text">
-						<label class="layui-form-label">个人简介：</label>
-						<div class="layui-input-block">
-							<textarea name="desc" value="${currentUser.briefIntroduction}"
-								class="layui-textarea"></textarea>
+						<div class="layui-form-item">
+							<span class="layui-form-label">邮箱:</span>
+							<div class="layui-input-block">
+								<input type="text" value="${currentUser.email}" name="email" lay-verify="required|email"
+									autocomplete="off" class="layui-input layui-input1">
+							</div>
 						</div>
-					</div>
-					<div class="layui-form-item">
-						<button class="layui-btn layui-btn-radius buttonCombination" lay-submit id="edit-basic-btn" lay-filter="edit-basic-btn">修改</button>
+						<div class="layui-form-item layui-form-text">
+							<label class="layui-form-label">个人简介：</label>
+							<div class="layui-input-block">
+								<textarea name="desc" value="${currentUser.briefIntroduction}"
+									class="layui-textarea layui-input1"></textarea>
+							</div>
+						</div>
+						<div class="layui-form-item">
+							<button class="layui-btn layui-btn-radius buttonCombination" lay-submit id="edit-basic-btn" lay-filter="edit-basic-btn">修改</button>
+						</div>
 					</div>
 				</div>
+					
 			</form>
 			<form class="layui-form" lay-filter="pwdInfo">
 				<div class="editPassword" id="editPassword">
@@ -161,4 +210,5 @@ layui.use('upload', function(){
 		</div>
 
 	</div>
+	<input type="hidden" id="imgName" value="${currentUser.imgName }"/>
 </body>

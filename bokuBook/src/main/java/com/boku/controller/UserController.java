@@ -1,5 +1,6 @@
 package com.boku.controller;
 
+import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 import java.util.ArrayList;
@@ -18,6 +19,7 @@ import org.springframework.web.bind.annotation.CookieValue;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.boku.pojo.User;
 import com.boku.pojo.UserCart;
@@ -95,6 +97,36 @@ public class UserController {
 		if (session.getAttribute("currentUser") != null) {
 			session.removeAttribute("currentUser");
 			result.put("result", 1);
+		}
+		return gson.toJson(result);
+	}
+	
+	@RequestMapping("editProfileWithoutImg")
+	@ResponseBody
+	public String editUserInfo(User user, HttpServletRequest request){
+		Gson gson = new Gson();
+		Map<String, Object> result = new HashMap<String, Object>();
+		try {
+			userService.editUserInfo(user, request, null);
+		} catch (Exception e) {
+			e.printStackTrace();
+			result.put("code", 1);
+		}
+		return gson.toJson(result);
+	}
+	
+	@RequestMapping("editProfileWithImg")
+	@ResponseBody
+	public String editUserInfo(User user, MultipartFile file, HttpServletRequest request){
+		Gson gson = new Gson();
+		Map<String, Object> result = new HashMap<String, Object>();
+		System.out.println(file.getSize());
+		try {
+			userService.editUserInfo(user, request, file);
+			result.put("code", 0);
+		} catch (Exception e) {
+			e.printStackTrace();
+			result.put("code", 1);
 		}
 		return gson.toJson(result);
 	}
