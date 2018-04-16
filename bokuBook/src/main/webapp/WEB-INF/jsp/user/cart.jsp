@@ -54,7 +54,7 @@ layui.use('table', function(){
 	    ,page: true //开启分页
 	    ,cols: [[ //表头
 	      {checkbox: true, fixed: true}
-	      ,{field: 'id', title: 'ID', width:80, height:80,sort: true, fixed: 'left'}
+	      ,{field: 'id'}
 	      ,{field: 'bookName', title: '书籍名称', width:130}
 		  ,{field: 'bookInfo', title: '展示图片', width: 250,templet:'<div><img src="{{ d.bookInfo}}"></div>'}
 	      ,{field: 'price', title: '单价', width:100, sort: true}
@@ -62,6 +62,9 @@ layui.use('table', function(){
 	      ,{field: 'totalPrice', title: '金额', width: 100, sort: true}
 	      ,{field: 'operation', title: '操作', toolbar:"#operation"}
 	    ]]
+	  ,done: function(res, curr, count){
+		  $("[data-field='id']").css('display','none');
+	  }
 	  });
 	  addEvent(table);
 
@@ -75,7 +78,7 @@ function addEvent(table) {
 		var layEvent = obj.event;
 		var tr = obj.tr;
 		if (layEvent === 'del') {
-			alert("del?");
+			alert(obj.data.id);
 		}
 	});
 	
