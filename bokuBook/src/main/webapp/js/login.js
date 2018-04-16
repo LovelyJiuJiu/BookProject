@@ -33,6 +33,9 @@ function login(data) {
 				window.location.href = "bookMain";
 			} else if (data.result === 0) {
 				layer.msg('用户名或密码错误');
+				$('input[name=username]').val("");
+				$('input[name=password]').val("");
+				$(".layui-form-switch").removeClass("layui-form-onswitch");
 			}
 		},
 		error : function(err) {
@@ -54,8 +57,8 @@ function getCookie(cname) {
 }
 
 $(function() {
-	var userName = decodeURI(getCookie("username"));
-	var password = decodeURI(getCookie("password"));
+	var userName = decodeURIComponent(getCookie("username"));
+	var password = decodeURIComponent(getCookie("password"));
 	$('input[name=username]').val(userName);
 	$('input[name=password]').val(password);
 });

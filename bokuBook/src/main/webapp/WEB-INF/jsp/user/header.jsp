@@ -51,7 +51,7 @@ $(document).ready(function() {
 						</li>
 						<div class="current-user-list">
 							<div class="nav"></div>
-							<ul class="">
+							<ul class="profile">
 								<li class="editUserInfo" id="editUserInfo">查看个人信息</li>
 								<li class="dropdown-divider"></li>
 						    	<li class="logout" id="userLogout">退 出</li>

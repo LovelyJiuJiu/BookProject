@@ -44,8 +44,7 @@ a {
 }
 .dropdown-divider{
 	height: 1px;
-	margin: 8px 1px;
-	background-color: #e1e4e8;
+	background-color: #dbd4cd;
 	margin-bottom: 0px;
 	cursor: pointer;
     float: none !important;
@@ -53,23 +52,32 @@ a {
 .editUserInfo,.logout{
 	cursor: pointer;
 	float: none !important;
-  	height: 23px;	
+	font-size: 10px;
+  	height: 24px;	
+  	line-height: 24px;
+  	text-align: center;
+}
+
+.profile {
+	margin-top: 1px;
+	border: 1px solid #dbd4cd;
+	background-color: #fbfaf8;
 }
 
 .nav{
-	position   :absolute;
-	top    :-8px;
-	left    :65px;
-	overflow   :hidden;
-	width    :13px;
-	height   :13px;
-	background  :white;
-	border-left  :1px solid #DACE7C;
-	border-top  :1px solid #DACE7C;
-	-webkit-transform :rotate(45deg);
-	-moz-transform :rotate(45deg);
-	-o-transform  :rotate(45deg);
-	 transform   :rotate(45deg);
+	position: absolute;
+    top: -5px;
+    left: 59px;
+    overflow: hidden;
+    width: 10px;
+    height: 10px;
+    background: #fbfaf8;
+    border-left: 1px solid #dbd4cd;
+    border-top: 1px solid #dbd4cd;
+    -webkit-transform: rotate(45deg);
+    -moz-transform: rotate(45deg);
+    -o-transform: rotate(45deg);
+    transform: rotate(45deg);
 }
 .cart {
 	line-height: 35px;

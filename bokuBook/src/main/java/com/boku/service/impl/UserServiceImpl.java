@@ -23,6 +23,7 @@ public class UserServiceImpl implements UserService {
 	@Override
 	public User register(User user) {
 		int result = userMapper.insertSelective(user);
+		System.out.println(result);
 		if (result == 1) {
 			user.setPassword(null);
 			return user;
@@ -42,15 +43,40 @@ public class UserServiceImpl implements UserService {
 
 	@Override
 	public boolean editUserInfo(User user, HttpServletRequest request, MultipartFile file) throws IllegalStateException, IOException {
-		String name = RandomStringUtils.randomAlphanumeric(10);
-        String newFileName = name + ".jpg";
-        System.out.println(newFileName);
-        File newFile = new File(request.getServletContext().getRealPath("/image"), newFileName);
-        newFile.getParentFile().mkdirs();
-        file.transferTo(newFile);
-        user.setImgName(newFileName);
-//		userMapper.editUserInfo();
+		if (file != null) {
+			String name = RandomStringUtils.randomAlphanumeric(10);  // 随机数
+			String newFileName = name + ".jpg";
+			System.out.println(newFileName);
+			File newFile = new File(request.getServletContext().getRealPath("/image"), newFileName);
+			newFile.getParentFile().mkdirs();
+			file.transferTo(newFile);
+			user.setImgName(newFileName);
+		}
+		int result = userMapper.updateByPrimaryKeySelective(user);
+		if (result == 1) {
+			return true;
+		}
 		return false;
 	}
+	
+	@Override
+	public boolean checkPasswordByUserId(Integer id, String password){
+		boolean result = false;
+		String currentPassword = userMapper.selectByPrimaryKey(id).getPassword();
+		if (currentPassword.equals(password)) {
+			result = true;
+		}
+		return result;
+	}
+	
+	@Override
+	public boolean updatePasswordByUserId(Integer id, String password){
+		User user = new User();
+		user.setId(id);
+		user.setPassword(password);
+		int result = userMapper.updateByPrimaryKeySelective(user);		
+		return result>0;		
+	}
+	
 
 }
