@@ -39,7 +39,7 @@
     select 
     <include refid="Base_Column_List" />
     from user
-    where username = #{username} and password = #{password}
+    where binary username = #{username} and binary password = #{password}
   </select>
   
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">

@@ -54,7 +54,6 @@ layui.use('table', function(){
 	    ,page: true //开启分页
 	    ,cols: [[ //表头
 	      {checkbox: true, fixed: true}
-	      ,{field: 'id'}
 	      ,{field: 'bookName', title: '书籍名称', width:130}
 		  ,{field: 'bookInfo', title: '展示图片', width: 250,templet:'<div><img src="{{ d.bookInfo}}"></div>'}
 	      ,{field: 'price', title: '单价', width:100, sort: true}
