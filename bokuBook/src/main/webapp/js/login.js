@@ -57,8 +57,8 @@ function getCookie(cname) {
 }
 
 $(function() {
-	var userName = decodeURI(getCookie("username"));
-	var password = decodeURI(getCookie("password"));
+	var userName = decodeURIComponent(getCookie("username"));
+	var password = decodeURIComponent(getCookie("password"));
 	$('input[name=username]').val(userName);
 	$('input[name=password]').val(password);
 });
