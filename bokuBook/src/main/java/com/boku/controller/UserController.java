@@ -236,19 +236,17 @@ public class UserController {
 	public String cart(HttpSession session){
 //		String pageNumStr = request.getParameter("page");//得到第几页
 //		String limitStr = request.getParameter("limit");//得到每页多少个
-		List<UserCart> ResultList = new ArrayList<UserCart>();
+		List<UserCart> resultList = new ArrayList<UserCart>();
 		User user =(User)session.getAttribute("currentUser");		
 		if (user != null) {
 			List<CartBook> result = cartService.getcartBookObjListByUserId(user.getId());
-			ResultList = bookService.getUserCartObjListByList(result);
+			resultList = bookService.getUserCartObjListByList(result);
 		} else {
-			System.out.println("user null");		
+			System.out.println("user null");
 		}
-
 		Gson gson = new Gson();
-		String json = gson.toJson(ResultList);
-		//写一个查询数量的  放在count变量中传到前台
-		int count = ResultList.size();
+		String json = gson.toJson(resultList);
+		int count = (resultList==null ? 0 : resultList.size());
 		String result = "{\"code\":0,\"msg\":\"\",\"count\":"+ count +",\"data\":" + json + "}";
 		return result;
 	}

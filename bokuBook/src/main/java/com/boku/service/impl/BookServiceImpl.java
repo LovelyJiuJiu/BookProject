@@ -33,7 +33,7 @@ public class BookServiceImpl implements BookService {
 			for (int i = 0; i < bookList.size(); i++) {
 				Book book = bookList.get(i);
 				int number = CartBookList.get(i).getNumber();
-				UserCart temp = new UserCart(i, book.getBookname(), book.getBookImage(), book.getBookPrice(), number, number*book.getBookPrice());
+				UserCart temp = new UserCart(i+1, book.getBookname(), book.getBookImage(), book.getBookPrice(), number, number*book.getBookPrice());
 				resultList.add(temp);
 			}	
 		} else {
