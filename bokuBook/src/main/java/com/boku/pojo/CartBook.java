@@ -35,5 +35,12 @@ public class CartBook {
 	public CartBook() {
 		super();
 		// TODO Auto-generated constructor stub
+	}
+	
+	@Override
+	public String toString() {
+		return "CartBook [bookId=" + bookId + ", number=" + number + ", cartId=" + cartId + "]";
 	}   
+	
+	
 }
