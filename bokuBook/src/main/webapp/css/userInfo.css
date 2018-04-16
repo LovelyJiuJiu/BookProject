@@ -60,9 +60,13 @@ img{
 }
 .editPassword{
   position: relative;
-  left: 17%;
   padding-top: 35px;
-  width: 800px;	
+  width: 769px;
+  margin-left: 201px;
+}
+.itemContainer{
+  width: 440px;
+  margin: 0 auto;	
 }
 #edit-pwd-btn{
   width: 100px !important;

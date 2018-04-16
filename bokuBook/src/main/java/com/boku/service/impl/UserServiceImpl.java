@@ -58,5 +58,25 @@ public class UserServiceImpl implements UserService {
 		}
 		return false;
 	}
+	
+	@Override
+	public boolean checkPasswordByUserId(Integer id, String password){
+		boolean result = false;
+		String currentPassword = userMapper.selectByPrimaryKey(id).getPassword();
+		if (currentPassword.equals(password)) {
+			result = true;
+		}
+		return result;
+	}
+	
+	@Override
+	public boolean updatePasswordByUserId(Integer id, String password){
+		User user = new User();
+		user.setId(id);
+		user.setPassword(password);
+		int result = userMapper.updateByPrimaryKeySelective(user);		
+		return result>0;		
+	}
+	
 
 }
