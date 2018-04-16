@@ -1,5 +1,7 @@
 package com.boku.mapper;
 
+import java.util.List;
+
 import com.boku.pojo.Book;
 
 public interface BookMapper {
@@ -50,4 +52,7 @@ public interface BookMapper {
      * @mbg.generated
      */
     int updateByPrimaryKey(Book record);
+    
+    List<Book> getBookListByIds(List<Integer> ids);
+    
 }

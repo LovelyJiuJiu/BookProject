@@ -1,5 +1,7 @@
 package com.boku.controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -22,4 +24,12 @@ public class CartController {
 		System.out.println(cart.getId());
 		return null;
 	}
+	
+	private List<CartBook> getCartIdByUserId(Integer userId){
+		return null;
+//		return cartService.getBookIdListByUserId(userId);	
+		
+	}
 }
+
+

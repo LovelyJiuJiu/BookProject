@@ -7,3 +7,15 @@
 .layui-form{
   margin-top: 20px !important;	
 }
+
+.laytable-cell-1-bookInfo{
+    height: 100%;
+    max-width: 100%;
+}
+img{
+  width: 100%;
+}
+.layui-table-cell{
+  height: 50px !important;	
+}
+

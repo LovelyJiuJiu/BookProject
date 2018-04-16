@@ -13,7 +13,7 @@
     <result column="book_introduction" jdbcType="VARCHAR" property="bookIntroduction" />
     <result column="book_publisher" jdbcType="VARCHAR" property="bookPublisher" />
     <result column="book_image" jdbcType="VARCHAR" property="bookImage" />
-    <result column="book_price" jdbcType="DECIMAL" property="bookPrice" />
+    <result column="book_price" jdbcType="DOUBLE" property="bookPrice" />
     <result column="status" jdbcType="INTEGER" property="status" />
     <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
     <result column="last_update_time" jdbcType="TIMESTAMP" property="lastUpdateTime" />
@@ -55,7 +55,7 @@
       create_time, last_update_time)
     values (#{id,jdbcType=INTEGER}, #{bookname,jdbcType=VARCHAR}, #{typeId,jdbcType=INTEGER}, 
       #{bookAuthor,jdbcType=VARCHAR}, #{bookIntroduction,jdbcType=VARCHAR}, #{bookPublisher,jdbcType=VARCHAR}, 
-      #{bookImage,jdbcType=VARCHAR}, #{bookPrice,jdbcType=DECIMAL}, #{status,jdbcType=INTEGER}, 
+      #{bookImage,jdbcType=VARCHAR}, #{bookPrice,jdbcType=DOUBLE}, #{status,jdbcType=INTEGER}, 
       #{createTime,jdbcType=TIMESTAMP}, #{lastUpdateTime,jdbcType=TIMESTAMP})
   </insert>
   <insert id="insertSelective" parameterType="com.boku.pojo.Book">
@@ -122,7 +122,7 @@
         #{bookImage,jdbcType=VARCHAR},
       </if>
       <if test="bookPrice != null">
-        #{bookPrice,jdbcType=DECIMAL},
+        #{bookPrice,jdbcType=DOUBLE},
       </if>
       <if test="status != null">
         #{status,jdbcType=INTEGER},
@@ -161,7 +161,7 @@
         book_image = #{bookImage,jdbcType=VARCHAR},
       </if>
       <if test="bookPrice != null">
-        book_price = #{bookPrice,jdbcType=DECIMAL},
+        book_price = #{bookPrice,jdbcType=DOUBLE},
       </if>
       <if test="status != null">
         status = #{status,jdbcType=INTEGER},
@@ -187,10 +187,21 @@
       book_introduction = #{bookIntroduction,jdbcType=VARCHAR},
       book_publisher = #{bookPublisher,jdbcType=VARCHAR},
       book_image = #{bookImage,jdbcType=VARCHAR},
-      book_price = #{bookPrice,jdbcType=DECIMAL},
+      book_price = #{bookPrice,jdbcType=DOUBLE},
       status = #{status,jdbcType=INTEGER},
       create_time = #{createTime,jdbcType=TIMESTAMP},
       last_update_time = #{lastUpdateTime,jdbcType=TIMESTAMP}
     where id = #{id,jdbcType=INTEGER}
   </update>
+  
+  <select id="getBookListByIds" resultMap="BaseResultMap">
+    select *
+    from book
+    <where>
+    id IN
+    <foreach item="bookId" index="index" collection="list"
+        open="(" separator="," close=")"> #{bookId,jdbcType=INTEGER}
+    </foreach>
+	</where>
+  </select>
 </mapper>

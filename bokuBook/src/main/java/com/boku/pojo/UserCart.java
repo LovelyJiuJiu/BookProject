@@ -1,5 +1,6 @@
 package com.boku.pojo;
 
+import java.math.BigDecimal;
 
 public class UserCart {
     private int id;
@@ -8,6 +9,7 @@ public class UserCart {
     private double price;
     private int number;
     private double totalPrice;
+    
 	public int getId() {
 		return id;
 	}
@@ -26,17 +28,12 @@ public class UserCart {
 	public void setBookInfo(String bookInfo) {
 		this.bookInfo = bookInfo;
 	}
+
 	public double getPrice() {
 		return price;
 	}
 	public void setPrice(double price) {
 		this.price = price;
-	}
-	public int getNumber() {
-		return number;
-	}
-	public void setNumber(int number) {
-		this.number = number;
 	}
 	public double getTotalPrice() {
 		return totalPrice;
@@ -44,6 +41,14 @@ public class UserCart {
 	public void setTotalPrice(double totalPrice) {
 		this.totalPrice = totalPrice;
 	}
+	public int getNumber() {
+		return number;
+	}
+	public void setNumber(int number) {
+		this.number = number;
+	}
+
+
 	public UserCart(int id, String bookName, String bookInfo, double price, int number, double totalPrice) {
 		super();
 		this.id = id;
@@ -53,6 +58,7 @@ public class UserCart {
 		this.number = number;
 		this.totalPrice = totalPrice;
 	}
+	
 	public UserCart() {
 		super();
 		// TODO Auto-generated constructor stub

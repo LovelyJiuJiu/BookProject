@@ -21,8 +21,11 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.boku.pojo.CartBook;
 import com.boku.pojo.User;
 import com.boku.pojo.UserCart;
+import com.boku.service.BookService;
+import com.boku.service.CartService;
 import com.boku.service.UserService;
 import com.google.gson.Gson;
 
@@ -32,6 +35,10 @@ public class UserController {
 	
 	@Autowired
 	private UserService userService;
+	@Autowired
+	private CartService cartService;
+	@Autowired
+	private BookService bookService;
 	
 	@RequestMapping("register-submit")
 	@ResponseBody
@@ -161,6 +168,23 @@ public class UserController {
 	public String cartPageTemp(){
 		return "user/cart";
 	}
+
+	
+	@RequestMapping("bookNumber")
+	@ResponseBody
+	public String bookNumber(HttpSession session){
+		User user =(User)session.getAttribute("currentUser");	
+		Gson gson = new Gson();
+		Map<String, Object> result = new HashMap<String, Object>();
+		if (user != null) {
+			List<CartBook> list = cartService.getcartBookObjListByUserId(user.getId());
+			result.put("result", list.size());
+		} else {
+			result.put("result", 0);
+		}	
+		return gson.toJson(result);		
+	}
+	
 	
 	@RequestMapping("checkPassword")
 	@ResponseBody
@@ -209,20 +233,20 @@ public class UserController {
 	
 	@RequestMapping("cart")
 	@ResponseBody
-	public String cart(HttpServletRequest request){
-		String pageNumStr = request.getParameter("page");//得到第几页
-		String limitStr = request.getParameter("limit");//得到每页多少个
-		System.out.println(pageNumStr+"~~~~~~" + limitStr);
-		//模拟数据的
-		List<UserCart> cartList = new ArrayList<UserCart>();
-		for(int i = 1; i<=20; i++) {
-			UserCart userCart = new UserCart(i, "书名", "bookInfo",3.0, i, 3*i);
-			cartList.add(userCart);
+	public String cart(HttpSession session){
+//		String pageNumStr = request.getParameter("page");//得到第几页
+//		String limitStr = request.getParameter("limit");//得到每页多少个
+		List<UserCart> resultList = new ArrayList<UserCart>();
+		User user =(User)session.getAttribute("currentUser");		
+		if (user != null) {
+			List<CartBook> result = cartService.getcartBookObjListByUserId(user.getId());
+			resultList = bookService.getUserCartObjListByList(result);
+		} else {
+			System.out.println("user null");
 		}
 		Gson gson = new Gson();
-		String json = gson.toJson(cartList);
-		//写一个查询数量的  放在count变量中传到前台
-		int count = cartList.size();		
+		String json = gson.toJson(resultList);
+		int count = (resultList==null ? 0 : resultList.size());
 		String result = "{\"code\":0,\"msg\":\"\",\"count\":"+ count +",\"data\":" + json + "}";
 		return result;
 	}

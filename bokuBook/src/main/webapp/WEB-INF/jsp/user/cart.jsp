@@ -29,7 +29,7 @@
 	<script type="text/html" id="operation">
 		<a class="layui-btn layui-btn-danger layui-btn-mini" lay-event="del">删除</a>
 	</script>
-	<script>
+<script>
 
 
 /* $.ajax({
@@ -50,20 +50,24 @@ layui.use('table', function(){
 	    ,height: 500
 	    ,url: 'user/cart' //数据接口
 	    ,limit:5 //这里控制的是选择多少条默认显示的 不是实际显示的
-	    ,limits:[5,10,15]
+	    ,limits:[1,5,10,15]
 	    ,page: true //开启分页
 	    ,cols: [[ //表头
 	      {checkbox: true, fixed: true}
-	      ,{field: 'id', title: 'ID', width:80, sort: true, fixed: 'left'}
-	      ,{field: 'bookName', title: '书籍名称', width:100}
-	      ,{field: 'bookInfo', title: '书籍信息', width:400}
-	      ,{field: 'price', title: '单价', width:80, sort: true}
-	      ,{field: 'number', title: '数量', width:80} 
-	      ,{field: 'totalPrice', title: '金额', width: 80, sort: true}
+	      ,{field: 'id'}
+	      ,{field: 'bookName', title: '书籍名称', width:130}
+		  ,{field: 'bookInfo', title: '展示图片', width: 250,templet:'<div><img src="{{ d.bookInfo}}"></div>'}
+	      ,{field: 'price', title: '单价', width:100, sort: true}
+	      ,{field: 'number', title: '数量', width:100} 
+	      ,{field: 'totalPrice', title: '金额', width: 100, sort: true}
 	      ,{field: 'operation', title: '操作', toolbar:"#operation"}
 	    ]]
+	  ,done: function(res, curr, count){
+		  $("[data-field='id']").css('display','none');
+	  }
 	  });
 	  addEvent(table);
+
 
 });
 
@@ -74,7 +78,7 @@ function addEvent(table) {
 		var layEvent = obj.event;
 		var tr = obj.tr;
 		if (layEvent === 'del') {
-			alert("del?");
+			alert(obj.data.id);
 		}
 	});
 	
