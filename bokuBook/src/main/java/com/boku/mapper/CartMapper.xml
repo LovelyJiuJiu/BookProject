@@ -11,6 +11,14 @@
     <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
     <result column="last_update_time" jdbcType="TIMESTAMP" property="lastUpdateTime" />
   </resultMap>
+  
+  <resultMap id="CartBookMap" type="com.boku.pojo.CartBook">
+    <result column="book_id" jdbcType="INTEGER" property="bookId" />
+    <result column="number" jdbcType="INTEGER" property="number" />
+    <result column="cart_id" jdbcType="INTEGER" property="cartId" />
+  </resultMap>
+  
+  
   <sql id="Base_Column_List">
     <!--
       WARNING - @mbg.generated
@@ -111,4 +119,11 @@
       last_update_time = #{lastUpdateTime,jdbcType=TIMESTAMP}
     where id = #{id,jdbcType=INTEGER}
   </update>
+ 
+  <select id="getcartBookObjListByUserId" parameterType="java.lang.Integer" resultMap="CartBookMap">
+     select cart_book.book_id,cart_book.number from cart,cart_book
+     where cart.id=cart_book.cart_id and cart.user_id = #{userId}
+  </select> 
+  
+  
 </mapper>

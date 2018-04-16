@@ -10,6 +10,33 @@
 %>
 <base href="${path }" />
 <link rel="stylesheet" href="css/global.css">
+<script src="jquery/jquery-2.2.4.min.js"></script>
+<script src="layui/layui.js"></script>
+<script language="javascript">
+$(document).ready(function() { 
+	var currentUser="<%=session.getAttribute("currentUser")%>";
+	if (currentUser == null) {
+		$('#num').html("0");
+	} else {
+		checkBookNumInCart();
+	}
+});
+
+ function checkBookNumInCart() {
+	$.ajax({
+		url : 'user/bookNumber',
+		async : true,
+		dataType : 'json',
+		success : function(data) {
+			if (data.result === 0) {
+				$('#num').html("0");
+			} else {
+				$('#num').html(data.result);
+			}
+		}
+	});
+}
+</script>
 </head>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -56,7 +83,7 @@
 				<a href="${href }">
 					<i class="layui-icon">&#xe657;</i>
 						购物车
-					<span class="layui-badge layui-bg-orange">0</span>
+					<span id="num" class="layui-badge layui-bg-orange"></span>
 				</a>
 					
 				</li>

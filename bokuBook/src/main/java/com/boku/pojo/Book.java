@@ -12,7 +12,7 @@ public class Book {
     private String bookIntroduction;
     private String bookPublisher;
     private String bookImage;
-    private BigDecimal bookPrice;
+    private double bookPrice;
     private Integer status;
     private Date createTime;
     private Date lastUpdateTime;
@@ -87,18 +87,16 @@ public class Book {
         this.bookImage = bookImage == null ? null : bookImage.trim();
     }
 
-    
-    public BigDecimal getBookPrice() {
-        return bookPrice;
-    }
+  
+    public double getBookPrice() {
+		return bookPrice;
+	}
 
-    
-    public void setBookPrice(BigDecimal bookPrice) {
-        this.bookPrice = bookPrice;
-    }
+	public void setBookPrice(double bookPrice) {
+		this.bookPrice = bookPrice;
+	}
 
-    
-    public Integer getStatus() {
+	public Integer getStatus() {
         return status;
     }
 

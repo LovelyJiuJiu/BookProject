@@ -1,6 +1,9 @@
 package com.boku.mapper;
 
+import java.util.List;
+
 import com.boku.pojo.Cart;
+import com.boku.pojo.CartBook;
 
 public interface CartMapper {
     /**
@@ -50,4 +53,6 @@ public interface CartMapper {
      * @mbg.generated
      */
     int updateByPrimaryKey(Cart record);
+   
+    List<CartBook> getcartBookObjListByUserId(Integer userId);
 }
