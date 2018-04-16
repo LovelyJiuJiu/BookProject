@@ -107,7 +107,13 @@ public class UserController {
 		Gson gson = new Gson();
 		Map<String, Object> result = new HashMap<String, Object>();
 		try {
-			userService.editUserInfo(user, request, null);
+			boolean isSuccess = userService.editUserInfo(user, request, null);
+			if (isSuccess) {
+				result.put("code", 0);
+				request.getSession().removeAttribute("currentUser");
+			} else {
+				result.put("code", 2);
+			}
 		} catch (Exception e) {
 			e.printStackTrace();
 			result.put("code", 1);
@@ -122,8 +128,13 @@ public class UserController {
 		Map<String, Object> result = new HashMap<String, Object>();
 		System.out.println(file.getSize());
 		try {
-			userService.editUserInfo(user, request, file);
-			result.put("code", 0);
+			boolean isSuccess = userService.editUserInfo(user, request, file);
+			if (isSuccess) {
+				result.put("code", 0);
+				request.getSession().removeAttribute("currentUser");
+			} else {
+				result.put("code", 2);
+			}
 		} catch (Exception e) {
 			e.printStackTrace();
 			result.put("code", 1);
@@ -151,7 +162,51 @@ public class UserController {
 		return "user/cart";
 	}
 	
+	@RequestMapping("checkPassword")
+	@ResponseBody
+	public String checkPasswordByUserId(String password, HttpSession session){
+		Gson gson = new Gson();
+		Map<String, Object> result = new HashMap<String, Object>();
+		result.put("result", 0);
+		User currentUser = (User)session.getAttribute("currentUser");
+		
+		if (currentUser!= null) {
+			if (userService.checkPasswordByUserId(currentUser.getId(), password)) {
+				result.put("result", 1);
+			}		
+		} 
+		return gson.toJson(result);
+	}
 
+	
+	@RequestMapping("updatePassword")
+	@ResponseBody
+	public String updatePasswordByUserId(String password, HttpSession session, HttpServletResponse response){
+		Gson gson = new Gson();
+		Map<String, Object> result = new HashMap<String, Object>();
+		result.put("result", 0);
+		User currentUser = (User)session.getAttribute("currentUser");
+
+		if (currentUser!= null) {
+			if (userService.updatePasswordByUserId(currentUser.getId(), password)) {
+				result.put("result", 1);
+				session.removeAttribute("currentUser");
+				//remove cookie
+				Cookie userNameCookie = new Cookie("username", "");
+				Cookie passwordCookie = new Cookie("password", "");
+				userNameCookie.setMaxAge(0);  
+			    userNameCookie.setPath("/");  
+			    passwordCookie.setMaxAge(0);  
+			    passwordCookie.setPath("/");  
+			    response.addCookie(userNameCookie);  
+			    response.addCookie(passwordCookie);  
+			}
+		} 
+		return gson.toJson(result);
+	}
+	
+	
+	
 	@RequestMapping("cart")
 	@ResponseBody
 	public String cart(HttpServletRequest request){

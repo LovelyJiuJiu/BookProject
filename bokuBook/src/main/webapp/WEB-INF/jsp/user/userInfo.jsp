@@ -16,125 +16,11 @@
 <link rel="stylesheet" href="css/userInfo.css">
 <link rel="stylesheet" href="css/global.css">
 <link rel="stylesheet" href="css/home.css">
-<script src="jquery/jquery-2.2.4.min.js"></script>
-<script src="layui/layui.js"></script>
-<script src="js/global.js"></script>
-<script>
-$(document).ready(function() { 
-	if (!$('#imgName').val()) {
-		$('#uploadImg2').attr('src', "image/deafultPhoto.jpg"); 
-		$('#uploadImg').attr('src', "image/deafultPhoto.jpg"); 
-	} else {
-		$('#uploadImg2').attr('src', "image/" + $('#imgName').val()); 
-		$('#uploadImg').attr('src', "image/" + $('#imgName').val()); 
-	}
-	
-	$('#editPassword').css('display', "none");	
-	
-	$('#editPwd').on('click', function () {
-		$('#rightContainer').css('display', "none");
-		$('#editPassword').css('display', "block");		
-	});
-	
-	$('#editInfo').on('click', function () {
-		$('#rightContainer').css('display', "block");
-		$('#editPassword').css('display', "none");		
-	});
-	
-})
-
-function editProfileWithoutImg () {
-	$.ajax({
-		url : 'user/editProfileWithoutImg',
-		async : true,
-		type : 'POST',
-		dataType : 'json',
-		data: {
-	    	username: $('input[name=username]').val(),
-	    	email: $('input[name=email]').val(),
-	    	briefIntroduction: $('input[name=desc]').val()
-	    },
-		success : function(data) {
-			if (data.result === 0) {
-				layer.msg('上传成功');
-			} else {
-				console.log(data);
-			}
-		},
-		error : function(err) {
-			console.log(err);
-		}
-	});
-}
-
-layui.use('form', function() {
-	var form = layui.form;
-	form.on('submit(edit-basic-btn)', function(data) {
-		console.log(data.field);//提交头像+基本信息
-		if (!$('input[name=file]').val()) {
-			editProfileWithoutImg();
-		}
-		return false;
-	});
-	
-	form.on('submit(edit-pwd-btn)', function(data) {
-		alert(data.field.toString());//密码的修改
-		return false;
-	});
-	
-});
-
-layui.use('upload', function(){
-	  var $ = layui.jquery
-	  ,upload = layui.upload;
-	  
-	  //普通图片上传
-	  var uploadInst = upload.render({
-	    elem: '#uploadPic'
-	    ,url: 'user/editProfileWithImg'
-	    ,auto: false
-	    ,bindAction: '#edit-basic-btn'
-	    ,choose: function(obj){
-	      //预读本地文件示例，不支持ie8
-	      obj.preview(function(index, file, result){
-	        $('#uploadImg').attr('src', result); //图片链接（base64）
-	        $('#uploadImg2').attr('src', result);//显示右边小图片
-	        $('#photoUrl').attr('value', file.name);
-	      });
-	    }
-	    ,data: {
-	    	username: $('input[name=username]').val(),
-	    	email: $('input[name=email]').val(),
-	    	briefIntroduction: $('input[name=desc]').val()
-	    }
-	    ,done: function(res){
-	      //如果上传失败
-	      if(res.code !== 0){
-	      	  return layer.msg('上传失败');
-	      } else {
-	    	  return layer.msg('上传成功');
-	      }
-	      
-	    }
-	    ,error: function(err){
-	    	console.log(err);
-	      //演示失败状态，并实现重传
-/*  	      var uploadHelpText = $('#uploadHelpText');
-	      uploadHelpText.html('<span style="color: #FF5722;">上传失败</span> <a class="layui-btn layui-btn-mini demo-reload">重试</a>');
-	      uploadHelpText.find('.demo-reload').on('click', function(){
-	      uploadInst.upload(); 
-	      }); */
-	    }
-	  });
-});
-</script>
-
-
 
 </head>
 <body>
 	<jsp:include page="./header.jsp"></jsp:include>
-	<div class="userInfoContainer layui-container">
+	<div class="layui-container">
 		<jsp:include page="./ico-seacher-header.jsp"></jsp:include>
 		<div class="mainContainer">
 			<fieldset class="layui-elem-field layui-field-title">
@@ -175,7 +61,7 @@ layui.use('upload', function(){
 						<div class="layui-form-item layui-form-text">
 							<label class="layui-form-label">个人简介：</label>
 							<div class="layui-input-block">
-								<textarea name="desc" value="${currentUser.briefIntroduction}"
+								<textarea name="desc" id="desc"
 									class="layui-textarea layui-input1"></textarea>
 							</div>
 						</div>
@@ -190,9 +76,17 @@ layui.use('upload', function(){
 				<div class="editPassword" id="editPassword">
 					<div class="itemContainer">
 						<div class="layui-form-item">
-							<span class="layui-form-label">密码:</span>
+							<span class="layui-form-label">原密码:</span>
 							<div class="layui-input-block">
-								<input type="password" name="password" id="password1"
+								<input type="password" name="oldPassword" id="oldPassword"
+									lay-verify="required|password" placeholder="请输入密码"
+									autocomplete="off" class="layui-input layui-input1">
+							</div>
+						</div>
+						<div class="layui-form-item">
+							<span class="layui-form-label">新密码:</span>
+							<div class="layui-input-block">
+								<input type="password" name="newPassword" id="newPassword"
 									lay-verify="required|password" placeholder="请输入密码"
 									autocomplete="off" class="layui-input layui-input1">
 							</div>
@@ -200,7 +94,7 @@ layui.use('upload', function(){
 						<div class="layui-form-item">
 							<span class="layui-form-label">确认密码:</span>
 							<div class="layui-input-block">
-								<input type="password" name="password" id="password2"
+								<input type="password" name="newPassword" id="newPassword2"
 									lay-verify="required|password" placeholder="请再次输入密码"
 									autocomplete="off" class="layui-input layui-input1">
 							</div>
@@ -214,4 +108,11 @@ layui.use('upload', function(){
 
 	</div>
 	<input type="hidden" id="imgName" value="${currentUser.imgName }"/>
+	<input type="hidden" id="userId" value="${currentUser.id }"/>
+	<input type="hidden" id="briefIntroduction" value="${currentUser.briefIntroduction }"/>
+	
+	<script src="jquery/jquery-2.2.4.min.js"></script>
+	<script src="layui/layui.js"></script>
+	<script src="js/global.js"></script>
+	<script src="js/userInfo.js"></script>
 </body>
