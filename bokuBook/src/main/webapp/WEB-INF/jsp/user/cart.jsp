@@ -15,12 +15,21 @@
 <link rel="stylesheet" href="layui/css/layui.css" media="all">
 <link rel="stylesheet" href="css/global.css">
 <link rel="stylesheet" href="css/home.css">
-<script src="jquery/jquery-2.2.4.min.js"></script>
-<script src="layui/layui.js"></script>
-<script type="text/html" id="operation">
-<a class="layui-btn layui-btn-danger layui-btn-mini" lay-event="del">删除</a>
-</script>
-<script>
+
+</head>
+<body>
+	<jsp:include page="./header.jsp"></jsp:include>
+	<div class="cartInfoContainer layui-container">
+		<jsp:include page="./ico-seacher-header.jsp"></jsp:include>
+ 		<table id="cartTable" lay-filter="cartInfo"></table>
+	</div>
+	<script src="jquery/jquery-2.2.4.min.js"></script>
+	<script src="layui/layui.js"></script>
+	<script src="js/global.js"></script>
+	<script type="text/html" id="operation">
+		<a class="layui-btn layui-btn-danger layui-btn-mini" lay-event="del">删除</a>
+	</script>
+	<script>
 
 
 /* $.ajax({
@@ -75,14 +84,4 @@ function addEvent(table) {
 
 }
 </script>
-
-
-
-</head>
-<body>
-	<jsp:include page="./header.jsp"></jsp:include>
-	<div class="cartInfoContainer layui-container">
-		<jsp:include page="./ico-seacher-header.jsp"></jsp:include>
- 		<table id="cartTable" lay-filter="cartInfo"></table>
-	</div>
 </body>

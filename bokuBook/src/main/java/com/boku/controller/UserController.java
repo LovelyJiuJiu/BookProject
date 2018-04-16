@@ -107,7 +107,13 @@ public class UserController {
 		Gson gson = new Gson();
 		Map<String, Object> result = new HashMap<String, Object>();
 		try {
-			userService.editUserInfo(user, request, null);
+			boolean isSuccess = userService.editUserInfo(user, request, null);
+			if (isSuccess) {
+				result.put("code", 0);
+				request.getSession().removeAttribute("currentUser");
+			} else {
+				result.put("code", 2);
+			}
 		} catch (Exception e) {
 			e.printStackTrace();
 			result.put("code", 1);
@@ -122,8 +128,13 @@ public class UserController {
 		Map<String, Object> result = new HashMap<String, Object>();
 		System.out.println(file.getSize());
 		try {
-			userService.editUserInfo(user, request, file);
-			result.put("code", 0);
+			boolean isSuccess = userService.editUserInfo(user, request, file);
+			if (isSuccess) {
+				result.put("code", 0);
+				request.getSession().removeAttribute("currentUser");
+			} else {
+				result.put("code", 2);
+			}
 		} catch (Exception e) {
 			e.printStackTrace();
 			result.put("code", 1);
