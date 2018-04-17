@@ -43,6 +43,7 @@ public class CartController {
 		return gson.toJson(result);
 	}
 
+	@SuppressWarnings("unchecked")
 	@RequestMapping("addBookToCart")
 	@ResponseBody
 	public String addBookToCart(UserCart userCart, HttpSession session) {

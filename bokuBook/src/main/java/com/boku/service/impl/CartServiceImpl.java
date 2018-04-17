@@ -50,7 +50,7 @@ public class CartServiceImpl implements CartService {
 	}
 
 	@Override
-	public boolean addCartToDb(Integer id, List<UserCart> userCarts) {
+	public void addCartToDb(Integer id, List<UserCart> userCarts) {
 		List<CartBook> cartBooks = new ArrayList<CartBook>();
 		Cart cart = cartMapper.selectByUserId(id);
 		if (cart == null) {
@@ -58,7 +58,7 @@ public class CartServiceImpl implements CartService {
 			cart.setUserId(id);
 			int result = cartMapper.insertSelective(cart);
 			if (result != 1) {
-				return false;
+				return;
 			}
 		} else {
 			cartMapper.updateByPrimaryKey(cart);
@@ -71,11 +71,9 @@ public class CartServiceImpl implements CartService {
 			cartBooks.add(cartBook);
 		}
 		cartBookMapper.deleteByCartId(cart.getId());
-		int insertResult = cartBookMapper.insert(cartBooks);
-		if (insertResult > 0) {
-			return true;
+		if (cartBooks.size() > 0) {
+			cartBookMapper.insert(cartBooks);
 		}
-		return false;
 	}	
 
 }

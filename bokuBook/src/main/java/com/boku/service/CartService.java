@@ -10,5 +10,5 @@ public interface CartService {
 	int addCart(Cart cart);
 	List<CartBook> getcartBookObjListByUserId(Integer userId);
 	List<UserCart> addBookToCart(UserCart userCart, List<UserCart> userCarts);
-	boolean addCartToDb(Integer id, List<UserCart> userCarts);
+	void addCartToDb(Integer id, List<UserCart> userCarts);
 }	

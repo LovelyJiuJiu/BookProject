@@ -98,22 +98,17 @@ public class UserController {
 	@RequestMapping("logout")
 	@ResponseBody
 	public String logout(HttpSession session){
-		boolean isSuccess = true;
 		Gson gson = new Gson();
 		Map<String, Object> result = new HashMap<String, Object>();
 		User user = (User) session.getAttribute("currentUser");
 		List<UserCart> userCarts = (List<UserCart>) session.getAttribute("cart");
 		if (user != null) {
 			if (userCarts != null) {
-				isSuccess = cartService.addCartToDb(user.getId(), userCarts);	// 登出时将购物车存入数据库
+				cartService.addCartToDb(user.getId(), userCarts);	// 登出时将购物车存入数据库
 			}
 			session.removeAttribute("currentUser");
 			session.removeAttribute("cart");
-			if (isSuccess) {
-				result.put("result", 1);
-			} else {
-				result.put("result", 0);
-			}
+			result.put("result", 1);
 		}
 		return gson.toJson(result);
 	}
