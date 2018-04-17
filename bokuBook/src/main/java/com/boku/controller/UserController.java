@@ -1,6 +1,5 @@
 package com.boku.controller;
 
-import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 import java.util.ArrayList;
@@ -99,11 +98,22 @@ public class UserController {
 	@RequestMapping("logout")
 	@ResponseBody
 	public String logout(HttpSession session){
+		boolean isSuccess = true;
 		Gson gson = new Gson();
 		Map<String, Object> result = new HashMap<String, Object>();
-		if (session.getAttribute("currentUser") != null) {
+		User user = (User) session.getAttribute("currentUser");
+		List<UserCart> userCarts = (List<UserCart>) session.getAttribute("cart");
+		if (user != null) {
+			if (userCarts != null) {
+				isSuccess = cartService.addCartToDb(user.getId(), userCarts);	// 登出时将购物车存入数据库
+			}
 			session.removeAttribute("currentUser");
-			result.put("result", 1);
+			session.removeAttribute("cart");
+			if (isSuccess) {
+				result.put("result", 1);
+			} else {
+				result.put("result", 0);
+			}
 		}
 		return gson.toJson(result);
 	}
@@ -167,10 +177,15 @@ public class UserController {
 	@RequestMapping("cartPage")
 	public String cartPageTemp(HttpSession session){
 		List<UserCart> resultList = new ArrayList<UserCart>();
-		User user =(User)session.getAttribute("currentUser");		
+		User user =(User)session.getAttribute("currentUser");	
+		List<UserCart> userCarts = (List<UserCart>) session.getAttribute("cart");
 		if (user != null) {
-			List<CartBook> result = cartService.getcartBookObjListByUserId(user.getId());
-			resultList = bookService.getUserCartObjListByList(result);
+			if (userCarts == null) {
+				List<CartBook> result = cartService.getcartBookObjListByUserId(user.getId());
+				resultList = bookService.getUserCartObjListByList(result);
+			} else {
+				resultList = userCarts;
+			}
 			session.setAttribute("cart", resultList);
 		} else {
 			System.out.println("user null");
@@ -248,14 +263,19 @@ public class UserController {
 		Gson gson = new Gson();
 		Map<String, Object> result = new HashMap<String, Object>();
 		List<UserCart> cartItemList = (List<UserCart>) session.getAttribute("cart");
-		int fromIndex = (page - 1) * limit;
-		int toIndex = fromIndex + limit;
-		toIndex = toIndex > cartItemList.size() ? cartItemList.size() : toIndex;
-		List<UserCart> actualCartItem = cartItemList.subList(fromIndex, toIndex);
-		result.put("code", 0);
-		result.put("msg", "");
-		result.put("count", cartItemList.size());
-		result.put("data", actualCartItem);
+		if (cartItemList != null) {
+			int fromIndex = (page - 1) * limit;
+			int toIndex = fromIndex + limit;
+			toIndex = toIndex > cartItemList.size() ? cartItemList.size() : toIndex;
+			List<UserCart> actualCartItem = cartItemList.subList(fromIndex, toIndex);
+			result.put("code", 0);
+			result.put("msg", "");
+			result.put("count", cartItemList.size());
+			result.put("data", actualCartItem);
+		} else {
+			result.put("msg", "购物车暂无数据");
+			result.put("count", 0);
+		}
 		return gson.toJson(result);
 	}
 }

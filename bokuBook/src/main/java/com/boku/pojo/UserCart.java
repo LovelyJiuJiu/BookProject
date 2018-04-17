@@ -63,5 +63,12 @@ public class UserCart {
 		super();
 		// TODO Auto-generated constructor stub
 	}
+	@Override
+	public String toString() {
+		return "UserCart [id=" + id + ", bookName=" + bookName + ", bookInfo=" + bookInfo + ", price=" + price
+				+ ", number=" + number + ", totalPrice=" + totalPrice + "]";
+	}
+	
+	
     
 }

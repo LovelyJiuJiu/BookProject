@@ -30,6 +30,9 @@ public class BookServiceImpl implements BookService {
 			System.out.println("bookId们"+bookIdList.toString());
 			List<Book> bookList = bookMapper.getBookListByIds(bookIdList);//得到的是book list 但是要把属性转化成userCart的
 			System.out.println("book们"+bookList.toString());
+			if (bookList.size() == 0) {
+				return null;
+			}
 			for (int i = 0; i < bookList.size(); i++) {
 				Book book = bookList.get(i);
 				int number = CartBookList.get(i).getNumber();

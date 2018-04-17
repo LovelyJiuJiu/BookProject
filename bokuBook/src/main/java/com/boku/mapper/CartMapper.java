@@ -55,4 +55,6 @@ public interface CartMapper {
     int updateByPrimaryKey(Cart record);
    
     List<CartBook> getcartBookObjListByUserId(Integer userId);
+
+	Cart selectByUserId(Integer id);
 }
