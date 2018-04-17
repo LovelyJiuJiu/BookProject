@@ -165,7 +165,16 @@ public class UserController {
 	}
 
 	@RequestMapping("cartPage")
-	public String cartPageTemp(){
+	public String cartPageTemp(HttpSession session){
+		List<UserCart> resultList = new ArrayList<UserCart>();
+		User user =(User)session.getAttribute("currentUser");		
+		if (user != null) {
+			List<CartBook> result = cartService.getcartBookObjListByUserId(user.getId());
+			resultList = bookService.getUserCartObjListByList(result);
+			session.setAttribute("cart", resultList);
+		} else {
+			System.out.println("user null");
+		}
 		return "user/cart";
 	}
 
@@ -233,21 +242,20 @@ public class UserController {
 	
 	@RequestMapping("cart")
 	@ResponseBody
-	public String cart(HttpSession session){
+	public String cart(HttpSession session, int page, int limit){
 //		String pageNumStr = request.getParameter("page");//得到第几页
 //		String limitStr = request.getParameter("limit");//得到每页多少个
-		List<UserCart> resultList = new ArrayList<UserCart>();
-		User user =(User)session.getAttribute("currentUser");		
-		if (user != null) {
-			List<CartBook> result = cartService.getcartBookObjListByUserId(user.getId());
-			resultList = bookService.getUserCartObjListByList(result);
-		} else {
-			System.out.println("user null");
-		}
 		Gson gson = new Gson();
-		String json = gson.toJson(resultList);
-		int count = (resultList==null ? 0 : resultList.size());
-		String result = "{\"code\":0,\"msg\":\"\",\"count\":"+ count +",\"data\":" + json + "}";
-		return result;
+		Map<String, Object> result = new HashMap<String, Object>();
+		List<UserCart> cartItemList = (List<UserCart>) session.getAttribute("cart");
+		int fromIndex = (page - 1) * limit;
+		int toIndex = fromIndex + limit;
+		toIndex = toIndex > cartItemList.size() ? cartItemList.size() : toIndex;
+		List<UserCart> actualCartItem = cartItemList.subList(fromIndex, toIndex);
+		result.put("code", 0);
+		result.put("msg", "");
+		result.put("count", cartItemList.size());
+		result.put("data", actualCartItem);
+		return gson.toJson(result);
 	}
 }
