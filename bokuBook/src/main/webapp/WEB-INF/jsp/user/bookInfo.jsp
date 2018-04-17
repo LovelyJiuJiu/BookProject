@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<!DOCTYPE html>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <head>
 <%
 	String path = request.getContextPath();
@@ -22,6 +22,12 @@
 		var element = layui.element();
 		element.init();
 	});
+	
+	$(document).ready(function() {
+		if (!$('#ImgHref').val()) {
+			$('#Img').attr('src', "image/deafultPhoto.jpg");
+		}
+	});
 </script>
 
 
@@ -34,23 +40,23 @@
 		<div class="headContainer">
 			<div class="leftContainer">
 				<div class="bookImage">
-					<img src="image/firstBook.jpg" alt="图片" title="标题" />
+					<img src="image/${book.bookImage}" alt="${book.bookname}" title="${book.bookname}" />
 				</div>
 			</div>
 
 			<div class="rightContainer">
-				<div class="bookTitle">你期待的美好在路上</div>
-				<div class="bookContent">作者：张苡弦 字数：7.9万字</div>
+				<div class="bookTitle"> ${book.bookname}</div>
+				<div class="bookContent">${book.bookAuthor}</div>
 				<div class="price"></div>
 				<div class="moreChoice">
 					<div class="readBook layui-btn layui-btn-radius">在线阅读</div>
 					<div class="purchse layui-btn layui-btn-danger layui-btn-radius">立即购买</div>
 				</div>
 
-				<div class="summary layui-collapse" lay-filter="collapseFilter">
+				<div class=" layui-collapse" lay-filter="collapseFilter">
 					<div class="layui-colla-item">
 						<h2 class="layui-colla-title">简介</h2>
-						<div class="layui-colla-content layui-show">1和大多数正常成长起来的孩子一样，作者张苡弦从小就是个“乖孩子”，
+						<div class="summary layui-colla-content layui-show">${book.bookIntroduction}
 						</div>
 					</div>
 				</div>
@@ -62,16 +68,20 @@
 				style="font-size: 30px; color: #fa7a20;">&#xe642;</i>
 			<hr class="layui-bg-orange">
 			<div class="commentContent">
-				<div class="oneComment">
-					<div class="commentNumber">1楼</div>
-					<span class="userName">白日梦</span>
-					<div class="commentInfo">当初这本小说吸引我的是啥?医学，对，因为我现在在学习医学，有意无意的就想了解一下和医学有关的方面。可是故事的情节讲其推向了爱情，而且结尾的时候很罗曼蒂克，让我觉得，故事的整个架构都很空，没有小说吸引人的地方，落入了俗套。不过除生死之外，再无大事。</div>
-				</div>
-				<div class="oneComment">
-					<div class="commentNumber">2楼</div>
-					<span class="userName">白日梦</span>
-					<div class="commentInfo">当初这本小说吸引我的是啥?医学，对，因为我现在在学习医学，有意无意的就想了解一下和医学有关的方面。可是故事的情节讲其推向了爱情，而且结尾的时候很罗曼蒂克，让我觉得，故事的整个架构都很空，没有小说吸引人的地方，落入了俗套。不过除生死之外，再无大事。</div>
-				</div>
+				<c:forEach items="${userReplyList}" var="userReply" varStatus="status">
+					<div class="oneComment">
+						<div class="userImg">
+							<img id="Img" alt="" src="image/${userReply.imgName}">
+							<input id="ImgHref" type="hidden" value="${userReply.imgName}"> 
+						</div>
+						<div class="otherContent">
+							<span class="userName">${userReply.username}</span>
+							<span class="replyDate">${userReply.replytime}</span> 
+							<span class="commentNumber">${status.index+1}楼</span>
+						</div>
+						<div class="commentInfo">${userReply.replycontents}</div>
+					</div>
+				</c:forEach>
 			</div>
 			<div class="writeCommentTitle">编写我的评论:</div>
 			<textarea name="" required lay-verify="required" placeholder="我也来说两句......" class="layui-textarea writeComment"></textarea>

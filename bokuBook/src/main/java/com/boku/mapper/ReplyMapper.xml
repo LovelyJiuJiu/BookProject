@@ -12,6 +12,14 @@
     <result column="replycontents" jdbcType="VARCHAR" property="replycontents" />
     <result column="replytime" jdbcType="TIMESTAMP" property="replytime" />
   </resultMap>
+
+  <resultMap id="UserReplyMap" type="com.boku.pojo.UserReply">
+    <result column="replycontents" jdbcType="VARCHAR" property="replycontents" />
+    <result column="replytime" jdbcType="TIMESTAMP" property="replytime" />
+    <result column="username" jdbcType="VARCHAR" property="username" />
+    <result column="email" jdbcType="VARCHAR" property="email" />
+    <result column="image_name" jdbcType="VARCHAR" property="imgName" />
+  </resultMap>
   <sql id="Base_Column_List">
     <!--
       WARNING - @mbg.generated
@@ -122,4 +130,13 @@
       replytime = #{replytime,jdbcType=TIMESTAMP}
     where id = #{id,jdbcType=INTEGER}
   </update>
+
+
+  <select id="selectByBookId" parameterType="java.lang.Integer" resultMap="UserReplyMap">
+	  select reply.replycontents,reply.replytime,user.username,user.email,user.image_name
+	  from reply,user
+	  where reply.user_id =user.id and reply.book_id = #{id,jdbcType=INTEGER}	  
+	  ORDER BY reply.replytime
+  </select>
+  
 </mapper>

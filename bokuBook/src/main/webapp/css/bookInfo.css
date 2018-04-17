@@ -9,6 +9,7 @@
 }
 .headContainer{
   height: 400px;
+  margin-top: 20px;
 }
 
 .leftContainer{
@@ -16,12 +17,15 @@
   width: auto;
   display: inline-block !important;
   display: inline;
+}
+.summary{
+  max-height: 200px !important;
+  overflow: auto;
 } 
 .bookImage{
   width: auto;
   display: inline-block !important;
   display: inline;
-  margin:20px auto;
   margin-left: 20px;
   overflow: hidden;
   height: 400px;
@@ -43,8 +47,7 @@
   position: relative;
   padding-top: 100px;	
 }
-.readBook{	
-}
+
 .footerLContainer{
   font-size: 18px;
   margin-left: 30px;
@@ -59,23 +62,41 @@
 .bookTitle{
   font-size: 21px;	
 }
-.summary{	
-}
+
 .commentContent{
-  margin-bottom: 30px;	
+  margin-bottom: 20px;	
 }
 .oneComment{
   margin-bottom: 10px;
   border-bottom: 1px solid;
   padding-bottom: 10px;
+  position: relative;
 }
+.otherContent{
+  position: absolute;
+  left: 80px;
+  top: 20px;	
+}
+
+.replyDate{
+  margin-right: 15px;
+  margin-left: 15px;	
+}
+.userImg{
+  width: 50px;
+  margin-top: 15px;
+  height: 50px;
+  overflow: hidden;
+  border-radius: 50px;
+}
+
 img{
   width: 100%;
   border: none;
   height: 100%;
 }
 .commentInfo{
-  margin-left: 20px;	
+  margin-top: 10px;
 }
 .writeComment{
   margin-bottom: 20px;
@@ -94,7 +115,4 @@ img{
 .submitComment{
   position: relative;
   left: 93%;
-}
-.commentNumber{
-  font-size: 16px;	
 }
