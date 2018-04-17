@@ -166,15 +166,6 @@ public class UserController {
 
 	@RequestMapping("cartPage")
 	public String cartPageTemp(HttpSession session){
-		List<UserCart> resultList = new ArrayList<UserCart>();
-		User user =(User)session.getAttribute("currentUser");		
-		if (user != null) {
-			List<CartBook> result = cartService.getcartBookObjListByUserId(user.getId());
-			resultList = bookService.getUserCartObjListByList(result);
-			session.setAttribute("cart", resultList);
-		} else {
-			System.out.println("user null");
-		}
 		return "user/cart";
 	}
 
@@ -182,16 +173,20 @@ public class UserController {
 	@RequestMapping("bookNumber")
 	@ResponseBody
 	public String bookNumber(HttpSession session){
-		User user =(User)session.getAttribute("currentUser");	
 		Gson gson = new Gson();
-		Map<String, Object> result = new HashMap<String, Object>();
+		Map<String, Object> resultMap = new HashMap<String, Object>();
+		List<UserCart> resultList = new ArrayList<UserCart>();
+		User user =(User)session.getAttribute("currentUser");
+		
 		if (user != null) {
-			List<CartBook> list = cartService.getcartBookObjListByUserId(user.getId());
-			result.put("result", list.size());
+			List<CartBook> result = cartService.getcartBookObjListByUserId(user.getId());
+			resultList = bookService.getUserCartObjListByList(result);
+			session.setAttribute("cart", resultList);
+			resultMap.put("result", result.size());
 		} else {
-			result.put("result", 0);
-		}	
-		return gson.toJson(result);		
+			resultMap.put("result", 0);
+		}
+		return gson.toJson(resultMap);		
 	}
 	
 	
@@ -243,10 +238,9 @@ public class UserController {
 	@RequestMapping("cart")
 	@ResponseBody
 	public String cart(HttpSession session, int page, int limit){
-//		String pageNumStr = request.getParameter("page");//得到第几页
-//		String limitStr = request.getParameter("limit");//得到每页多少个
 		Gson gson = new Gson();
 		Map<String, Object> result = new HashMap<String, Object>();
+		@SuppressWarnings("unchecked")
 		List<UserCart> cartItemList = (List<UserCart>) session.getAttribute("cart");
 		int fromIndex = (page - 1) * limit;
 		int toIndex = fromIndex + limit;

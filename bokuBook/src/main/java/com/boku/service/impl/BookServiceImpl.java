@@ -27,17 +27,13 @@ public class BookServiceImpl implements BookService {
 			for(int i = 0;i < CartBookList.size(); i++) {
 				bookIdList.add(CartBookList.get(i).getBookId());
 			}
-			System.out.println("bookId们"+bookIdList.toString());
 			List<Book> bookList = bookMapper.getBookListByIds(bookIdList);//得到的是book list 但是要把属性转化成userCart的
-			System.out.println("book们"+bookList.toString());
 			for (int i = 0; i < bookList.size(); i++) {
 				Book book = bookList.get(i);
 				int number = CartBookList.get(i).getNumber();
 				UserCart temp = new UserCart(book.getId(), book.getBookname(), book.getBookImage(), book.getBookPrice(), number, number*book.getBookPrice());
 				resultList.add(temp);
 			}	
-		} else {
-			resultList = null;
 		}
 		return resultList;
 	}
