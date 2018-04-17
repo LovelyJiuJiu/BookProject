@@ -132,8 +132,10 @@ function logout() {
 		success : function(data) {
 			if (data.result === 1) {
 				window.location.href = "bookMain";
+			} else if (data.result === 0) {
+				layer.msg("服务器错误");
 			} else {
-				console.log(data.result);
+				layer.msg("拜托..  你还没有登录 (￣□￣；)");
 			}
 		},
 		error : function(err) {
