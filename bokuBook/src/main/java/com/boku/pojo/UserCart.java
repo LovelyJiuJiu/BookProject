@@ -1,9 +1,11 @@
 package com.boku.pojo;
 
-import java.math.BigDecimal;
+import java.io.Serializable;
 
-public class UserCart {
-    private int id;
+public class UserCart implements Serializable{
+
+	private static final long serialVersionUID = -8673329848097863555L;
+	private int id;
     private String bookName;
     private String bookInfo;
     private double price;

@@ -31,19 +31,28 @@
 	</script>
 <script>
 
+function deleteBook(id) {
+  $.ajax({
+		url: 'cart/deleteBook',
+		contentType: 'application/json;charset=utf-8',
+		dataType : 'json',
+		data:{id:id},
+	    success: function (data) { 
+	        if(data.result == 1) {
+	        	layer.msg('删除成功');
+	        	window.location.href = "user/cartPage";
+	        } else{
+	        	layer.msg('删除失败');
+	        }
+	    }		
+	  }) 
+	
+}
 
-/* $.ajax({
-	url: 'user/register',
-	contentType: 'application/json;charset=utf-8',
-	data:'{"page": 1, "limit": 5}',
-    success: function (data) { 
-        alert("get data");
-    }		
-}) */
 
 layui.use('table', function(){
 	  var table = layui.table;
-	  
+
 	  //第一个实例
 	  table.render({
 	    elem: '#cartTable'
@@ -78,7 +87,9 @@ function addEvent(table) {
 		var layEvent = obj.event;
 		var tr = obj.tr;
 		if (layEvent === 'del') {
+ 			
 			alert(obj.data.id);
+			deleteBook(obj.data.id);
 		}
 	});
 	

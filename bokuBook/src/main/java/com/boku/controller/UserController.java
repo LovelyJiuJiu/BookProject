@@ -170,6 +170,7 @@ public class UserController {
 	}
 
 	
+	@SuppressWarnings("unchecked")
 	@RequestMapping("bookNumber")
 	@ResponseBody
 	public String bookNumber(HttpSession session){
@@ -177,12 +178,16 @@ public class UserController {
 		Map<String, Object> resultMap = new HashMap<String, Object>();
 		List<UserCart> resultList = new ArrayList<UserCart>();
 		User user =(User)session.getAttribute("currentUser");
-		
+		List<UserCart> cartItemList = (List<UserCart>) session.getAttribute("cart");
 		if (user != null) {
-			List<CartBook> result = cartService.getcartBookObjListByUserId(user.getId());
-			resultList = bookService.getUserCartObjListByList(result);
-			session.setAttribute("cart", resultList);
-			resultMap.put("result", result.size());
+			if(cartItemList == null) {
+				List<CartBook> result = cartService.getcartBookObjListByUserId(user.getId());
+				resultList = bookService.getUserCartObjListByList(result);
+				session.setAttribute("cart", resultList);
+				resultMap.put("result", result.size());
+			} else{
+				resultMap.put("result", cartItemList.size());
+			}
 		} else {
 			resultMap.put("result", 0);
 		}
@@ -239,9 +244,11 @@ public class UserController {
 	@ResponseBody
 	public String cart(HttpSession session, int page, int limit){
 		Gson gson = new Gson();
+		
 		Map<String, Object> result = new HashMap<String, Object>();
 		@SuppressWarnings("unchecked")
 		List<UserCart> cartItemList = (List<UserCart>) session.getAttribute("cart");
+
 		int fromIndex = (page - 1) * limit;
 		int toIndex = fromIndex + limit;
 		toIndex = toIndex > cartItemList.size() ? cartItemList.size() : toIndex;
