@@ -17,7 +17,7 @@ function goToRegister() {
 }
 
 function login(data) {
-	alert(JSON.stringify(data));
+//	alert(JSON.stringify(data));
 	$.ajax({
 		url : 'user/login-submit',
 		async : true,

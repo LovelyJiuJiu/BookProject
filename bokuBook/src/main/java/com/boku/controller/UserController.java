@@ -176,37 +176,32 @@ public class UserController {
 
 	@RequestMapping("cartPage")
 	public String cartPageTemp(HttpSession session){
-		List<UserCart> resultList = new ArrayList<UserCart>();
-		User user =(User)session.getAttribute("currentUser");	
-		List<UserCart> userCarts = (List<UserCart>) session.getAttribute("cart");
-		if (user != null) {
-			if (userCarts == null) {
-				List<CartBook> result = cartService.getcartBookObjListByUserId(user.getId());
-				resultList = bookService.getUserCartObjListByList(result);
-			} else {
-				resultList = userCarts;
-			}
-			session.setAttribute("cart", resultList);
-		} else {
-			System.out.println("user null");
-		}
 		return "user/cart";
 	}
 
 	
+	@SuppressWarnings("unchecked")
 	@RequestMapping("bookNumber")
 	@ResponseBody
 	public String bookNumber(HttpSession session){
-		User user =(User)session.getAttribute("currentUser");	
 		Gson gson = new Gson();
-		Map<String, Object> result = new HashMap<String, Object>();
+		Map<String, Object> resultMap = new HashMap<String, Object>();
+		List<UserCart> resultList = new ArrayList<UserCart>();
+		User user =(User)session.getAttribute("currentUser");
+		List<UserCart> cartItemList = (List<UserCart>) session.getAttribute("cart");
 		if (user != null) {
-			List<CartBook> list = cartService.getcartBookObjListByUserId(user.getId());
-			result.put("result", list.size());
+			if(cartItemList == null) {
+				List<CartBook> result = cartService.getcartBookObjListByUserId(user.getId());
+				resultList = bookService.getUserCartObjListByList(result);
+				session.setAttribute("cart", resultList);
+				resultMap.put("result", result.size());
+			} else{
+				resultMap.put("result", cartItemList.size());
+			}
 		} else {
-			result.put("result", 0);
-		}	
-		return gson.toJson(result);		
+			resultMap.put("result", 0);
+		}
+		return gson.toJson(resultMap);		
 	}
 	
 	
@@ -258,10 +253,10 @@ public class UserController {
 	@RequestMapping("cart")
 	@ResponseBody
 	public String cart(HttpSession session, int page, int limit){
-//		String pageNumStr = request.getParameter("page");//得到第几页
-//		String limitStr = request.getParameter("limit");//得到每页多少个
 		Gson gson = new Gson();
+		
 		Map<String, Object> result = new HashMap<String, Object>();
+		@SuppressWarnings("unchecked")
 		List<UserCart> cartItemList = (List<UserCart>) session.getAttribute("cart");
 		if (cartItemList != null) {
 			int fromIndex = (page - 1) * limit;

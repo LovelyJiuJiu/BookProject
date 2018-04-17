@@ -1,6 +1,9 @@
 package com.boku.mapper;
 
+import java.util.List;
+
 import com.boku.pojo.Reply;
+import com.boku.pojo.UserReply;
 
 public interface ReplyMapper {
     /**
@@ -50,4 +53,6 @@ public interface ReplyMapper {
      * @mbg.generated
      */
     int updateByPrimaryKey(Reply record);
+    
+    List<UserReply> selectByBookId(Integer id);   
 }
