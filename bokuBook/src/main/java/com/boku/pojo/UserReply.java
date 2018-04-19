@@ -8,6 +8,14 @@ public class UserReply {
     private String username;
     private String email;
     private String imgName;
+    private String dateStr;
+
+	public String getDateStr() {
+		return dateStr;
+	}
+	public void setDateStr(String dateStr) {
+		this.dateStr = dateStr;
+	}
 	public String getReplycontents() {
 		return replycontents;
 	}
@@ -38,10 +46,11 @@ public class UserReply {
 	public void setImgName(String imgName) {
 		this.imgName = imgName;
 	}
+
 	@Override
 	public String toString() {
 		return "UserReply [replycontents=" + replycontents + ", replytime=" + replytime + ", username=" + username
-				+ ", email=" + email + ", imgName=" + imgName + "]";
+				+ ", email=" + email + ", imgName=" + imgName + ", dateStr=" + dateStr + "]";
 	}
 	public UserReply() {
 		super();

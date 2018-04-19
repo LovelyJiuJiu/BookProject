@@ -59,8 +59,6 @@ public class UserController {
 	public String userLogin(User user, @RequestParam(defaultValue = "off") String rememberMe, 
 			@CookieValue(required = false) String username, @CookieValue(required = false) String password, HttpServletResponse response, 
 			HttpSession session) throws UnsupportedEncodingException {
-		System.out.println(user);
-		System.out.println(rememberMe);
 		Gson gson = new Gson();
 		User user1 = userService.login(user);
 		Map<String, Object> result = new HashMap<String, Object>();
