@@ -6,11 +6,7 @@ import javax.servlet.annotation.WebFilter;
 import javax.servlet.http.HttpServletRequest;  
 import javax.servlet.http.HttpServletResponse;  
 import javax.servlet.http.HttpSession;
-
-import org.springframework.web.servlet.ModelAndView;
-
-import java.io.IOException;  
-import java.io.PrintWriter;  
+import java.io.IOException;   
   
 @WebFilter(filterName = "LoginFilter")  
 public class LoginFilter implements Filter {  
