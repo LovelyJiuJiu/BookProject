@@ -89,7 +89,6 @@ public class UserController {
 		} else {
 			result.put("result", 0);
 		}
-		System.out.println(gson.toJson(result));
 		return gson.toJson(result);
 	}
 	
