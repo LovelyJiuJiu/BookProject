@@ -33,6 +33,16 @@ public class BookController {
 	@Autowired
 	private ReplyMapper replyMapper;
 
+	
+	@RequestMapping("accessCountPage")
+	public String cartPageTemp(HttpSession session){
+		return "user/accessCountPage";
+	}
+	
+	
+	
+	
+	
 	@RequestMapping("bookInfo")
 	public ModelAndView bookInfo(@RequestParam(value = "id") int id){
 		ModelAndView modelAndView = new ModelAndView();

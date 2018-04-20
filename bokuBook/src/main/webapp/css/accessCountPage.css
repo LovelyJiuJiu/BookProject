@@ -1,0 +1,60 @@
+.headContainer{
+  margin-top: 15px;
+  font-size: 15px;
+}
+.mainContent{
+  background-color: white;
+  min-height: 300px;
+}
+.layui-bg-red{
+  margin-bottom: 0px !important;
+}
+.titleContent{
+  font-size: 14px;
+  background-color: whitesmoke;
+  margin-left: 30px;
+  margin-right: 30px;
+  height: 30px;
+  line-height: 30px;	
+}
+.index{
+  margin-left: 30px;
+  margin-right: 20px;
+  width: 10%;
+  display: inline-block;
+  text-align: center;	
+}
+.bookName{
+  margin-right: 20px;
+  width: 20%;
+  display: inline-block;
+  text-align: center;
+}
+.author{
+  margin-right: 20px;
+  width: 20%;
+  display: inline-block;
+  text-align: center;
+}
+.type{
+  margin-right: 20px;
+  width: 20%;
+  display: inline-block;
+  text-align: center;	
+}
+.accessCount{
+  width: 10%;
+  display: inline-block;
+  text-align: center;		
+}
+.bookList{
+  margin-left: 30px;
+  margin-right: 30px;
+}
+.oneBookContainer{	
+  font-size: 14px;
+  margin-bottom: 10px;
+}
+.goBackTop{
+
+}
