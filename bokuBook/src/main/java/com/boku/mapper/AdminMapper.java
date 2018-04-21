@@ -18,4 +18,6 @@ public interface AdminMapper {
      * @mbg.generated
      */
     int insertSelective(Admin record);
+    
+    Admin selectByAdminNameAndPassword(Admin admin);
 }
