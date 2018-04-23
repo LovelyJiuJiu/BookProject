@@ -1,0 +1,42 @@
+.layui-form-checkbox[lay-skin=primary]{
+  top: 20px !important;	
+}
+
+.rightContainer{
+  margin-top: 20px;
+  margin-left: 200px;	
+}
+
+#userList{
+  width:800px;
+  height: 700px;	
+}
+img{
+  width: 100%;
+  height: 100%;
+}
+.top-item{
+  margin-top: 30px;	
+}
+.choose{
+  background-color: #009688;
+  color: #fff;
+}
+.layui-nav-item{
+  margin-bottom: 50px !important;	
+}
+.laytable-cell-1-imgName{
+  height: 100%;
+  max-width: 100%;
+}
+.layui-table-cell{
+  height: 60px !important;
+  text-align: center;
+  line-height: 60px;	
+}
+.footerContainer{
+  position: fixed;
+  bottom: 0;
+  margin-left: 50px;
+  font-size: 13px;	
+}

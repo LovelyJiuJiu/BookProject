@@ -84,6 +84,28 @@ public class AdminController {
 	public String adminMainTemp(){
 		return "admin/adminMain";
 	}
+		
+	@RequestMapping("userList")
+	@ResponseBody	
+	public String userList(int page, int limit){
+		Gson gson = new Gson();
+		Map<String, Object> result = new HashMap<String, Object>();
+		
+		List<User> userList = adminService.getUserList();
+		System.out.println("userList" + userList);
+		int fromIndex = (page - 1) * limit;
+		int toIndex = fromIndex + limit;
+		toIndex = toIndex > userList.size() ? userList.size() : toIndex;
+		List<User> actualuserList = userList.subList(fromIndex, toIndex);
+		
+		result.put("code", 0);
+		result.put("msg", "");
+		result.put("count", userList.size());
+		result.put("data", actualuserList);
+			
+		return gson.toJson(result);
+	}
+	
 	
 	@RequestMapping("logout")
 	@ResponseBody

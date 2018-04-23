@@ -65,7 +65,7 @@ layui.use('table', function(){
 	      {checkbox: true, fixed: true}
 	      ,{field: 'id'}
 	      ,{field: 'bookName', title: '书籍名称', width:130}
-		  ,{field: 'bookInfo', title: '展示图片', width: 250,templet:'<div><img src="{{d.bookInfo}}"></div>'}
+		  ,{field: 'bookInfo', title: '展示图片', width: 250,templet:'<div><img src="image/{{d.bookInfo}}"></div>'}
 	      ,{field: 'price', title: '单价', width:100}
 	      ,{field: 'number', title: '数量', width:100} 
 	      ,{field: 'totalPrice', title: '金额', width: 100}

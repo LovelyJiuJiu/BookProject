@@ -43,6 +43,7 @@ public class UserController {
 	@ResponseBody
 	public String userRegister(User user, HttpSession session) {
 		Gson gson = new Gson();
+		user.setImgName("deafultPhoto.jpg");
 		User user1 = userService.register(user);
 		if (user1 != null) {
 			session.setAttribute("currentUser", user1);

@@ -1,6 +1,6 @@
 package com.buke.filter;  
   
-import com.boku.pojo.User;
+import com.boku.pojo.Admin;
 import javax.servlet.*;  
 import javax.servlet.annotation.WebFilter;  
 import javax.servlet.http.HttpServletRequest;  
@@ -8,8 +8,8 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;   
   
-@WebFilter(filterName = "LoginFilter")  
-public class LoginFilter implements Filter {  
+@WebFilter(filterName = "AdminLoginFilter")  
+public class AdminLoginFilter implements Filter {  
     public void destroy() {  
     }  
   
@@ -18,12 +18,12 @@ public class LoginFilter implements Filter {
         HttpServletResponse response = (HttpServletResponse)resp;  
         String uri = request.getRequestURI();
         String path = uri.substring(uri.lastIndexOf("/"));
-		if ("/login".equals(path) || ("/bookNumber".equals(path)) || ("/login-submit".equals(path)) || ("/register".equals(path)) || ("/register-submit".equals(path))) {
+		if ("/login".equals(path) || ("/".equals(path)) || ("/login-submit".equals(path))) {
 			chain.doFilter(request, response);
 		} else {
 			HttpSession session = request.getSession();
-			User user = (User) session.getAttribute("currentUser");
-			if (user != null) {
+			Admin admin = (Admin) session.getAttribute("currentAdminUser");
+			if (admin != null) {
 				chain.doFilter(request, response);
 			} else {
 				response.sendRedirect("login");
