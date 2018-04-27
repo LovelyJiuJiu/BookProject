@@ -47,7 +47,7 @@ public class CartController {
 	@RequestMapping("addBookToCart")
 	@ResponseBody
 	public String addBookToCart(UserCart userCart, HttpSession session) {
-		UserCart userCart2 = new UserCart(3, "", "", 10, 5, 0);
+		UserCart userCart2 = new UserCart(2, "", "", 10, 5, 0);
 		Gson gson = new Gson();
 		Map<String, Object> result = new HashMap<String, Object>();
 		List<UserCart> userCarts = (List<UserCart>) session.getAttribute("cart");

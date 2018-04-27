@@ -10,7 +10,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
-import com.github.pagehelper.PageHelper;
+
+import com.boku.pojo.Book;
+import com.boku.service.BookService;
 import com.github.pagehelper.PageInfo;
 import com.google.gson.Gson;
 
@@ -18,6 +20,9 @@ import com.google.gson.Gson;
 @Controller
 @RequestMapping("")
 public class BaseController {
+	
+	@Autowired
+	private BookService bookService;
 	
 //	@RequestMapping("getInfo")
 //	@ResponseBody
@@ -42,10 +47,22 @@ public class BaseController {
 //		return modelAndView;
 //	}
 	
-	@RequestMapping("user/test")
-	public void demo(String sl, int lo){
-		System.out.println(sl);
-		System.out.println(lo);
+	@RequestMapping("getSuggestion")
+	@ResponseBody
+	public String getSuggestion(String keyWords) {
+		Gson gson = new Gson();
+		List<Book> books = bookService.getBookSuggestion(keyWords);
+		return gson.toJson(books);
+	}
+	
+	@RequestMapping(value = "search", produces = "text/json;charset=UTF-8")
+	@ResponseBody
+	public String searchBookByKeywords(String keyword, @RequestParam(defaultValue = "1") int page, 
+			@RequestParam(defaultValue = "5") int limit) {
+		Gson gson = new Gson();
+		PageInfo<Book> books = bookService.getBookByKeywords(keyword, page, limit);
+		System.out.println(gson.toJson(books));
+		return gson.toJson(books);
 	}
 	
 //	@RequestMapping("login")

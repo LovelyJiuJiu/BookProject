@@ -55,7 +55,7 @@
 		</div>
 	</div>
 	<div class="scroll-top">
-		<i class="layui-icon">&#xe619;</i>
+		<i class="layui-icon">&#xe604;</i>
 		<p>顶部</p>
 	</div>
 
