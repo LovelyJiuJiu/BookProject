@@ -37,7 +37,7 @@ bkyd.search = {
     },
     'submit': function () {
         if (bkyd.search.keyword_input.val() != '') {
-            window.location.href = 'search?keyword=' + bkyd.search.keyword_input.val();
+            window.location.href = '/book/search?keyword=' + bkyd.search.keyword_input.val();
         }
     },
     'suggestion': function () {

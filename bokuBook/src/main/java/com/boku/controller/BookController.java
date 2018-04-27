@@ -44,7 +44,7 @@ public class BookController {
 		if (book != null) {
 			//get user and reply object order by replyTime		
 			List<UserReply> userReplyList = replyMapper.selectByBookId(book.getId());		
-			SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd hh:mm");
+			SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd HH:mm");
 			for(int i=0;i<userReplyList.size();i++) {
 				String sDate=sdf.format(userReplyList.get(i).getReplytime().getTime());
 				userReplyList.get(i).setDateStr(sDate);

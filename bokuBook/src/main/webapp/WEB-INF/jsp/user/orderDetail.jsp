@@ -11,7 +11,7 @@ pageContext.setAttribute("path", basePath);
 %>
 <base href="${path }"/>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>--我的订单--</title>
+<title>--订单详情--</title>
 </head>
 <body>
 	<c:if test="${orderDetail != null }">
