@@ -1,6 +1,7 @@
 package com.boku.mapper;
 
 import java.util.List;
+import java.util.Map;
 
 import com.boku.pojo.Book;
 
@@ -54,5 +55,7 @@ public interface BookMapper {
     int updateByPrimaryKey(Book record);
     
     List<Book> getBookListByIds(List<Integer> ids);
+
+	List<Book> selectBookByKeywords(Map<String, Object> params);
     
 }

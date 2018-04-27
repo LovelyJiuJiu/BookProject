@@ -17,11 +17,6 @@ bkyd.search = {
             }
         });
         
-        $('.suggestion-list li').on('click', function () {
-                bkyd.search.keyword_input.val($(this).text());
-                bkyd.search.submit();
-        });
-        
         $(document).on('click', function () {
         	$('.suggestion-list').css('visibility', 'hidden');
         });
@@ -64,8 +59,19 @@ bkyd.search = {
 			},
 			success : function(data) {
 				console.log(data);
-				
-				// TODO 操作DOM元素
+				$('.suggestion-list ul').html("");
+				if (data.length > 0) {
+					data.forEach(function (bookItem, index) {
+						$('.suggestion-list ul').append("<li><a class='list-item' href='javascript:void(0)' " +
+								"hidefocus='hidefocus'><span>" + bookItem.bookname + "</span></a></li>");
+					});
+					
+					$('.suggestion-list').css('visibility', 'visible');
+					$('.suggestion-list li').on('click', function () {
+		                bkyd.search.keyword_input.val($(this).text());
+		                bkyd.search.submit();
+					});
+				}
 			},
 			error : function(err) {
 				console.log(err);
