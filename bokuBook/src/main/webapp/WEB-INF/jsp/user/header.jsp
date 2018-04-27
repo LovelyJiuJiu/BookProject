@@ -9,7 +9,6 @@
 	pageContext.setAttribute("path", basePath);
 %>
 <base href="${path }" />
-<link rel="stylesheet" href="css/global.css">
 <script src="jquery/jquery-2.2.4.min.js"></script>
 <script src="layui/layui.js"></script>
 <script language="javascript">

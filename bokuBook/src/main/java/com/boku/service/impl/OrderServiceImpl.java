@@ -92,4 +92,9 @@ public class OrderServiceImpl implements OrderService {
 		return orderDetail;
 	}
 
+	@Override
+	public Order selectOrderByOrderId(Integer orderId) {
+		return orderMapper.selectByPrimaryKey(orderId);
+	}
+
 }
