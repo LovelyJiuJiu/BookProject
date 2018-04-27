@@ -29,8 +29,9 @@
 					<span class="layui-form-label">用户名:</span>
 					<div class="layui-input-block">
 						<input type="text" name="username" lay-verify="required"
-							placeholder="请输入用户名" autocomplete="off" class="layui-input">
+							placeholder="请输入用户名" autocomplete="off" class="layui-input"> 
 					</div>
+					<i id="icon" class="layui-icon layui-anim layui-anim-rotate layui-anim-loop">&#xe63d;</i>  
 				</div>
 				<div class="layui-form-item">
 					<span class="layui-form-label">密码:</span>

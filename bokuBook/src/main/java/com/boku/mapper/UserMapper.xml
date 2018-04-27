@@ -84,6 +84,9 @@
       <if test="briefIntroduction != null">
         brief_introduction,
       </if>
+      <if test="imgName != null">
+        image_name,
+      </if>
       create_time,last_update_time,
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
@@ -101,6 +104,9 @@
       </if>
       <if test="briefIntroduction != null">
         #{briefIntroduction,jdbcType=VARCHAR},
+      </if>
+      <if test="imgName != null">
+        #{imgName,jdbcType=VARCHAR},
       </if>
       
       NOW(),
@@ -151,4 +157,11 @@
       last_update_time = #{lastUpdateTime,jdbcType=TIMESTAMP}
     where id = #{id,jdbcType=INTEGER}
   </update>
+  
+  <select id="getUserList" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from user
+  </select>
+  
 </mapper>

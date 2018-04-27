@@ -65,7 +65,7 @@ layui.use('table', function(){
 	    ,cols: [[ //表头
 	      {checkbox: true, fixed: true}
 	      ,{field: 'id'}
-	      ,{style: 'line-height: 50px;', field: 'bookName', title: '书籍名称', width:260}
+	      ,{field: 'bookName', title: '书籍名称', width:260}
 		  ,{field: 'bookInfo', title: '展示图片', width: 200,templet:'<div><img class="cart-img" src="image/{{d.bookInfo}}"></div>'}
 	      ,{field: 'price', title: '单价', width:100}
 	      ,{field: 'number', title: '数量', width:100} 

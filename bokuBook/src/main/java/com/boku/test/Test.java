@@ -23,5 +23,6 @@ public class Test {
         MyBatisGenerator myBatisGenerator = new MyBatisGenerator(config, callback, warnings);
         myBatisGenerator.generate(null);
         System.out.println("生成代码成功，刷新项目，查看文件,然后执行TestMybatis.java");
-	}
+
+    }  	
 }  

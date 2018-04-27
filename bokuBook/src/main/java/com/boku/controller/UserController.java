@@ -43,6 +43,7 @@ public class UserController {
 	@ResponseBody
 	public String userRegister(User user, HttpSession session) {
 		Gson gson = new Gson();
+		user.setImgName("deafultPhoto.jpg");
 		User user1 = userService.register(user);
 		if (user1 != null) {
 			session.setAttribute("currentUser", user1);
@@ -59,8 +60,6 @@ public class UserController {
 	public String userLogin(User user, @RequestParam(defaultValue = "off") String rememberMe, 
 			@CookieValue(required = false) String username, @CookieValue(required = false) String password, HttpServletResponse response, 
 			HttpSession session) throws UnsupportedEncodingException {
-		System.out.println(user);
-		System.out.println(rememberMe);
 		Gson gson = new Gson();
 		User user1 = userService.login(user);
 		Map<String, Object> result = new HashMap<String, Object>();
@@ -91,7 +90,6 @@ public class UserController {
 		} else {
 			result.put("result", 0);
 		}
-		System.out.println(gson.toJson(result));
 		return gson.toJson(result);
 	}
 	

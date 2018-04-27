@@ -2,6 +2,7 @@ layui.use('form', function() {
 	var form = layui.form;
 
 	form.on('submit(login-btn)', function(data) {
+		$('#icon').css('display', "block");
 		login(data.field);
 		return false;
 	});
@@ -29,6 +30,7 @@ function login(data) {
 			rememberMe : data.rmbme
 		},
 		success : function(data) {
+			$('#icon').css('display', "none");
 			if (data.result === 1) {
 				window.location.href = "bookMain";
 			} else if (data.result === 0) {
@@ -39,6 +41,7 @@ function login(data) {
 			}
 		},
 		error : function(err) {
+			$('#icon').css('display', "none");
 			console.log(err);
 		}
 	});
@@ -60,5 +63,6 @@ $(function() {
 	var userName = decodeURIComponent(getCookie("username"));
 	var password = decodeURIComponent(getCookie("password"));
 	$('input[name=username]').val(userName);
-	$('input[name=password]').val(password);
+	$('input[name=password]').val(password);	
+	$('#icon').css('display', "none");
 });

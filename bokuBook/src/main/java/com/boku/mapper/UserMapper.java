@@ -1,5 +1,7 @@
 package com.boku.mapper;
 
+import java.util.List;
+
 import com.boku.pojo.User;
 
 public interface UserMapper {
@@ -53,4 +55,6 @@ public interface UserMapper {
      * @mbg.generated
      */
     int updateByPrimaryKey(User record);
+    
+    List<User> getUserList();
 }

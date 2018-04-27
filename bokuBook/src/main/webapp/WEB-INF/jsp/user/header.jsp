@@ -15,7 +15,7 @@
 <script language="javascript">
 $(document).ready(function() { 
 	var currentUser="<%=session.getAttribute("currentUser")%>";
-	if (currentUser == null) {
+	if (currentUser == "null") {
 		$('#num').html("0");
 	} else {
 		checkBookNumInCart();

@@ -22,8 +22,7 @@
 
     <mvc:annotation-driven />
     
-    <mvc:default-servlet-handler />
-
+    <mvc:default-servlet-handler />	 
     <bean
         class="org.springframework.web.servlet.view.InternalResourceViewResolver">
         <property name="viewClass"

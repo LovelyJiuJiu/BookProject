@@ -3,76 +3,69 @@ package com.boku.pojo;
 import java.util.Date;
 
 public class Reply {
-    
-    private Integer id;
 
-    
-    private Integer bookId;
+	private Integer id;
 
-    
-    private Integer userId;
+	private Integer bookId;
 
-    
-    private String replycontents;
+	private Integer userId;
 
-    
-    private Date replytime;
+	private String replycontents;
 
-    
-    public Integer getId() {
-        return id;
-    }
+	private Date replytime;
 
-    
-    public void setId(Integer id) {
-        this.id = id;
-    }
+	public Integer getId() {
+		return id;
+	}
 
-    
-    public Integer getBookId() {
-        return bookId;
-    }
+	public void setId(Integer id) {
+		this.id = id;
+	}
 
-    
-    public void setBookId(Integer bookId) {
-        this.bookId = bookId;
-    }
+	public Integer getBookId() {
+		return bookId;
+	}
 
-    
-    public Integer getUserId() {
-        return userId;
-    }
+	public void setBookId(Integer bookId) {
+		this.bookId = bookId;
+	}
 
-    
-    public void setUserId(Integer userId) {
-        this.userId = userId;
-    }
+	public Integer getUserId() {
+		return userId;
+	}
 
-    
-    public String getReplycontents() {
-        return replycontents;
-    }
+	public void setUserId(Integer userId) {
+		this.userId = userId;
+	}
 
-    
-    public void setReplycontents(String replycontents) {
-        this.replycontents = replycontents == null ? null : replycontents.trim();
-    }
+	public String getReplycontents() {
+		return replycontents;
+	}
 
-    
-    public Date getReplytime() {
-        return replytime;
-    }
+	public void setReplycontents(String replycontents) {
+		this.replycontents = replycontents == null ? null : replycontents.trim();
+	}
 
-    
-    public void setReplytime(Date replytime) {
-        this.replytime = replytime;
-    }
+	public Date getReplytime() {
+		return replytime;
+	}
 
+	public void setReplytime(Date replytime) {
+		this.replytime = replytime;
+	}
+
+	public Reply(Integer bookId, Integer userId, String replycontents, Date replytime) {
+		super();
+		this.bookId = bookId;
+		this.userId = userId;
+		this.replycontents = replycontents;
+		this.replytime = replytime;
+	}
 
 	@Override
 	public String toString() {
 		return "Reply [id=" + id + ", bookId=" + bookId + ", userId=" + userId + ", replycontents=" + replycontents
 				+ ", replytime=" + replytime + "]";
 	}
-    
+
 }

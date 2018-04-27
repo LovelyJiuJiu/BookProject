@@ -24,10 +24,56 @@
 	});
 	
 	$(document).ready(function() {
-		if (!$('#ImgHref').val()) {
-			$('#Img').attr('src', "image/deafultPhoto.jpg");
-		}
+		
+		var ImgHrefElements = document.getElementsByName("ImgHref");
+        for(var i=0;i<ImgHrefElements.length;i++){
+    		if (!ImgHrefElements[i].value) {
+    			var id = "#Img" +i ;
+    			$(id).attr('src', "image/deafultPhoto.jpg");
+    		}
+        }
+
+		layui.use('form', function() {
+			var form = layui.form;
+			form.on('submit(add-reply-btn)', function(data) {
+				var currentUser="<%=session.getAttribute("currentUser")%>";
+				if (currentUser == "null") {
+					alert("请先登录");
+					return false;
+				} else{
+					addReply(data.field);
+					return false;
+				}
+			})
+			return false;
+		});
 	});
+
+ 	function addReply(data) {
+ 		var search = window.location.search;
+ 		search = search.charAt(search.length-1);
+		$.ajax({
+			url : 'book/addReply',
+			async : true,
+			dataType : 'json',
+			data : {
+				id: search,
+				replycontents: data.replycontents
+			},
+			success : function(data) {
+				if(data.result == 1) {
+ 					window.location.href = "book/bookInfo?id="+search;;
+				}else{
+					alert("评论失败，请重试");
+				}
+			},
+			error : function(err) {
+				console.log(err);
+			}
+		}); 
+		
+	}
+
 </script>
 
 
@@ -71,21 +117,26 @@
 				<c:forEach items="${userReplyList}" var="userReply" varStatus="status">
 					<div class="oneComment">
 						<div class="userImg">
-							<img id="Img" alt="" src="image/${userReply.imgName}">
-							<input id="ImgHref" type="hidden" value="${userReply.imgName}"> 
+							<img id="Img${status.index}" alt="" src="image/${userReply.imgName}">
+							<input name="ImgHref" type="hidden" value="${userReply.imgName}"> 
 						</div>
 						<div class="otherContent">
 							<span class="userName">${userReply.username}</span>
-							<span class="replyDate">${userReply.replytime}</span> 
+							<span class="replyDate">${userReply.dateStr}</span> 
 							<span class="commentNumber">${status.index+1}楼</span>
 						</div>
 						<div class="commentInfo">${userReply.replycontents}</div>
 					</div>
 				</c:forEach>
 			</div>
+
 			<div class="writeCommentTitle">编写我的评论:</div>
-			<textarea name="" required lay-verify="required" placeholder="我也来说两句......" class="layui-textarea writeComment"></textarea>
-			<div class="submitComment layui-btn layui-btn-danger layui-btn-radius">发表</div>
+			<form class="layui-form" lay-filter="addReply">
+				<textarea name="replycontents" required lay-verify="required"
+					placeholder="我也来说两句......" class="layui-textarea writeComment"></textarea>
+				<button class="submitComment layui-btn layui-btn-radius" lay-submit
+					lay-filter="add-reply-btn">发表</button>
+			</form>
 		</div>
 
 
