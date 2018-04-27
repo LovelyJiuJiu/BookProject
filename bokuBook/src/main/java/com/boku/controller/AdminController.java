@@ -1,6 +1,7 @@
 package com.boku.controller;
 
 
+import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 import java.util.HashMap;
@@ -8,6 +9,7 @@ import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
@@ -17,8 +19,11 @@ import org.springframework.web.bind.annotation.CookieValue;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.boku.pojo.Admin;
+import com.boku.pojo.Book;
+import com.boku.pojo.Type;
 import com.boku.pojo.User;
 import com.boku.pojo.UserCart;
 import com.boku.service.AdminService;
@@ -40,6 +45,37 @@ public class AdminController {
 	@RequestMapping("")
 	public String index(){
 		return "admin/login";
+	}
+	
+	
+	@RequestMapping("bookList")
+	@ResponseBody
+	public String bookList(int page, int limit){
+		Gson gson = new Gson();
+		Map<String, Object> result = new HashMap<String, Object>();
+		
+		List<Book> bookList = adminService.getBookList();
+		int fromIndex = (page - 1) * limit;
+		int toIndex = fromIndex + limit;
+		toIndex = toIndex > bookList.size() ? bookList.size() : toIndex;
+		List<Book> actualBookList = bookList.subList(fromIndex, toIndex);
+		
+		result.put("code", 0);
+		result.put("msg", "");
+		result.put("count", bookList.size());
+		result.put("data", actualBookList);
+			
+		return gson.toJson(result);
+	}
+	
+	@RequestMapping("bookListPage")
+	public String bookListTemp(){
+		return "admin/bookList";
+	}
+	
+	@RequestMapping("addBookPage")
+	public String addBookTemp(){
+		return "admin/addBook";
 	}
 	
 	@RequestMapping("login-submit")
@@ -92,20 +128,60 @@ public class AdminController {
 		Map<String, Object> result = new HashMap<String, Object>();
 		
 		List<User> userList = adminService.getUserList();
-		System.out.println("userList" + userList);
 		int fromIndex = (page - 1) * limit;
 		int toIndex = fromIndex + limit;
 		toIndex = toIndex > userList.size() ? userList.size() : toIndex;
-		List<User> actualuserList = userList.subList(fromIndex, toIndex);
+		List<User> actualUserList = userList.subList(fromIndex, toIndex);
 		
 		result.put("code", 0);
 		result.put("msg", "");
 		result.put("count", userList.size());
-		result.put("data", actualuserList);
+		result.put("data", actualUserList);
 			
 		return gson.toJson(result);
 	}
 	
+	@RequestMapping("typeList")
+	@ResponseBody	
+	public String getTypeList(){
+		Gson gson = new Gson();
+		Map<String, Object> result = new HashMap<String, Object>();
+		
+		List<Type> typeList = adminService.getAllType();
+		result.put("typeList", typeList);	
+
+		return gson.toJson(result);
+	}	
+	
+	@RequestMapping("addBook")
+	@ResponseBody	
+	public String addBook(Book book){
+		Gson gson = new Gson();
+		Map<String, Object> result = new HashMap<String, Object>();
+		
+		if(adminService.addBook(book)) {
+			result.put("code", 1);
+		}else{
+			result.put("code", 0);
+		}		
+		return gson.toJson(result);
+	}
+	
+	@RequestMapping("uploadBookImg")
+	@ResponseBody	
+	public String uploadBookImg(HttpServletRequest request, MultipartFile file){
+		Gson gson = new Gson();
+		Map<String, Object> result = new HashMap<String, Object>();
+			try {
+				String imgName = adminService.uploadBookImg(request, file);
+				result.put("code", 1);
+				result.put("imgName", imgName);
+			} catch (Exception e) {
+				e.printStackTrace();
+				result.put("code", 0);
+			}
+		return gson.toJson(result);
+	}
 	
 	@RequestMapping("logout")
 	@ResponseBody

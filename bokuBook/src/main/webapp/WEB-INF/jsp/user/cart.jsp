@@ -31,6 +31,12 @@
 	</script>
 <script>
 
+function getContextPath() {
+    var pathName = document.location.pathname;
+    var index = pathName.substr(1).indexOf("/");
+    var result = pathName.substr(0,index+1);
+    return result;
+}
 function deleteBook(id) {
   $.ajax({
 		url: 'cart/deleteBook',
@@ -40,7 +46,7 @@ function deleteBook(id) {
 	    success: function (data) { 
 	        if(data.result == 1) {
 	        	layer.msg('删除成功');
-	        	window.location.href = "user/cartPage";
+	        	window.location.href = getContextPath() + "/user/cartPage";
 	        } else{
 	        	layer.msg('删除失败');
 	        }

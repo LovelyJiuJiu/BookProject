@@ -18,7 +18,7 @@ public class AdminLoginFilter implements Filter {
         HttpServletResponse response = (HttpServletResponse)resp;  
         String uri = request.getRequestURI();
         String path = uri.substring(uri.lastIndexOf("/"));
-		if ("/login".equals(path) || ("/".equals(path)) || ("/login-submit".equals(path))) {
+		if ("/login".equals(path) || ("/admin".equals(path)) || ("/login-submit".equals(path))) {
 			chain.doFilter(request, response);
 		} else {
 			HttpSession session = request.getSession();

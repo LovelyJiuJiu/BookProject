@@ -58,4 +58,5 @@ public interface BookMapper {
 
 	List<Book> selectBookByKeywords(Map<String, Object> params);
     
+    List<Book> getBookList();
 }

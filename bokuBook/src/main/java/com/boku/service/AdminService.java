@@ -8,15 +8,21 @@ import javax.servlet.http.HttpServletRequest;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.boku.pojo.Admin;
+import com.boku.pojo.Book;
+import com.boku.pojo.Type;
 import com.boku.pojo.User;
 
 public interface AdminService {
-	Admin register(Admin admin);
 	
 	Admin login(Admin admin);
 	
-	boolean editUserInfo(Admin user, HttpServletRequest request, MultipartFile file) throws IllegalStateException, IOException;
-	boolean checkPasswordByUserId(Integer id, String password);
-	boolean updatePasswordByUserId(Integer id, String password);
 	List<User> getUserList();
+	
+	List<Book> getBookList();
+	
+	List<Type> getAllType();
+	
+	String uploadBookImg(HttpServletRequest request, MultipartFile file) throws IllegalStateException, IOException;
+	
+	boolean addBook(Book book);
 }

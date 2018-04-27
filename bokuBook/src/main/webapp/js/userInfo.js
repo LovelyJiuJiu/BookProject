@@ -6,7 +6,8 @@ $(document).ready(function() {
 		$('#uploadImg2').attr('src', "image/" + $('#imgName').val());
 		$('#uploadImg').attr('src', "image/" + $('#imgName').val());
 	}
-
+	addTitleToImg();
+	
 	$('#editPassword').css('display', "none");
 
 	$('#editPwd').on('click', function() {
@@ -27,6 +28,12 @@ $(document).ready(function() {
 
 	$('#desc').val($('#briefIntroduction').val());
 })
+
+function addTitleToImg() {
+	if ("deafultPhoto.jpg" == $('#imgName').val()) {
+		$("#uploadImg").attr({title: "默认头像，请上传个人头像"});		
+	}	
+}
 
 function checkPassword() {
 	$.ajax({

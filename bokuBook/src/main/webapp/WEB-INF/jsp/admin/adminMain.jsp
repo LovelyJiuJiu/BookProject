@@ -18,32 +18,43 @@
 <script src="jquery/jquery-2.2.4.min.js"></script>
 <script src="layui/layui.js"></script>
 <script src="js/adminMain.js"></script>
-<script type="text/html" id="operation">
-	<a class="layui-btn layui-btn-danger layui-btn-mini" lay-event="del">删除</a>
+<script>
+function hideAllIframes() {
+  $('.hideIframs').css('display', "none");
+  $('.rightContainer').css('display', "block");
+}
+
+//show this one ifram and hide other ifram, userList
+function hideOtherAndShowIt(id) {
+	  $('.hideIframs').css('display', "none");
+	  $('.rightContainer').css('display', "none");	  
+	  document.getElementById(id).style.display="block";
+}
+
 </script>
 </head>
 <body>
-	<div class="adminMainContainer">
+	<div id="test" class="adminMainContainer">
 		<div class="leftContainer">
 			<ul class="layui-nav layui-nav-tree layui-nav-side layui-bg-cyan"  lay-filter="test">
 				 <li class="top-item layui-nav-item layui-nav-itemed">
 				 	<a href="javascript:;">用户管理</a>
 				 	    <dl class="layui-nav-child">
-      						<dd><a class="choose" href="admin/userListPage" target="userList">查看用户</a></dd>
+      						<dd id="choose"><a onclick="hideAllIframes()" href="javascript:;">查看用户</a></dd>
     					</dl>
 				 </li>
 				 <li class="layui-nav-item">
 				 	<a href="javascript:;">书籍管理</a>
 				 	    <dl class="layui-nav-child">
-      						<dd><a href="javascript:;">查看书籍</a></dd>
-      						<dd><a href="javascript:;">添加书籍</a></dd>
+      						<dd><a onclick="hideOtherAndShowIt('bookList'); return true;" href="admin/bookListPage" target="bookList">查看书籍</a></dd>
+      						<dd id="addBookOption"><a onclick="hideOtherAndShowIt('addBook'); return true;" href="admin/addBookPage" target="addBook">添加书籍</a></dd>
     					</dl>
 				 </li>
 				 <li class="layui-nav-item">
 				 	<a href="javascript:;">订单管理</a>
 				 	    <dl class="layui-nav-child">
-      						<dd><a href="javascript:;">查看订单</a></dd>
-      						<dd><a href="javascript:;">处理订单</a></dd>
+      						<dd><a onclick="hideOtherAndShowIt('orderList'); return true;" href="javascript:;">查看订单</a></dd>
+      						<dd><a onclick="hideOtherAndShowIt('checkOrder'); return true;" href="javascript:;">处理订单</a></dd>
     					</dl>
 				 </li>
 				 <li class="layui-nav-item">
@@ -53,12 +64,18 @@
 		</div>		
 		<div class="rightContainer">
 			<table id="userTable" lay-filter="userList"></table>
-			<div class="footerContainer">
-				<span>2018 @博库阅读</span>
-			</div>
-		</div>	
+		</div>
+		
+		<iframe class="hideIframs" id="bookList" name="bookList" frameborder="0"></iframe>
+		<iframe class="hideIframs" id="addBook" name="addBook" frameborder="0"></iframe>	
+		<iframe class="hideIframs" id="orderList" name="addBook" frameborder="0"></iframe>	
+		<iframe class="hideIframs" id="checkOrder" name="checkOrder" frameborder="0"></iframe> 
+		<div class="footerContainer">
+			<span>2018 @博库阅读</span>
+		</div>
 	</div>
+			
 
-<!-- <iframe id="userList" name="userList" frameborder="0"></iframe>  -->
+
 </body>
 </html>
