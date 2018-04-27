@@ -5,45 +5,35 @@ layui.use('table', function(){
 	  //第一个实例
 	  table.render({
 	    elem: '#userTable'
-	    ,height: 500
+	    ,height: 550
 	    ,url: 'admin/userList' //数据接口
 	    ,limit:5 //这里控制的是选择多少条默认显示的 不是实际显示的
 	    ,limits:[1,5,10,15]
 	    ,page: true //开启分页
 	    ,cols: [[ //表头
 	      {checkbox: true, fixed: true}
-	      ,{field: 'id'}
 	      ,{field: 'username', title: '用户名', width:130}
 		  ,{field: 'imgName', title: '用户头像', width: 200,templet:'<div><img name="img" src="image/{{d.imgName}}"></div>'}
 	      ,{field: 'email', title: '邮箱', width:180} 
-		  ,{field: 'briefIntroduction', title: '主要介绍', width:180}
-	      ,{field: 'operation', title: '操作', toolbar:"#operation"} 
+		  ,{field: 'briefIntroduction', title: '主要介绍'}
 	    ]]
 	  ,done: function(res, curr, count){
-		  $("[data-field='id']").css('display','none');
 	  }
 	  });
 });
 
 $(document).ready(function() {
-
+	$('.hideIframs').css('display', "none"); 
 	$('#adminLogout').on('click', function() {
 			logout();
 		});
 
-
-
-	
-		layui.use('element', function() {
-			var element = layui.element;
-			//监听导航点击
-			element.on('nav(test)', function(elem) {
-			console.log(elem);
-/* 			alert(elem.text()); */
-			});
-		});
-
+	layui.use('element', function() {
+		var element = layui.element;
 	});
+
+	$("#choose").addClass("layui-this");
+});
 
 	function logout() {
 		$.ajax({

@@ -87,4 +87,11 @@
     set typename = #{typename,jdbcType=VARCHAR}
     where id = #{id,jdbcType=INTEGER}
   </update>
+  
+  <select id="getAllType" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from type
+  </select>
+  
 </mapper>

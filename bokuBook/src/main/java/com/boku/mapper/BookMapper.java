@@ -55,4 +55,5 @@ public interface BookMapper {
     
     List<Book> getBookListByIds(List<Integer> ids);
     
+    List<Book> getBookList();
 }

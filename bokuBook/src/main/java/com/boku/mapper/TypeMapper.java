@@ -1,5 +1,7 @@
 package com.boku.mapper;
 
+import java.util.List;
+
 import com.boku.pojo.Type;
 
 public interface TypeMapper {
@@ -50,4 +52,6 @@ public interface TypeMapper {
      * @mbg.generated
      */
     int updateByPrimaryKey(Type record);
+    
+    List<Type> getAllType();
 }

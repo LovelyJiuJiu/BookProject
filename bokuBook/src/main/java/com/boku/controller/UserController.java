@@ -99,6 +99,7 @@ public class UserController {
 		Gson gson = new Gson();
 		Map<String, Object> result = new HashMap<String, Object>();
 		User user = (User) session.getAttribute("currentUser");
+		@SuppressWarnings("unchecked")
 		List<UserCart> userCarts = (List<UserCart>) session.getAttribute("cart");
 		if (user != null) {
 			if (userCarts != null) {
@@ -155,6 +156,11 @@ public class UserController {
 	@RequestMapping("login")
 	public String loginTemp(){
 		return "user/login";
+	}
+	
+	@RequestMapping("bookMain")
+	public String bookMainTemp(){
+		return "user/bookMain";
 	}
 	
 	@RequestMapping("register")

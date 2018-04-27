@@ -204,4 +204,12 @@
     </foreach>
 	</where>
   </select>
+  
+  
+  <select id="getBookList" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from book
+  </select>
+
 </mapper>
