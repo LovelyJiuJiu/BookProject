@@ -10,9 +10,9 @@
 %>
 <base href=${path } />
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<link rel="stylesheet" href="css/cart.css">
 <title>--购物车--</title>
 <link rel="stylesheet" href="layui/css/layui.css" media="all">
+<link rel="stylesheet" href="css/cart.css">
 <link rel="stylesheet" href="css/global.css">
 <link rel="stylesheet" href="css/home.css">
 
@@ -27,7 +27,7 @@
 	<script src="layui/layui.js"></script>
 	<script src="js/global.js"></script>
 	<script type="text/html" id="operation">
-		<a class="layui-btn layui-btn-danger layui-btn-mini" lay-event="del">删除</a>
+		<a class="layui-btn layui-btn-radius layui-btn-danger layui-btn-mini" lay-event="del"><i class="layui-icon">&#xe640;</i>删除</a>
 	</script>
 <script>
 
@@ -67,11 +67,12 @@ layui.use('table', function(){
 	    ,limit:5 //这里控制的是选择多少条默认显示的 不是实际显示的
 	    ,limits:[1,5,10,15]
 	    ,page: true //开启分页
+	    ,id: 'cT'
 	    ,cols: [[ //表头
 	      {checkbox: true, fixed: true}
 	      ,{field: 'id'}
-	      ,{field: 'bookName', title: '书籍名称', width:130}
-		  ,{field: 'bookInfo', title: '展示图片', width: 250,templet:'<div><img src="image/{{d.bookInfo}}"></div>'}
+	      ,{field: 'bookName', title: '书籍名称', width:260}
+		  ,{field: 'bookInfo', title: '展示图片', width: 200,templet:'<div><img class="cart-img" src="image/{{d.bookInfo}}"></div>'}
 	      ,{field: 'price', title: '单价', width:100}
 	      ,{field: 'number', title: '数量', width:100} 
 	      ,{field: 'totalPrice', title: '金额', width: 100}
@@ -79,12 +80,48 @@ layui.use('table', function(){
 	    ]]
 	  ,done: function(res, curr, count){
 		  $("[data-field='id']").css('display','none');
+		  $("div.cart-amount").remove();
+		  $("div.layui-table-page").append("<div class='cart-amount'><span>合计: ￥</span><span id='amount'>0</span></div>");
+		  $("div.layui-table-page").append("<button class='layui-btn layui-btn-radius layui-btn-danger cart-submit'>去结算</button>");
+		  $("button.cart-submit").on('click', function () {
+			  var checkStatus = table.checkStatus('cT');
+			  var data = checkStatus.data;
+			  console.log(data);
+			  if (data.length === 0) {
+				  layer.msg('你还没有选择要买的书嘞く(＾_・)ゝ');
+				  return;
+			  }
+			  orderSubmit(data);
+		  });
 	  }
 	  });
 	  addEvent(table);
-
-
+	  
 });
+
+function orderSubmit (data) {
+	var userId = ${currentUser.id};
+	$.ajax({
+		url : 'order/order-submit/' + userId,
+		async : true,
+		type : 'POST',
+		dataType : 'json',
+		data: JSON.stringify(data),
+		contentType: 'application/json; charset=utf-8',
+		success : function(data) {
+			if (data.result === 0) {
+				window.location.href = "bookMain";
+			} else if (data.result === 1) {
+				layer.msg("服务器错误");
+			} else {
+				layer.msg("拜托..  你还没有登录 (￣□￣；)");
+			}
+		},
+		error : function(err) {
+			console.log(err);
+		}
+	});
+}
 
 function addEvent(table) {
 	//监听删除按钮  
@@ -100,7 +137,26 @@ function addEvent(table) {
 	});
 	
 	table.on('checkbox(cartInfo)', function(obj) {
-		alert(obj.data.id);
+		console.log(obj);
+		var totalPrice = $('div.cart-amount span#amount');
+		if (obj.type === 'all') {
+			var checkStatus = table.checkStatus('cT');
+			if (obj.checked) {
+				var price = 0;
+				checkStatus.data.forEach(function (item, index) {
+					price += item.totalPrice;
+				});
+				totalPrice.text(price);
+			} else {
+				totalPrice.text(0);
+			}
+		} else if (obj.type === 'one') {
+			if (obj.checked) {
+				totalPrice.text(parseFloat(totalPrice.text()) + obj.data.totalPrice);
+			} else {
+				totalPrice.text(parseFloat(totalPrice.text()) - obj.data.totalPrice);
+			}
+		}
 	});
 
 }

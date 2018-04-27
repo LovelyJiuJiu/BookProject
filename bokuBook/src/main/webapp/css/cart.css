@@ -16,6 +16,30 @@ img{
   width: 100%;
 }
 .layui-table-cell{
-  height: 50px !important;	
+  height: 45px !important;	
+  line-height: 45px;
+}
+
+.cart-img {
+	width: 45px;
+	height: 45px;
+}
+
+.cart-amount {
+	position: absolute;
+	right: 21%;
+	bottom: 16%;
+	color: #fa7a20;
+	line-height: 26px;
+	font-size: 14px;
+}
+
+.cart-submit {
+	position: absolute;
+    right: 3%;
+    bottom: 12%;
+    height: 30px;
+    width: 10%;
+    line-height: 30px;
 }
 

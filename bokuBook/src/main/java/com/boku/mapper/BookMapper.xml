@@ -205,11 +205,19 @@
 	</where>
   </select>
   
-  
   <select id="getBookList" resultMap="BaseResultMap">
     select 
     <include refid="Base_Column_List" />
     from book
+  </select>
+
+  <select id="selectBookByKeywords" resultMap="BaseResultMap">
+    select *
+    from book 
+    where bookname like concat('%', #{keyWords}, '%') 
+    <if test="symbol == null">
+		limit 0, 5
+	</if>		 
   </select>
 
 </mapper>
