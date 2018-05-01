@@ -27,6 +27,8 @@ import com.boku.pojo.Type;
 import com.boku.pojo.User;
 import com.boku.pojo.UserCart;
 import com.boku.service.AdminService;
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
 import com.google.gson.Gson;
 
 @Controller
@@ -53,17 +55,13 @@ public class AdminController {
 	public String bookList(int page, int limit){
 		Gson gson = new Gson();
 		Map<String, Object> result = new HashMap<String, Object>();
-		
+		PageHelper.startPage(page, limit);
 		List<Book> bookList = adminService.getBookList();
-		int fromIndex = (page - 1) * limit;
-		int toIndex = fromIndex + limit;
-		toIndex = toIndex > bookList.size() ? bookList.size() : toIndex;
-		List<Book> actualBookList = bookList.subList(fromIndex, toIndex);
-		
+		PageInfo<Book> books = new PageInfo<Book>(bookList);
 		result.put("code", 0);
 		result.put("msg", "");
-		result.put("count", bookList.size());
-		result.put("data", actualBookList);
+		result.put("count", books.getTotal());
+		result.put("data", books.getList());
 			
 		return gson.toJson(result);
 	}
@@ -126,17 +124,14 @@ public class AdminController {
 	public String userList(int page, int limit){
 		Gson gson = new Gson();
 		Map<String, Object> result = new HashMap<String, Object>();
-		
+		PageHelper.startPage(page, limit);
 		List<User> userList = adminService.getUserList();
-		int fromIndex = (page - 1) * limit;
-		int toIndex = fromIndex + limit;
-		toIndex = toIndex > userList.size() ? userList.size() : toIndex;
-		List<User> actualUserList = userList.subList(fromIndex, toIndex);
+		PageInfo<User> users = new PageInfo<User>(userList);
 		
 		result.put("code", 0);
 		result.put("msg", "");
-		result.put("count", userList.size());
-		result.put("data", actualUserList);
+		result.put("count", users.getTotal());
+		result.put("data", users.getList());
 			
 		return gson.toJson(result);
 	}
