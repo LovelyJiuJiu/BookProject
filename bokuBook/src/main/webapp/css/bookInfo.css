@@ -26,7 +26,7 @@
   width: auto;
   display: inline-block !important;
   display: inline;
-  margin-left: 20px;
+  margin-right: 20px;
   overflow: hidden;
   height: 400px;
   width: 300px;
@@ -53,11 +53,14 @@
   margin-left: 30px;
   font-weight: bold;
 }
-.bookTitle,.bookContent,.moreChoice,.purchse,.readBook{
-  margin-bottom: 5px;
+.bookTitle,.bookContent,.moreChoice,.purchse,.readBook,.bookNum{
+  margin-bottom: 10px;
+}
+.readBook {
+	font-size: 12px;
 }
 .purchse{
-  margin-left: 80px !important;
+  margin-left: 40px !important;
 }
 .bookTitle{
   font-size: 21px;	
@@ -91,9 +94,8 @@
 }
 
 img{
-  width: 100%;
   border: none;
-  height: 100%;
+  height: 70%;
 }
 .commentInfo{
   margin-top: 10px;
@@ -115,4 +117,56 @@ img{
 .submitComment{
   position: relative;
   left: 93%;
+}
+
+.book-number-style {
+	border: 1px solid #e6e6e6;
+	background-color: #fff;
+	display: inline;
+	width: 5%;
+	height: 6%;
+	padding: 0px;
+	border-radius: 5px;
+	text-align: center;
+}
+
+#sub, #add {
+	font-size: 15px;
+}
+
+#sub {
+	margin-right: 5px;
+}
+
+#add {
+	margin-left: 5px;
+}
+
+.num {
+	float: left;
+	padding-top: 3px;
+	font-size: 13px;
+	margin-right: 20px;
+}
+
+.readBook, .purchse  {
+	font-size: 12px !important;
+	width: 16%;
+	height: 32px !important;
+	line-height: 32px !important;
+}
+
+.price {
+	margin-bottom: 15px;
+}
+
+.book-price {
+	padding-top: 3px;
+	font-size: 13px;
+	margin-right: 20px;
+}
+
+.book-price-num {
+	color: #fa7a20;
+	font-size: 16px;
 }

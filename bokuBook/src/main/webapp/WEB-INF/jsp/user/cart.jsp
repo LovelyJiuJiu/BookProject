@@ -74,8 +74,8 @@ layui.use('table', function(){
 	    ,cols: [[ //表头
 	      {checkbox: true, fixed: true}
 	      ,{field: 'id'}
-	      ,{field: 'bookName', title: '书籍名称', width:260}
-		  ,{field: 'bookInfo', title: '展示图片', width: 200,toolbar:"#img"}
+	      ,{field: 'bookName', title: '书籍名称', width:260, templet: '<div><a href="/book/book/bookInfo?id={{d.id}}" target="_blank">{{d.bookName}}</a></div>'}
+		  ,{field: 'bookInfo', title: '展示图片', width: 200,toolbar:"#img"}	
 	      ,{field: 'price', title: '单价', width:100}
 	      ,{field: 'number', title: '数量', width:100} 
 	      ,{field: 'totalPrice', title: '金额', width: 100}
@@ -113,10 +113,10 @@ function orderSubmit (data) {
 		contentType: 'application/json; charset=utf-8',
 		success : function(data) {
 			if (data.result === 0) {
-				window.location.href = "bookMain";
+				window.location.href = '/book/order/orderDetail?orderId=' + data.orderId;
 			} else if (data.result === 1) {
 				layer.msg("服务器错误");
-			} else {
+			} else if (data.result === 2) {
 				layer.msg("拜托..  你还没有登录 (￣□￣；)");
 			}
 		},

@@ -41,11 +41,18 @@ public class OrderController {
 	public String addOrder(@RequestBody ArrayList<UserCart> books, @PathVariable Integer userId, HttpSession session){
 		Gson gson = new Gson();
 		Map<String, Object> result = new HashMap<String, Object>();
+		User user = (User) session.getAttribute("currentUser");
+		if (user == null) {
+			result.put("result", 2);
+			return gson.toJson(result);
+		}
 		Order order = orderService.addOrder(books, userId);
 		if (order == null) {
 			result.put("result", 1);
 			result.put("msg", "添加失败");
 		} else {
+			
+			// 删除购物车中包含在已提交订单中的商品
 			List<UserCart> userCarts = (List<UserCart>) session.getAttribute("cart");
 			if (userCarts != null && userCarts.size() > 0) {
 				Iterator<UserCart> uc1 = books.iterator();
@@ -63,7 +70,30 @@ public class OrderController {
 				session.setAttribute("cart", userCarts);
 			}
 			result.put("result", 0);
-			result.put("orderNo", order.getOrderNo());
+			result.put("orderId", order.getId());
+		}
+		return gson.toJson(result);
+	}
+	
+	@RequestMapping("purchse-at-time")
+	@ResponseBody
+	public String purchseAtTime(UserCart userCart, Integer userId, HttpSession session){
+		Gson gson = new Gson();
+		Map<String, Object> result = new HashMap<String, Object>();
+		User user = (User) session.getAttribute("currentUser");
+		if (user == null) {
+			result.put("result", 2);
+			return gson.toJson(result);
+		}
+		List<UserCart> userCarts = new ArrayList<UserCart>();
+		userCarts.add(userCart);
+		Order order = orderService.addOrder(userCarts, userId);
+		if (order == null) {
+			result.put("result", 1);
+			result.put("msg", "添加失败");
+		} else {
+			result.put("result", 0);
+			result.put("orderId", order.getId());
 		}
 		return gson.toJson(result);
 	}
@@ -99,8 +129,13 @@ public class OrderController {
 		User user = (User) session.getAttribute("currentUser");
 		ModelAndView modelAndView = new ModelAndView("user/orderDetail");
 		if (user != null) {
+			Order order = orderService.selectOrderByOrderId(orderId);
+			if (order.getStatus() == 0) {
+				modelAndView.setViewName("user/orderConfirm");
+			}
 			List<UserCart> orderDetail = orderService.selectOrderDetail(orderId);
 			modelAndView.addObject("orderDetail", orderDetail);
+			modelAndView.addObject("order", order);
 		} else {
 			modelAndView.addObject("msg", "你还没有登录哦(～￣▽￣)～ ");
 		}

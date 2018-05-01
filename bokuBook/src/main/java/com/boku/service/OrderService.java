@@ -12,4 +12,6 @@ public interface OrderService {
 	List<Order> queryOrderByUserId(Integer id);
 
 	List<UserCart> selectOrderDetail(Integer orderId);
+
+	Order selectOrderByOrderId(Integer orderId);
 }	

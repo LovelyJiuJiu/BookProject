@@ -1,0 +1,38 @@
+.order-list {
+	margin-top: 30px;
+}
+
+.layui-field-title {
+	border-width: 1px;
+}
+
+.item {
+	height: 90px;
+}
+
+.book-pic, .book-pic img {
+	width: 80px;
+	height: 90px;
+	float: left;
+}
+
+.book-name, .book-single-price, .book-count {
+	text-align: center;
+	float: left;
+	width: 100px;
+	margin-left: 120px;
+	margin-top: 10px;
+	font-size: 14px;
+}
+
+.book-count {
+	margin-top: 12px;
+}
+
+.book-total-price {
+	float: right;
+	text-align: center;
+	margin-top: 10px;
+	margin-right: 10px;
+	font-size: 14px;
+}
