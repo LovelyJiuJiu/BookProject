@@ -14,13 +14,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.boku.mapper.BookMapper;
-import com.boku.mapper.ReplyMapper;
-import com.boku.pojo.Book;
 import com.boku.pojo.Order;
 import com.boku.pojo.User;
 import com.boku.pojo.UserCart;
@@ -77,7 +73,7 @@ public class OrderController {
 	
 	@RequestMapping("purchse-at-time")
 	@ResponseBody
-	public String purchseAtTime(UserCart userCart, Integer userId, HttpSession session){
+	public String purchseAtTime(UserCart userCart, HttpSession session){
 		Gson gson = new Gson();
 		Map<String, Object> result = new HashMap<String, Object>();
 		User user = (User) session.getAttribute("currentUser");
@@ -87,7 +83,7 @@ public class OrderController {
 		}
 		List<UserCart> userCarts = new ArrayList<UserCart>();
 		userCarts.add(userCart);
-		Order order = orderService.addOrder(userCarts, userId);
+		Order order = orderService.addOrder(userCarts, user.getId());
 		if (order == null) {
 			result.put("result", 1);
 			result.put("msg", "添加失败");
@@ -140,6 +136,27 @@ public class OrderController {
 			modelAndView.addObject("msg", "你还没有登录哦(～￣▽￣)～ ");
 		}
 		return modelAndView;
+	}
+	
+	@RequestMapping("orderPay")
+	@ResponseBody
+	public String payOrder(Integer id, HttpSession session) {
+		Gson gson = new Gson();
+		Map<String, Object> resultMap = new HashMap<String, Object>();
+		User user = (User) session.getAttribute("currentUser");
+		if (user != null) {
+			int result = orderService.changeOrderStatusToFinish(id, user.getId());
+			if (result == 0) {
+				resultMap.put("result", 1);
+				resultMap.put("msg", "未找到对应的订单记录");
+			} else {
+				resultMap.put("result", 0);
+				resultMap.put("msg", "支付成功");
+			}
+		} else {
+			resultMap.put("result", 2);
+		}
+		return gson.toJson(resultMap);
 	}
 }
 

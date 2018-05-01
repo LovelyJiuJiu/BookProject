@@ -138,4 +138,10 @@
       pay_time = #{payTime,jdbcType=TIMESTAMP}
     where id = #{id,jdbcType=INTEGER}
   </update>
+  
+  <update id="changeOrderStatusToFinish" parameterType="map">
+    update `order`
+    set status = 1, pay_time = NOW() 
+    where id = #{orderId,jdbcType=INTEGER} and user_id = #{userId,jdbcType=INTEGER} and status = 0
+  </update>
 </mapper>
