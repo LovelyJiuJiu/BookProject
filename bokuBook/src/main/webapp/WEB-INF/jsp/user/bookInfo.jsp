@@ -205,7 +205,6 @@
 			<div class="rightContainer">
 				<div class="bookTitle">${book.bookname}</div>
 				<div class="bookContent">${book.bookAuthor}</div>
-				<div class="price"></div>
 				<div class="moreChoice">
 					<div class="price">
 						<span class="book-price">单价 </span>

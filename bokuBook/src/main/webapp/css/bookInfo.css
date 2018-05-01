@@ -19,7 +19,7 @@
   display: inline;
 }
 .summary{
-  max-height: 200px !important;
+  max-height: 150px !important;
   overflow: auto;
 } 
 .bookImage{
@@ -33,19 +33,15 @@
 }
  
 .rightContainer{
-  position: relative;
-  left: 38%;
-  top: -400px;
-  max-width: 600px;
+  position: absolute;
+  left: 420px;
+  top: 220px;
+  width: 600px;
 }
 .footerContainer{
   margin-top: 50px;
   position: relative;
   margin-left: 55px;
-}
-.moreChoice{
-  position: relative;
-  padding-top: 100px;	
 }
 
 .footerLContainer{
@@ -55,6 +51,9 @@
 }
 .bookTitle,.bookContent,.moreChoice,.purchse,.readBook,.bookNum{
   margin-bottom: 10px;
+}
+.moreChoice{
+  margin-top: 40px;	
 }
 .readBook {
 	font-size: 12px;
