@@ -183,6 +183,19 @@ public class AdminController {
 		return gson.toJson(result);
 	}
 	
+	@RequestMapping("changeStatus")
+	@ResponseBody
+	public String changeStatus(int bookId, int status){
+		Gson gson = new Gson();
+		Map<String, Object> result = new HashMap<String, Object>();
+		if(adminService.changeStatusByBookId(bookId, status)) {
+			result.put("code", 1);
+		} else{
+			result.put("code", 0);
+		}		
+		return gson.toJson(result);
+	}
+	
 	@RequestMapping("logout")
 	@ResponseBody
 	public String logout(HttpSession session){

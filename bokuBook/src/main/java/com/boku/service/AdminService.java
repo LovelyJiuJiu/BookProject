@@ -25,4 +25,6 @@ public interface AdminService {
 	String uploadBookImg(HttpServletRequest request, MultipartFile file) throws IllegalStateException, IOException;
 	
 	boolean addBook(Book book);
+	
+	boolean changeStatusByBookId(int bookId, int status);
 }

@@ -24,12 +24,13 @@ $(document).ready(function() {
 	getBookType();
 })
 
+
 function getBookType() {
 	$.ajax({
-		url : 'admin/typeList',
+		url :'admin/typeList',
 		dataType : 'json',
 		data : {},
-		success : function(data) {
+		success : function(data) {			
 			var typeList = data.typeList;
 			if (typeList.length != 0) {
 				for(var i=0; i<typeList.length; i++) {
@@ -76,9 +77,7 @@ function addBook() {
 				layer.msg('添加书籍成功', {
 					time : 2000
 				}, function() {
-					parent.hideAllIframes();
-					parent.$("#addBookOption").removeClass("layui-this");
-					parent.$("#choose").addClass("layui-this");
+					parent.location.reload(); 
 				});			
 			} else {
 				console.log(data);

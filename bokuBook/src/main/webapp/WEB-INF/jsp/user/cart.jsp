@@ -26,6 +26,9 @@
 	<script src="jquery/jquery-2.2.4.min.js"></script>
 	<script src="layui/layui.js"></script>
 	<script src="js/global.js"></script>
+	<script type="text/html" id="img">
+    	<div><img class="cart-img" src="image/{{d.bookInfo}}"></div>
+	</script>
 	<script type="text/html" id="operation">
 		<a class="layui-btn layui-btn-radius layui-btn-danger layui-btn-mini" lay-event="del"><i class="layui-icon">&#xe640;</i>删除</a>
 	</script>
@@ -72,7 +75,7 @@ layui.use('table', function(){
 	      {checkbox: true, fixed: true}
 	      ,{field: 'id'}
 	      ,{field: 'bookName', title: '书籍名称', width:260}
-		  ,{field: 'bookInfo', title: '展示图片', width: 200,templet:'<div><img class="cart-img" src="image/{{d.bookInfo}}"></div>'}
+		  ,{field: 'bookInfo', title: '展示图片', width: 200,toolbar:"#img"}
 	      ,{field: 'price', title: '单价', width:100}
 	      ,{field: 'number', title: '数量', width:100} 
 	      ,{field: 'totalPrice', title: '金额', width: 100}

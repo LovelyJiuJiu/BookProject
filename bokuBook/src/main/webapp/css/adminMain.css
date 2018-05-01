@@ -6,13 +6,19 @@
 }
 .rightContainer{
   margin-left: 200px;
-  width: 900px;	
+  width: 1000px;	
 }
 
 #bookList{
   margin-left: 200px;	
-  width: 900px;
-  height: 700px;		
+  width: 1000px;
+  height: 600px;		
+}
+
+.photo{
+  margin-left: -50px;
+  position: absolute;
+  clip: rect(0px,200px,200px,0px);
 }
 
 img{
@@ -87,4 +93,21 @@ about add book
   margin-left: 440px;
   width: 100px;
   margin-right: 400px;
+}
+
+
+/*
+about bookList 
+*/
+
+.twoBtns{
+  width: 45px !important;
+  padding: 0px !important;
+  border-radius: 30px;	
+}
+.oneBtn{
+  width: 45px !important;
+  padding: 0px !important;
+  margin-top: 10px;
+  border-radius: 30px;		
 }

@@ -13,7 +13,7 @@ layui.use('table', function(){
 	    ,cols: [[ //表头
 	      {checkbox: true, fixed: true}
 	      ,{field: 'username', title: '用户名', width:130}
-		  ,{field: 'imgName', title: '用户头像', width: 200,templet:'<div><img name="img" src="image/{{d.imgName}}"></div>'}
+		  ,{field: 'imgName', title: '用户头像', width: 200,toolbar:"#img"}
 	      ,{field: 'email', title: '邮箱', width:180} 
 		  ,{field: 'briefIntroduction', title: '主要介绍'}
 	    ]]

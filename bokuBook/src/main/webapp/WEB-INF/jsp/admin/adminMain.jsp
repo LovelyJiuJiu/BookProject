@@ -18,6 +18,9 @@
 <script src="jquery/jquery-2.2.4.min.js"></script>
 <script src="layui/layui.js"></script>
 <script src="js/adminMain.js"></script>
+<script type="text/html" id="img">
+    <img name="img" class="photo" src=image/{{d.imgName}}>
+</script>
 <script>
 function hideAllIframes() {
   $('.hideIframs').css('display', "none");
@@ -47,7 +50,7 @@ function hideOtherAndShowIt(id) {
 				 	<a href="javascript:;">书籍管理</a>
 				 	    <dl class="layui-nav-child">
       						<dd><a onclick="hideOtherAndShowIt('bookList'); return true;" href="admin/bookListPage" target="bookList">查看书籍</a></dd>
-      						<dd id="addBookOption"><a onclick="hideOtherAndShowIt('addBook'); return true;" href="admin/addBookPage" target="addBook">添加书籍</a></dd>
+      						<dd><a onclick="hideOtherAndShowIt('addBook'); return true;" href="admin/addBookPage" target="addBook">添加书籍</a></dd>
     					</dl>
 				 </li>
 				 <li class="layui-nav-item">

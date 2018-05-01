@@ -93,4 +93,14 @@ public class AdminServiceImpl implements AdminService {
 		return false;
 	}
 
+	@Override
+	public boolean changeStatusByBookId(int bookId, int status) {
+		Book temp = new Book();
+		temp.setId(bookId);
+		temp.setStatus(status);
+		if(bookMapper.updateByPrimaryKeySelective(temp) > 0) {
+			return true;
+		}
+		return false;
+	}
 }
