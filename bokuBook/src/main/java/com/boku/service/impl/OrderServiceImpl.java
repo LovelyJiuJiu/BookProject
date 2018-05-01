@@ -3,7 +3,9 @@ package com.boku.service.impl;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Random;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -95,6 +97,14 @@ public class OrderServiceImpl implements OrderService {
 	@Override
 	public Order selectOrderByOrderId(Integer orderId) {
 		return orderMapper.selectByPrimaryKey(orderId);
+	}
+
+	@Override
+	public int changeOrderStatusToFinish(Integer orderId, Integer userId) {
+		Map<String, Integer> params = new HashMap<String, Integer>();
+		params.put("orderId", orderId);
+		params.put("userId", userId);
+		return orderMapper.changeOrderStatusToFinish(params);
 	}
 
 }

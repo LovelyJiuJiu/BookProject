@@ -1,6 +1,7 @@
 package com.boku.mapper;
 
 import java.util.List;
+import java.util.Map;
 
 import com.boku.pojo.Order;
 import com.boku.pojo.UserCart;
@@ -55,5 +56,7 @@ public interface OrderMapper {
      * @mbg.generated
      */
     int updateByPrimaryKey(Order record);
+    
+    int changeOrderStatusToFinish(Map<String, Integer> params);
 
 }

@@ -14,4 +14,6 @@ public interface OrderService {
 	List<UserCart> selectOrderDetail(Integer orderId);
 
 	Order selectOrderByOrderId(Integer orderId);
+
+	int changeOrderStatusToFinish(Integer orderId, Integer id);
 }	
