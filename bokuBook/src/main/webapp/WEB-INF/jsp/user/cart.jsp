@@ -28,12 +28,15 @@
 				<li lay-id="orderTab">我的订单</li>
 			</ul>
 			<div class="layui-tab-content">
-				<div id="cart" class="layui-tab-item layui-show">				
-					<table id="cartTable" lay-filter="cartInfo"></table>				
-				</div>			
+				<div id="cart" class="layui-tab-item layui-show">
+					<table id="cartTable" lay-filter="cartInfo"></table>
+				</div>
+				<div id="order" class="layui-tab-item">
+					<table id="orderTable" lay-filter="orderInfo"></table>
+				</div>
 			</div>
 		</div>
-		
+
 	</div>
 	<script src="jquery/jquery-2.2.4.min.js"></script>
 	<script src="layui/layui.js"></script>
@@ -44,20 +47,42 @@
 	<script type="text/html" id="operation">
 		<a class="layui-btn layui-btn-radius layui-btn-danger layui-btn-mini" lay-event="del"><i class="layui-icon">&#xe640;</i>删除</a>
 	</script>
-<script>
-layui.use('element', function(){
-	  var element = layui.element;
-	  element.on('tab(cartAndOrder)', function(data){
-		  if(data.index == 1) {
-			  $("#cart").removeClass("layui-show");			  
-		  }
+	<script>
+		Date.prototype.format = function(fmt) { 
+			var o = { 
+				"M+" : this.getMonth()+1,                 
+				"d+" : this.getDate(),                    
+				"h+" : this.getHours(),                   
+				"m+" : this.getMinutes(),                 
+					"s+" : this.getSeconds(),                 
+				"q+" : Math.floor((this.getMonth()+3)/3), 
+				"S"  : this.getMilliseconds()             
+		}; 
+		if(/(y+)/.test(fmt)) {
+    		fmt=fmt.replace(RegExp.$1, (this.getFullYear()+"").substr(4 - RegExp.$1.length)); 
+		}
+		for(var k in o) {
+			if(new RegExp("("+ k +")").test(fmt)){
+	     		fmt = fmt.replace(RegExp.$1, (RegExp.$1.length==1) ? (o[k]) : (("00"+ o[k]).substr((""+ o[k]).length)));
+	 		}
+		}
+		return fmt; 
+}
+	</script>
+	
+	<script type="text/html" id="orderDate">
 
-	  });
-})
+		{{#  
+  			var fn = function(){
+    			return new Date(d.submitTime).format("yyyy-MM-dd hh:mm:ss");
+  			}; 
+		}}
 
+		{{ fn() }}
+	</script>
 
-
-
+	<script>
+	
 function getContextPath() {
     var pathName = document.location.pathname;
     var index = pathName.substr(1).indexOf("/");
@@ -69,7 +94,7 @@ function deleteBook(id) {
 		url: 'cart/deleteBook',
 		contentType: 'application/json;charset=utf-8',
 		dataType : 'json',
-		data:{id:id},
+		data:{id: id},
 	    success: function (data) { 
 	        if(data.result == 1) {
 	        	layer.msg('删除成功');
@@ -83,8 +108,33 @@ function deleteBook(id) {
 }
 
 
-layui.use('table', function(){
+layui.use(['element', 'table'], function(){
 	  var table = layui.table;
+	  
+	  var element = layui.element;
+	  element.on('tab(cartAndOrder)', function(data){
+		  if(data.index == 1) {
+			  $("#cart").removeClass("layui-show");		
+			  table.render({
+				    elem: '#orderTable'
+				    ,height: 500
+				    ,url: 'order/getOrderList'
+				    ,limit:5 //这里控制的是选择多少条默认显示的 不是实际显示的
+					,limits:[1,5,10,15]
+				    ,page: true
+				    ,cols: [[
+				       {field: 'id'}
+				      ,{field: 'orderNo', title: '订单号', width:260, templet: '<div><a href="/book/order/orderDetail?orderId={{d.id}}" target="_blank">{{d.orderNo}}</a></div>'}
+				      ,{field: 'price', title: '订单金额', width:100}
+				      ,{field: 'submitTime', title: '订单提交时间', width: 200, templet: '#orderDate'}	
+				      ,{field: 'orderStatus', title: '订单状态'}	
+				    ]]
+			  	  ,done: function(res, curr, count){
+				  	$("[data-field='id']").css('display','none');
+			  	  }
+			  });
+		  }
+	  });
 
 	  //第一个实例
 	  table.render({
@@ -157,8 +207,6 @@ function addEvent(table) {
 		var layEvent = obj.event;
 		var tr = obj.tr;
 		if (layEvent === 'del') {
- 			
-			alert(obj.data.id);
 			deleteBook(obj.data.id);
 		}
 	});
