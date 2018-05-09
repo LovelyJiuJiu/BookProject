@@ -94,19 +94,14 @@ public class OrderController {
 		return gson.toJson(result);
 	}
 	
-	@RequestMapping("myOrder")
-	public String showOrderPage() {
-		return "user/orderList";
-	}
-	
-	@RequestMapping("queryOrder")
+	@RequestMapping("getOrderList")
 	@ResponseBody
 	public String queryOrder(int page, int limit, HttpSession session) {
 		Gson gson = new Gson();
 		Map<String, Object> result = new HashMap<String, Object>();
 		User user = (User) session.getAttribute("currentUser");
 		if (user != null) {
-			PageHelper.startPage(page, 1);
+			PageHelper.startPage(page, limit);
 			List<Order> orders = orderService.queryOrderByUserId(user.getId());
 			PageInfo<Order> selectedOrders = new PageInfo<Order>(orders);
 			result.put("code", 0);
