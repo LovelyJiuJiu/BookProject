@@ -42,4 +42,13 @@ img{
     width: 10%;
     line-height: 30px;
 }
-
+.layui-this{
+    color: #fa7a20 !important;	
+	
+}
+.layui-this:after{
+	    border-bottom: 2px solid #fa7a20 !important;	
+}
+.layui-tab-content{
+	padding: 0px !important;
+}

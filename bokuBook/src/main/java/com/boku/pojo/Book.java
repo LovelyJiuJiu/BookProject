@@ -11,7 +11,7 @@ public class Book {
     private String bookIntroduction;
     private String bookPublisher;
     private String bookImage;
-    private double bookPrice;
+    private Double bookPrice;
     private Integer status;
     private Date createTime;
     private Date lastUpdateTime;
@@ -87,11 +87,11 @@ public class Book {
     }
 
   
-    public double getBookPrice() {
+    public Double getBookPrice() {
 		return bookPrice;
 	}
 
-	public void setBookPrice(double bookPrice) {
+	public void setBookPrice(Double bookPrice) {
 		this.bookPrice = bookPrice;
 	}
 

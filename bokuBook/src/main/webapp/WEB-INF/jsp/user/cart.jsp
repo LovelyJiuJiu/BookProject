@@ -21,7 +21,19 @@
 	<jsp:include page="./header.jsp"></jsp:include>
 	<div class="cartInfoContainer layui-container">
 		<jsp:include page="./ico-seacher-header.jsp"></jsp:include>
- 		<table id="cartTable" lay-filter="cartInfo"></table>
+
+		<div class="layui-tab layui-tab-brief" lay-filter="cartAndOrder">
+			<ul class="layui-tab-title">
+				<li lay-id="cartTab" class="layui-this">购物车</li>
+				<li lay-id="orderTab">我的订单</li>
+			</ul>
+			<div class="layui-tab-content">
+				<div id="cart" class="layui-tab-item layui-show">				
+					<table id="cartTable" lay-filter="cartInfo"></table>				
+				</div>			
+			</div>
+		</div>
+		
 	</div>
 	<script src="jquery/jquery-2.2.4.min.js"></script>
 	<script src="layui/layui.js"></script>
@@ -33,6 +45,18 @@
 		<a class="layui-btn layui-btn-radius layui-btn-danger layui-btn-mini" lay-event="del"><i class="layui-icon">&#xe640;</i>删除</a>
 	</script>
 <script>
+layui.use('element', function(){
+	  var element = layui.element;
+	  element.on('tab(cartAndOrder)', function(data){
+		  if(data.index == 1) {
+			  $("#cart").removeClass("layui-show");			  
+		  }
+
+	  });
+})
+
+
+
 
 function getContextPath() {
     var pathName = document.location.pathname;
@@ -113,7 +137,7 @@ function orderSubmit (data) {
 		contentType: 'application/json; charset=utf-8',
 		success : function(data) {
 			if (data.result === 0) {
-				window.location.href = '/book/order/orderDetail?orderId=' + data.orderId;
+				window.location.href = '/book/order/orderConfirm?orderId=' + data.orderId;
 			} else if (data.result === 1) {
 				layer.msg("服务器错误");
 			} else if (data.result === 2) {

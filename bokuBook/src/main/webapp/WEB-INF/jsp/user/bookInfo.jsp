@@ -21,6 +21,23 @@
 <script>
 	$(document).ready(function() {
 		
+		function accMul(arg1,arg2) {
+			var m=0,
+				s1=arg1.toString(),
+				s2=arg2.toString();
+			try{
+				m+=s1.split(".")[1].length
+			} catch(e) {
+				console.log(e);
+			}
+			try{
+				m+=s2.split(".")[1].length
+			} catch(e) {
+				console.log(e);
+			}
+			return Number(s1.replace(".", "")) * Number(s2.replace(".", "")) / Math.pow(10, m);
+		}
+		
 		var ImgHrefElements = document.getElementsByName("ImgHref");
         for(var i=0;i<ImgHrefElements.length;i++){
     		if (!ImgHrefElements[i].value) {
@@ -66,14 +83,14 @@
 				numVal = numVal < 1 ? 1 : numVal;
 				$("#bookNum").val(numVal);
 				bookNumber = numVal;
-				bookTotalPrice = bookNumber * bookPrice;
+				bookTotalPrice = accMul(bookNumber, bookPrice);
 			}
 		}).blur(function() {
 			var numVal = parseInt($("#bookNum").val()) || 0;
 			numVal = numVal < 1 ? 1 : numVal;
 			$("#bookNum").val(numVal);
 			bookNumber = numVal;
-			bookTotalPrice = bookNumber * bookPrice;
+			bookTotalPrice = accMul(bookNumber, bookPrice);
 		});
 		
 		//增加
@@ -81,7 +98,7 @@
 			var num = parseInt($("#bookNum").val()) || 0;
 			$("#bookNum").val(num + 1);
 			bookNumber = num + 1;
-			bookTotalPrice = bookNumber * bookPrice;
+			bookTotalPrice = accMul(bookNumber, bookPrice);
 		});
 		
 		//减少
@@ -91,12 +108,12 @@
 			num = num < 1 ? 1 : num;
 			$("#bookNum").val(num);
 			bookNumber = num;
-			bookTotalPrice = bookNumber * bookPrice;
+			bookTotalPrice = accMul(bookNumber, bookPrice);
 		});
 		
 		$('#bookNum').on('input propertychange', function () {
 			bookNumber = $(this).val();
-			bookTotalPrice = bookNumber * bookPrice;
+			bookTotalPrice = accMul(bookNumber, bookPrice);
 			layer.msg(bookNumber);
 		});
 		
@@ -116,7 +133,7 @@
 				success : function(data) {
 					if(data.result == 0) {
 	 					layer.msg('订单提交成功(ﾉ´▽｀)ﾉ♪', {time: 2000}, function () {
-	 						window.location.href = '/book/order/orderDetail?orderId=' + data.orderId;
+	 						window.location.href = '/book/order/orderConfirm?orderId=' + data.orderId;
 						});
 					} else if (data.result === 1){
 						layer.msg('订单提交出错( Ĭ ^ Ĭ )');

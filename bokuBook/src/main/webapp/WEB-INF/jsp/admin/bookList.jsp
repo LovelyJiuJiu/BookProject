@@ -86,7 +86,7 @@ function changeStatus(id,status) {
 				layer.msg('修改书籍状态成功', {
 					time : 2000
 				}, function() {
-					parent.location.reload(); 
+					location.reload(); 
 				});	
 			}
 		}

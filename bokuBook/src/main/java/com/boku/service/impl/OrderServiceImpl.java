@@ -1,5 +1,6 @@
 package com.boku.service.impl;
 
+import java.math.BigDecimal;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -89,7 +90,14 @@ public class OrderServiceImpl implements OrderService {
 	public List<UserCart> selectOrderDetail(Integer orderId) {
 		List<UserCart> orderDetail = orderBookMapper.selectOrderDetail(orderId);
 		for (UserCart userCart : orderDetail) {
-			userCart.setTotalPrice(userCart.getPrice() * userCart.getNumber());
+			BigDecimal number = new BigDecimal(Double.toString(userCart.getNumber()));
+			BigDecimal price = new BigDecimal(Double.toString(userCart.getPrice()));
+			BigDecimal result = number.multiply(price);
+			System.out.println(result.toString());
+			BigDecimal one = new BigDecimal("1");
+			Double a = result.divide(one, 2, BigDecimal.ROUND_HALF_UP).doubleValue();// 保留1位数
+			System.out.println(a);
+			userCart.setTotalPrice(a);
 		}
 		return orderDetail;
 	}

@@ -3,6 +3,7 @@ package com.boku.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpMethod;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -55,9 +56,19 @@ public class BaseController {
 		return gson.toJson(books);
 	}
 	
-	@RequestMapping(value = "search", produces = "text/json;charset=UTF-8")
+	@RequestMapping("search")
+	public ModelAndView searchBookByKeywords(String keyword, @RequestParam(defaultValue = "1") int page, 
+			@RequestParam(defaultValue = "5") int limit) {
+		ModelAndView modelAndView = new ModelAndView("user/searchBookList");
+		PageInfo<Book> books = bookService.getBookByKeywords(keyword, page, limit);
+		modelAndView.addObject("keyWord", keyword);
+		modelAndView.addObject("pageInfo", books);
+		return modelAndView;
+	}
+	
+	@RequestMapping(value = "search-xhr", produces = "text/json;charset=UTF-8")
 	@ResponseBody
-	public String searchBookByKeywords(String keyword, @RequestParam(defaultValue = "1") int page, 
+	public String searchBookByKeywordsAsync(String keyword, @RequestParam(defaultValue = "1") int page, 
 			@RequestParam(defaultValue = "5") int limit) {
 		Gson gson = new Gson();
 		PageInfo<Book> books = bookService.getBookByKeywords(keyword, page, limit);

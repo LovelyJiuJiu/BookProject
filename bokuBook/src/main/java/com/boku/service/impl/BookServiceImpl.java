@@ -58,7 +58,6 @@ public class BookServiceImpl implements BookService {
 		PageHelper.startPage(page, limit);
 		List<Book> books = bookMapper.selectBookByKeywords(params);
 		PageInfo<Book> selectedBook = new PageInfo<Book>(books);
-		System.out.println(selectedBook);
 		return selectedBook;
 	}
 	

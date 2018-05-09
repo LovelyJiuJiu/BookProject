@@ -120,7 +120,7 @@ public class OrderController {
 		return gson.toJson(result);
 	}
 	
-	@RequestMapping("orderDetail")
+	@RequestMapping(value = {"orderConfirm", "orderDetail"})
 	public ModelAndView showOrderDetail(Integer orderId, HttpSession session) {
 		User user = (User) session.getAttribute("currentUser");
 		ModelAndView modelAndView = new ModelAndView("user/orderDetail");
