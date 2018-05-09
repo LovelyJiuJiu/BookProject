@@ -1,5 +1,6 @@
 package com.boku.service.impl;
 
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -40,11 +41,18 @@ public class CartServiceImpl implements CartService {
 		for (UserCart uCart : userCarts) {
 			if (uCart.getId() == userCart.getId()) {
 				uCart.setNumber(uCart.getNumber() + userCart.getNumber());
-				uCart.setTotalPrice(uCart.getNumber() * uCart.getPrice());
+				uCart.setTotalPrice(uCart.getNumber() * uCart.getPrice().doubleValue());
 				return userCarts;
 			}
 		}
-		userCart.setTotalPrice(userCart.getNumber() * userCart.getPrice());
+		BigDecimal number = new BigDecimal(Double.toString(userCart.getNumber()));
+		BigDecimal price = new BigDecimal(Double.toString(userCart.getPrice()));
+		BigDecimal result = number.multiply(price);
+		System.out.println(result.toString());
+		BigDecimal one = new BigDecimal("1");
+		Double a = result.divide(one, 2, BigDecimal.ROUND_HALF_UP).doubleValue();// 保留1位数
+		System.out.println(a);
+		userCart.setTotalPrice(a);
 		userCarts.add(userCart);
 		return userCarts;
 	}

@@ -8,9 +8,9 @@ public class UserCart implements Serializable{
 	private int id;
     private String bookName;
     private String bookInfo;
-    private double price;
+    private Double price;
     private int number;
-    private double totalPrice;
+    private Double totalPrice;
     
 	public int getId() {
 		return id;
@@ -31,16 +31,16 @@ public class UserCart implements Serializable{
 		this.bookInfo = bookInfo;
 	}
 
-	public double getPrice() {
+	public Double getPrice() {
 		return price;
 	}
-	public void setPrice(double price) {
+	public void setPrice(Double price) {
 		this.price = price;
 	}
-	public double getTotalPrice() {
+	public Double getTotalPrice() {
 		return totalPrice;
 	}
-	public void setTotalPrice(double totalPrice) {
+	public void setTotalPrice(Double totalPrice) {
 		this.totalPrice = totalPrice;
 	}
 	public int getNumber() {

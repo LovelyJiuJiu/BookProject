@@ -214,7 +214,7 @@
   <select id="selectBookByKeywords" resultMap="BaseResultMap">
     select *
     from book 
-    where bookname like concat('%', #{keyWords}, '%') 
+    where bookname like concat('%', #{keyWords}, '%') and status = 0
     <if test="symbol == null">
 		limit 0, 5
 	</if>		 
