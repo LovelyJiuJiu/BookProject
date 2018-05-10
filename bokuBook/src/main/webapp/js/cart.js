@@ -66,7 +66,7 @@ layui.use(['element', 'table'], function(){
 				      ,{field: 'price', title: '订单金额', width:120}
 				      ,{field: 'submitTime', title: '订单提交时间', width: 200, templet: '#orderDate'}	
 				      ,{field: 'orderStatus', title: '订单状态', width: 150, templet: '#checkOrderStatus'}	
-				      ,{field: 'operation', title: '操作', templet: '#orderToolBar', align: 'left'}	
+				      ,{field: 'operation', title: '操作', templet: '#orderToolBar'}	
 				    ]]
 			  	  ,done: function(res, curr, count){
 				  	$("[data-field='id']").css('display','none');
