@@ -11,6 +11,7 @@
 <base href=${path } />
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>--书籍信息--</title>
+<link rel="icon" type="image/x-icon" href="image/favicon.ico" />  
 <link rel="stylesheet" href="css/bookInfo.css">
 <link rel="stylesheet" href="layui/css/layui.css" media="all">
 <link rel="stylesheet" href="css/global.css">

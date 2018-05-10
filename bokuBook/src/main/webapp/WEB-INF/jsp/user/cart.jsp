@@ -10,6 +10,7 @@
 %>
 <base href=${path } />
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link rel="icon" type="image/x-icon" href="image/favicon.ico" />  
 <title>--购物车--</title>
 <link rel="stylesheet" href="layui/css/layui.css" media="all">
 <link rel="stylesheet" href="css/cart.css">
@@ -175,7 +176,7 @@ layui.use(['element', 'table'], function(){
 	  addEvent(table);
 	  
 });
-
+ 
 function orderSubmit (data) {
 	var userId = ${currentUser.id};
 	$.ajax({

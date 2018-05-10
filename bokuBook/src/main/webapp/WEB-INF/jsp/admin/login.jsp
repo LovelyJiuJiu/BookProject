@@ -15,6 +15,7 @@
 <link rel="stylesheet" href="css/home.css">
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>--管理员登录--</title>
+<link rel="icon" type="image/x-icon" href="image/favicon.ico" />  
 <script src="jquery/jquery-2.2.4.min.js"></script>
 <script src="layui/layui.js"></script>
 <script src="js/adminLogin.js"></script>

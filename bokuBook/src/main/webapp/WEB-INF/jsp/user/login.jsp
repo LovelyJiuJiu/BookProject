@@ -13,6 +13,7 @@
 <link rel="stylesheet" href="layui/css/layui.css" media="all">
 <link rel="stylesheet" href="css/login.css">
 <link rel="stylesheet" href="css/home.css">
+<link rel="icon" type="image/x-icon" href="image/favicon.ico" />  
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>--登录--</title>
 </head>
