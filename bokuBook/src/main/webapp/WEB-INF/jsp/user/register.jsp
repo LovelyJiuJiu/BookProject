@@ -9,6 +9,7 @@ pageContext.setAttribute("path", basePath);
 %>
 <base href="${path }"/>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link rel="icon" type="image/x-icon" href="image/favicon.ico" />  
 <link rel="stylesheet" href="layui/css/layui.css" media="all">
 <link rel="stylesheet" href="css/register.css">
 <link rel="stylesheet" href="css/home.css">

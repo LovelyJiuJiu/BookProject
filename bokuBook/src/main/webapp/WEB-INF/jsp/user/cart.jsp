@@ -10,6 +10,7 @@
 %>
 <base href=${path } />
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link rel="icon" type="image/x-icon" href="image/favicon.ico" />  
 <title>--购物车--</title>
 <link rel="stylesheet" href="layui/css/layui.css" media="all">
 <link rel="stylesheet" href="css/cart.css">
@@ -87,7 +88,6 @@
 	</script>
 	
 	<script type="text/html" id="checkOrderStatus">
-
 		{{# if (d.status === 0) { }}
 			待支付
 		{{#  } else if(d.status === 1) { }}
@@ -100,7 +100,6 @@
 	</script>
 	
 	<script type="text/html" id="orderToolBar">
-
 		{{# if (d.status === 0) { }}
 			<a class="layui-btn layui-btn-radius layui-btn-danger layui-btn-sm pay" lay-event="pay"><i class="layui-icon">&#xe62f;</i>支付订单</a>
 			<a class="layui-btn layui-btn-radius layui-btn-danger layui-btn-sm del" lay-event="del"><i class="layui-icon">&#xe640;</i>取消订单</a>
