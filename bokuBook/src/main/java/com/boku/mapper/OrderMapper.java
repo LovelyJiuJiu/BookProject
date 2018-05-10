@@ -57,6 +57,6 @@ public interface OrderMapper {
      */
     int updateByPrimaryKey(Order record);
     
-    int changeOrderStatusToFinish(Map<String, Integer> params);
+    int changeOrderStatus(Map<String, Object> params);
 
 }

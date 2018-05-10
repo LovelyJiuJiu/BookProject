@@ -16,4 +16,6 @@ public interface OrderService {
 	Order selectOrderByOrderId(Integer orderId);
 
 	int changeOrderStatusToFinish(Integer orderId, Integer id);
+
+	int cancelOrder(Integer id, Integer userId);
 }	
