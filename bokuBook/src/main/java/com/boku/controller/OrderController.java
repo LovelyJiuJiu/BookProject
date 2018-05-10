@@ -128,7 +128,7 @@ public class OrderController {
 			modelAndView.addObject("orderDetail", orderDetail);
 			modelAndView.addObject("order", order);
 		} else {
-			modelAndView.addObject("msg", "你还没有登录哦(～￣▽￣)～ ");
+			modelAndView.setViewName("user/login");
 		}
 		return modelAndView;
 	}
@@ -147,6 +147,25 @@ public class OrderController {
 			} else {
 				resultMap.put("result", 0);
 				resultMap.put("msg", "支付成功");
+			}
+		} else {
+			resultMap.put("result", 2);
+		}
+		return gson.toJson(resultMap);
+	}
+	
+	@RequestMapping("cancelOrder")
+	@ResponseBody
+	public String cancelOrder(Integer id, HttpSession session) {
+		Gson gson = new Gson();
+		Map<String, Object> resultMap = new HashMap<String, Object>();
+		User user = (User) session.getAttribute("currentUser");
+		if (user != null) {
+			int result = orderService.cancelOrder(id, user.getId());
+			if (result == 0) {
+				resultMap.put("result", 1);
+			} else {
+				resultMap.put("result", 0);
 			}
 		} else {
 			resultMap.put("result", 2);

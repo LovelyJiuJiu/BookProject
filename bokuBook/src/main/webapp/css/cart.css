@@ -52,3 +52,12 @@ img{
 .layui-tab-content{
 	padding: 0px !important;
 }
+
+.btn-disable, .layui-btn-disabled:hover {
+	background-color: #ff572296;
+	color: #fff;
+	border-width: 0px;
+}
+
+
+

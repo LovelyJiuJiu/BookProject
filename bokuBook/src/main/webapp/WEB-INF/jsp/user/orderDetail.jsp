@@ -12,8 +12,8 @@ pageContext.setAttribute("path", basePath);
 %>
 <base href="${path }"/>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>--确认订单--</title>
-<link rel="icon" type="image/x-icon" href="image/favicon.ico" />  
+<title>--订单详情--</title>
+<link rel="icon" type="image/x-icon" href="image/favicon.ico" />
 <link rel="stylesheet" href="layui/css/layui.css" media="all">
 <link rel="stylesheet" href="css/global.css">
 <link rel="stylesheet" href="css/home.css">
