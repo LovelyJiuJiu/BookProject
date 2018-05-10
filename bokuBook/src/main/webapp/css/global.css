@@ -203,22 +203,3 @@ a.list-item:hover {
     bottom: 10px;
     cursor: pointer;
 }
-
-.new-book {
-	height: 38px;
-	line-height: 38px;
-	overflow: hidden;
-	padding: 10px 20px 0;
-	border: 1px
-}
-
-h3 {
-	font-size: 14px;
-	font-weight: bold;
-	color: #fa7a20;
-}
-
-
-
-
-
