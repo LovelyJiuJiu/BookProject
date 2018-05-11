@@ -35,7 +35,7 @@ public class BookController {
 
 	
 	@RequestMapping("accessCountPage")
-	public String cartPageTemp(HttpSession session){
+	public String cartPageTemp(){
 		return "user/accessCountPage";
 	}
 	
