@@ -93,10 +93,8 @@ public class OrderServiceImpl implements OrderService {
 			BigDecimal number = new BigDecimal(Double.toString(userCart.getNumber()));
 			BigDecimal price = new BigDecimal(Double.toString(userCart.getPrice()));
 			BigDecimal result = number.multiply(price);
-			System.out.println(result.toString());
 			BigDecimal one = new BigDecimal("1");
 			Double a = result.divide(one, 2, BigDecimal.ROUND_HALF_UP).doubleValue();// 保留1位数
-			System.out.println(a);
 			userCart.setTotalPrice(a);
 		}
 		return orderDetail;
@@ -109,10 +107,20 @@ public class OrderServiceImpl implements OrderService {
 
 	@Override
 	public int changeOrderStatusToFinish(Integer orderId, Integer userId) {
-		Map<String, Integer> params = new HashMap<String, Integer>();
+		Map<String, Object> params = new HashMap<String, Object>();
 		params.put("orderId", orderId);
 		params.put("userId", userId);
-		return orderMapper.changeOrderStatusToFinish(params);
+		params.put("type", "pay");
+		return orderMapper.changeOrderStatus(params);
+	}
+
+	@Override
+	public int cancelOrder(Integer id, Integer userId) {
+		Map<String, Object> params = new HashMap<String, Object>();
+		params.put("orderId", id);
+		params.put("userId", userId);
+		params.put("type", "cancel");
+		return orderMapper.changeOrderStatus(params);
 	}
 
 }
