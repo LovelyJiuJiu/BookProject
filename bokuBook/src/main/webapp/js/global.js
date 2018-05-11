@@ -137,7 +137,7 @@ function logout() {
 		dataType : 'json',
 		success : function(data) {
 			if (data.result === 1) {
-				window.location.href = "bookMain";
+				window.location.href = "user/bookMain";
 			} else if (data.result === 0) {
 				layer.msg("服务器错误");
 			} else {

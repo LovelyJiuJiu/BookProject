@@ -9,7 +9,7 @@ layui.use('form', function() {
 });
 
 function backToHome() {
-	window.location.href = "bookMain";
+	window.location.href = "user/bookMain";
 }
 
 function goToRegister() {
