@@ -14,4 +14,8 @@ public interface BookService {
 	List<Book> getBookSuggestion(String keyWords);
 
 	PageInfo<Book> getBookByKeywords(String keyWords, int page, int limit);
+	
+    List<Book> getNewBookList();
+    
+    List<Book> getHotBookList();
 }

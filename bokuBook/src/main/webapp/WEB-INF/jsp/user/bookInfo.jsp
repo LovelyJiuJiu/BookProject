@@ -191,9 +191,11 @@
 			},
 			success : function(data) {
 				if(data.result == 1) {
- 					window.location.href = "book/bookInfo?id="+search;;
+ 					layer.msg('评论成功', {time: 1000}, function () {
+ 						window.location.href = "book/bookInfo?id="+search;;
+					});				
 				}else{
-					alert("评论失败，请重试");
+					layer.msg("评论失败，请重试");
 				}
 			},
 			error : function(err) {
@@ -222,7 +224,7 @@
 
 			<div class="rightContainer">
 				<div class="bookTitle">${book.bookname}</div>
-				<div class="bookContent">${book.bookAuthor}</div>
+				<div class="bookContent">作者：<span>${book.bookAuthor}</span></div>
 				<div class="moreChoice">
 					<div class="price">
 						<span class="book-price">单价 </span>

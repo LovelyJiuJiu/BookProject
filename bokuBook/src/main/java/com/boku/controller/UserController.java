@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.ModelAndView;
 
 import com.boku.pojo.CartBook;
 import com.boku.pojo.User;
@@ -158,11 +159,6 @@ public class UserController {
 		return "user/login";
 	}
 	
-	@RequestMapping("bookMain")
-	public String bookMainTemp(){
-		return "user/bookMain";
-	}
-	
 	@RequestMapping("register")
 	public String registerTemp(){
 		return "user/register";
@@ -271,5 +267,14 @@ public class UserController {
 			result.put("count", 0);
 		}
 		return gson.toJson(result);
+	}
+	
+	@RequestMapping("bookMain")
+	@ResponseBody
+	public ModelAndView getNewBookList(){	
+		ModelAndView modelAndView = new ModelAndView("user/bookMain");		
+		modelAndView.addObject("newBooks", bookService.getNewBookList());
+		modelAndView.addObject("hotBooks", bookService.getHotBookList());
+		return modelAndView;
 	}
 }

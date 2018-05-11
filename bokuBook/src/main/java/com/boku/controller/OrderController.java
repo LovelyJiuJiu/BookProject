@@ -49,6 +49,7 @@ public class OrderController {
 		} else {
 			
 			// 删除购物车中包含在已提交订单中的商品
+			@SuppressWarnings("unchecked")
 			List<UserCart> userCarts = (List<UserCart>) session.getAttribute("cart");
 			if (userCarts != null && userCarts.size() > 0) {
 				Iterator<UserCart> uc1 = books.iterator();

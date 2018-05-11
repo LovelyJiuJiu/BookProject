@@ -219,5 +219,21 @@
 		limit 0, 5
 	</if>		 
   </select>
-
+  
+  <select id="getNewBookList" resultMap="BaseResultMap">
+    select *
+    from book where status = 0
+    ORDER BY create_time DESC
+	limit 0, 5		 
+  </select>
+  
+  <select id="getHotBookList" resultMap="BaseResultMap">
+	select book.id,book.bookname,book.book_author,book.book_image,book.book_introduction
+	from book, count 
+	where book.id=count.book_id and book.status = 0
+	ORDER BY count.purchasecount DESC
+	limit 0, 5		 
+  </select>
+  
+  
 </mapper>

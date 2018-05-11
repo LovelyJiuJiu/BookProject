@@ -60,5 +60,15 @@ public class BookServiceImpl implements BookService {
 		PageInfo<Book> selectedBook = new PageInfo<Book>(books);
 		return selectedBook;
 	}
+
+	@Override
+	public List<Book> getNewBookList() {		
+		return bookMapper.getNewBookList();
+	}
+
+	@Override
+	public List<Book> getHotBookList() {
+		return bookMapper.getHotBookList();
+	}
 	
 }

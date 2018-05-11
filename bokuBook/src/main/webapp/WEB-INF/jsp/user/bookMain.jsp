@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <html>
 <head>
 <%
@@ -20,76 +21,129 @@
 </head>
 <body>
 	<jsp:include page="./header.jsp"></jsp:include>
-	<div class="layui-container"> 
+	<div class="layui-container">
 		<jsp:include page="./ico-seacher-header.jsp"></jsp:include>
 		<div class="layui-carousel" id="test1">
 			<div carousel-item>
 				<div>
-					<a href="#"> <img alt="图片" src="image/carousel-1.png"
-						title="幽默与荒诞" />
+					<a href="#"> <img alt="图片" src="" title="幽默与荒诞" />
 					</a>
 				</div>
 				<div>
-					<a href="#"> <img alt="图片" src="image/carousel-1.png"
-						title="幽默与荒诞" />
+					<a href="#"> <img alt="图片" src="" title="幽默与荒诞" />
 					</a>
 				</div>
 				<div>
-					<a href="#"> <img alt="图片" src="image/carousel-1.png"
-						title="幽默与荒诞" />
+					<a href="#"> <img alt="图片" src="" title="幽默与荒诞" />
 					</a>
 				</div>
 				<div>
-					<a href="#"> <img alt="图片" src="image/carousel-1.png"
-						title="幽默与荒诞" />
-					</a>
-				</div>
-				<div>
-					<a href="#"> <img alt="图片" src="image/carousel-1.png"
-						title="幽默与荒诞" />
+					<a href="#"> <img alt="图片" src="" title="幽默与荒诞" />
 					</a>
 				</div>
 			</div>
 		</div>
-		
+		<div class="newBookTitle">新书榜</div>
 		<div class="new-book">
-			<div class="newBookTitle">新书榜</div>
-			<div class="rightContainer">
-				<h3 class="newBookName">
-					<a href="" title="圈子不同，不必强融" target="_blank">圈子不同，不必强融</a>
-				</h3>
-				<p class="newBookAuthor">作者: 安德烈亚斯·安东诺普洛斯</p>
-				<div class="newBookIntroduce">想加入这场暴风雨般席卷世界金融业的技术革命吗？《区块链：通往资产数字化之路》是你通往看似纷繁复杂的比特币世界的指南，它为你进入这个货币互联网世界提供了必要的知识。不管你是正在构建下一个杀手级应用，还是在投资一个初创企业，或者只是对技术好奇，这本实用的书都是必不可少的。
-					比特币，一个成功的数字货币，虽然仍处于起步阶段，却已经带来了全球范围数十亿美元规模的经济效应。这种经济活动对任何有相关知识和热情的人都是开放的。《区块链：通往资产数字化之路》将为你提供必要的知识（不包括热情）。</div>
-				<div class="newBookImg">
-					<a href="book/bookInfo?id=4" title="圈子不同，不必强融" target="_blank">
-						<img alt="" src="image/deafultPhoto.jpg">
-					</a>
-				</div>
-			</div>
-			<div class="leftContainer">
-				<div class="">
-					<div>
-						<a href="" title="圈子不同，不必强融" target="_blank">圈子不同，不必强融</a>
+			<s class="sign"></s>
+
+			<c:forEach items="${newBooks}" var="book" varStatus="status">
+				<c:if test="${ status.index == 0}">
+					<div class="rightContainer">
+						<h3 class="newBookName">
+							<a href="book/bookInfo?id=${book.id}" title="" target="_blank">${book.bookname}</a>
+						</h3>
+						<p class="newBookAuthor">作者：${book.bookAuthor}</p>
+						<div class="newBookIntroduce">${book.bookIntroduction}</div>
+						<div class="newBookImg">
+							<a href="book/bookInfo?id=${book.id}" title="${book.bookname}"
+								target="_blank"> <img alt="" src="image/${book.bookImage}">
+							</a>
+						</div>
 					</div>
-					<div>作者: 安德烈亚斯·安东诺普洛斯</div>
-					<div class="">
-						<a href="book/bookInfo?id=4" title="圈子不同，不必强融" target="_blank">
-							<img alt="" src="image/j3TBcSvRst.jpg">
-						</a>
+				</c:if>
+
+				<div class="leftContainer">
+					<c:if test="${ status.index == 1 || status.index == 3}">
+						<div class="firstLeft">
+							<div class="leftImg">
+								<a href="book/bookInfo?id=${book.id}" title="${book.bookname}"
+									target="_blank"> <img alt="" src="image/${book.bookImage}">
+								</a>
+							</div>
+							<div class="leftBookName">
+								<a href="book/bookInfo?id=${book.id}" title="${book.bookname}"
+									target="_blank">${book.bookname}</a>
+							</div>
+							<div class="leftBookAuthor">作者：${book.bookAuthor}</div>
+						</div>
+					</c:if>
+					<c:if test="${ status.index == 2 || status.index == 4}">
+						<div class="secondLeft">
+							<div class="leftImg">
+								<a href="book/bookInfo?id=${book.id}" title="${book.bookname}"
+									target="_blank"> <img alt="" src="image/${book.bookImage}">
+								</a>
+							</div>
+							<div class="leftBookName">
+								<a href="" title="${book.bookname}" target="_blank">${book.bookname}</a>
+							</div>
+							<div class="leftBookAuthor">作者：${book.bookAuthor}</div>
+						</div>
+					</c:if>
+				</div>
+			</c:forEach>
+		</div>
+
+		<div class="newBookTitle">畅销榜</div>
+		<div class="hot-book">
+			<s class="sign"></s>
+			<c:forEach items="${hotBooks}" var="book" varStatus="status">
+				<c:if test="${ status.index == 0}">
+					<div class="rightContainer">
+						<h3 class="newBookName">
+							<a href="book/bookInfo?id=${book.id}" title="" target="_blank">${book.bookname}</a>
+						</h3>
+						<p class="newBookAuthor">作者：${book.bookAuthor}</p>
+						<div class="newBookIntroduce">${book.bookIntroduction}</div>
+						<div class="newBookImg">
+							<a href="book/bookInfo?id=${book.id}" title="${book.bookname}"
+								target="_blank"> <img alt="" src="image/${book.bookImage}">
+							</a>
+						</div>
 					</div>
+				</c:if>
+
+				<div class="leftContainer">
+					<c:if test="${ status.index == 1 || status.index == 3}">
+						<div class="firstLeft">
+							<div class="leftImg">
+								<a href="book/bookInfo?id=${book.id}" title="${book.bookname}"
+									target="_blank"> <img alt="" src="image/${book.bookImage}">
+								</a>
+							</div>
+							<div class="leftBookName">
+								<a href="book/bookInfo?id=${book.id}" title="${book.bookname}"
+									target="_blank">${book.bookname}</a>
+							</div>
+							<div class="leftBookAuthor">作者：${book.bookAuthor}</div>
+						</div>
+					</c:if>
+					<c:if test="${ status.index == 2 || status.index == 4}">
+						<div class="secondLeft">
+							<div class="leftImg">
+								<a href="book/bookInfo?id=${book.id}" title="${book.bookname}"
+									target="_blank"> <img alt="" src="image/${book.bookImage}">
+								</a>
+							</div>
+							<div class="leftBookName">
+								<a href="" title="${book.bookname}" target="_blank">${book.bookname}</a>
+							</div>
+							<div class="leftBookAuthor">作者：${book.bookAuthor}</div>
+						</div>
+					</c:if>
 				</div>
-				<div class="">
-				
-				
-				
-				</div>
-			
-			
-			</div>
-			
-			
-			
+			</c:forEach>
 		</div>
 	</div>
 	<div class="scroll-top">

@@ -5,28 +5,44 @@ h3 {
 	color: #fa7a20; */
 }
 
-.new-book {
+.new-book{
 	position: relative;
-	margin-top: 30px;
+	margin-top: 10px;
 	height: 600px;
 	line-height: 38px;
 	overflow: hidden;
 	padding: 10px 20px 0;
 	background-color: #fff;
+	margin-bottom: 50px;
+	padding-right: 0px;
+}
+.hot-book{
+	position: relative;
+	margin-top: 10px;
+	height: 600px;
+	line-height: 38px;
+	overflow: hidden;
+	padding: 10px 20px 0;
+	background-color: #fff;
+	padding-right: 0px;
 }
 .rightContainer{
 	position: absolute;
 	width: 400px;
-	border-right: 1px outset;
+	border-right: 1px solid #fa7a20a3;
     padding-right: 10px;
+	height: 550px;
 }
 
 .newBookTitle{
+	margin-top: 10px;
+	text-align: center;
 	color:#fa7a20;
-	font-size: 14px;
+    font-size: 18px;
 	font-weight: bold;
 }
 .newBookIntroduce{
+	text-indent: 15px;
     color: #9e9e9e;
 	text-overflow: -o-ellipsis-lastline;  
 	overflow: hidden;  
@@ -39,7 +55,7 @@ h3 {
     color: #9e9e9e;
 }
 .newBookImg{
-	height: 200px;
+	height: 250px;
     overflow: hidden;
     width: 200px;
     margin-left: 100px;
@@ -52,4 +68,38 @@ img{
 
 .leftContainer{
 	margin-left: 420px;
+	padding-left: 100px;
+    padding-right: 100px;
+}
+.firstLeft{
+	position: absolute;
+    padding-left: 30px;
+    padding-right: 30px;
+    width: 140px;
+    height: 265px;
+    padding-top: 10px;	
+}
+.leftImg{
+	width: 140px;
+    height: 200px;
+}
+.secondLeft{
+	margin-left: 300px;
+	display: inline-block;	
+}
+
+.newBookImg{
+    box-shadow: 1px 15px 20px 5px rgba(51, 49, 49, 0.5);
+}
+.leftBookName,.newBookName,.newBookAuthor,.leftBookAuthor{
+	text-align: center;
+}
+.sign{
+transform: rotate(-41deg);
+width: 200px;
+    height: 30px;
+    position: absolute;
+    left: -65px;
+    top: 3px;
+    background: url(../image/2.png) no-repeat;
 }
