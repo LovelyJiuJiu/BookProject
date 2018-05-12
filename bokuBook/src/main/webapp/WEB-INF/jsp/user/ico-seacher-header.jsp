@@ -53,6 +53,5 @@
 		</c:if>
 		<li class="layui-nav-item"><a href="">销量排行</a></li>
 		<li class="layui-nav-item"><a href="">分类</a></li>
-		<li class="layui-nav-item"><a href="">浏览榜单</a>
 	</ul>
 </div>

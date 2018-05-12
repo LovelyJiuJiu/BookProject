@@ -60,6 +60,7 @@ pageContext.setAttribute("path", basePath);
 					<span>订单创建时间：<fmt:formatDate value="${order.submitTime }"  type="both" /></span>
 					<div style="height: 32px; line-height: 32px;">
 						<span >订单总金额：<b style="font-size: 17px; color: #fa7a20;">${order.price }</b> 元</span>
+						<button class="layui-btn layui-btn-radius layui-btn-danger" id="cancelBtn" style="float: right; height: 32px; margin-right: 5px; margin-bottom: 5px;">犹豫一下</button>
 						<button class="layui-btn layui-btn-radius layui-btn-danger" id="payBtn" style="float: right; height: 32px; margin-right: 5px; margin-bottom: 5px;">确认支付</button>
 					</div>
 				</div>
@@ -100,6 +101,15 @@ pageContext.setAttribute("path", basePath);
 					}
 				});
 			});
+			
+			$('#cancelBtn').on('click', function () {
+					layer.msg('返回购物车,可在我的订单界面查看此订单', {time: 2000}, function () {
+ 						window.location.href = 'user/cartPage';
+					});
+				
+			})
+			
+			
 		});
 	});
 </script>

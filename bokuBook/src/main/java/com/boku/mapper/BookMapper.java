@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Map;
 
 import com.boku.pojo.Book;
+import com.boku.pojo.BookTypeCount;
 
 public interface BookMapper {
     /**
@@ -63,4 +64,6 @@ public interface BookMapper {
     List<Book> getNewBookList();
     
     List<Book> getHotBookList();
+    
+    List<BookTypeCount> getHotBookAndCountList();
 }

@@ -61,6 +61,7 @@ pageContext.setAttribute("path", basePath);
 					<div style="margin-top: 8px;">订单支付时间：<fmt:formatDate value="${order.payTime }"  type="both" /></div>
 					<div style="height: 32px; line-height: 32px;">
 						<span>订单总金额：<b style="font-size: 17px; color: #fa7a20;">${order.price }</b> 元</span>
+					<button class="layui-btn layui-btn-radius layui-btn-danger" id="goToCartPage" style="float: right; height: 32px; margin-right: 5px; margin-bottom: 5px;">返回购物车</button>
 					</div>
 				</div>
 			</div>
@@ -69,4 +70,17 @@ pageContext.setAttribute("path", basePath);
 </body>
 <script src="jquery/jquery-2.2.4.min.js"></script>
 <script src="layui/layui.js"></script>
+<script>
+$(function () {
+	layui.use('layer', function(){
+		layer = layui.layer;
+		$('#goToCartPage').on('click', function () {
+			layer.msg('返回购物车中.....', {time: 1500}, function () {
+					window.location.href = 'user/cartPage';
+			});
+			
+		});
+	});
+});
+</script>
 </html>

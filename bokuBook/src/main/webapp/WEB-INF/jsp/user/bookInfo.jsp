@@ -180,8 +180,8 @@
 
  	function addReply(data) {
  		var search = window.location.search;
- 		search = search.charAt(search.length-1);
-		$.ajax({
+ 		search = search.substring(search.indexOf("=") + 1,search.length);
+ 		$.ajax({
 			url : 'book/addReply',
 			async : true,
 			dataType : 'json',
