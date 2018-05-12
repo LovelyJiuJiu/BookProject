@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 
 import com.boku.mapper.BookMapper;
 import com.boku.pojo.Book;
+import com.boku.pojo.BookTypeCount;
 import com.boku.pojo.CartBook;
 import com.boku.pojo.UserCart;
 import com.boku.service.BookService;
@@ -69,6 +70,11 @@ public class BookServiceImpl implements BookService {
 	@Override
 	public List<Book> getHotBookList() {
 		return bookMapper.getHotBookList();
+	}
+
+	@Override
+	public List<BookTypeCount> getHotBookAndCountList() {
+		return bookMapper.getHotBookAndCountList();
 	}
 	
 }

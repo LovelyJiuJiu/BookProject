@@ -3,6 +3,7 @@ package com.boku.service;
 import java.util.List;
 
 import com.boku.pojo.Book;
+import com.boku.pojo.BookTypeCount;
 import com.boku.pojo.CartBook;
 import com.boku.pojo.UserCart;
 import com.github.pagehelper.PageInfo;
@@ -18,4 +19,6 @@ public interface BookService {
     List<Book> getNewBookList();
     
     List<Book> getHotBookList();
+    
+    List<BookTypeCount> getHotBookAndCountList();
 }

@@ -22,6 +22,7 @@ import com.boku.pojo.Book;
 import com.boku.pojo.Reply;
 import com.boku.pojo.User;
 import com.boku.pojo.UserReply;
+import com.boku.service.BookService;
 import com.google.gson.Gson;
 
 @Controller
@@ -30,6 +31,10 @@ public class BookController {
 	
 	@Autowired
 	private BookMapper bookMapper;
+	
+	@Autowired
+	private BookService bookService;
+	
 	@Autowired
 	private ReplyMapper replyMapper;
 
@@ -71,6 +76,13 @@ public class BookController {
 		return gson.toJson(result);
 	}
 	
+	@RequestMapping("salesCountPage")
+	@ResponseBody
+	public ModelAndView salesCountPage(){
+		ModelAndView modelAndView = new ModelAndView("user/salesCountPage");		
+		modelAndView.addObject("hotBookList", bookService.getHotBookAndCountList());
+		return modelAndView;
+	}
 }
 
 

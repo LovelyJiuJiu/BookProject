@@ -277,4 +277,5 @@ public class UserController {
 		modelAndView.addObject("hotBooks", bookService.getHotBookList());
 		return modelAndView;
 	}
+
 }

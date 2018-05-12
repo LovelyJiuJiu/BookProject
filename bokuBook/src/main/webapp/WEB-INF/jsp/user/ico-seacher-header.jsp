@@ -42,8 +42,7 @@
 <div>
 	<ul class="layui-nav nav-color" lay-filter="">
 		<li class="layui-nav-item layui-this"><a href="">首页</a></li>
-		<li class="layui-nav-item"><a href="">销量排行</a></li>
+		<li class="layui-nav-item"><a href="book/salesCountPage">销量排行</a></li>
 		<li class="layui-nav-item"><a href="">分类</a></li>
-		<li class="layui-nav-item"><a href="">浏览榜单</a>
 	</ul>
 </div>

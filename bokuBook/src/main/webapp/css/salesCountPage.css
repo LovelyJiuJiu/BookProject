@@ -1,0 +1,66 @@
+.headContainer{
+	margin-top: 15px;
+	font-size: 15px;
+}
+.mainContent{
+	background-color: white;
+	min-height: 300px;
+}
+.layui-bg-red{
+	margin-bottom: 0px !important;
+}
+.titleContent{
+	font-size: 14px;
+	background-color: whitesmoke;
+	margin-left: 30px;
+	margin-right: 30px;
+	height: 30px;
+	line-height: 30px;	
+}
+.index,.indexNum{
+	margin-left: 30px;
+	margin-right: 20px;
+	width: 10%;
+	display: inline-block;
+	text-align: center;	
+}
+.indexNum{
+	color: #fa7a20;
+}
+.bookName{
+	margin-right: 20px;
+	width: 20%;
+	display: inline-block;
+	text-align: center;
+}
+.author{
+	margin-right: 20px;
+	width: 20%;
+	display: inline-block;
+	text-align: center;
+}
+.type{
+	margin-right: 20px;
+	width: 10%;
+	display: inline-block;
+	text-align: center;	
+}
+.salesCount{
+	width: 10%;
+	display: inline-block;
+	text-align: center;		
+}
+.price{
+	width: 10%;
+	display: inline-block;
+	text-align: center;	
+}
+.bookList{
+	margin-left: 30px;
+	margin-right: 30px;
+}
+.oneBookContainer{	
+	font-size: 14px;
+	height: 50px;
+    line-height: 50px;
+}
