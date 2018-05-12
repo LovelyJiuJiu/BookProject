@@ -12,9 +12,9 @@ h3 {
 	line-height: 38px;
 	overflow: hidden;
 	padding: 10px 20px 0;
-	background-color: #fff;
 	margin-bottom: 50px;
 	padding-right: 0px;
+	border: 1px solid #ebe7e2;
 }
 .hot-book{
 	position: relative;
@@ -23,19 +23,19 @@ h3 {
 	line-height: 38px;
 	overflow: hidden;
 	padding: 10px 20px 0;
-	background-color: #fff;
 	padding-right: 0px;
+	border: 1px solid #ebe7e2;
 }
 .rightContainer{
 	position: absolute;
 	width: 400px;
-	border-right: 1px solid #fa7a20a3;
+	border-right: 1px solid #ebe7e2;
     padding-right: 10px;
 	height: 550px;
 }
 
 .newBookTitle{
-	margin-top: 10px;
+	margin-top: 45px;
 	text-align: center;
 	color:#fa7a20;
     font-size: 18px;
@@ -86,6 +86,7 @@ img{
 .secondLeft{
 	margin-left: 300px;
 	display: inline-block;	
+	padding-top: 10px;
 }
 
 .newBookImg{

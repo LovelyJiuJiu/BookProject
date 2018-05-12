@@ -26,19 +26,19 @@
 		<div class="layui-carousel" id="test1">
 			<div carousel-item>
 				<div>
-					<a href="#"> <img alt="图片" src="" title="幽默与荒诞" />
+					<a href="/book/book/bookInfo?id=9" target="_blank"> <img alt="图片" src="image/how.png" title="半小时漫画世界史" />
 					</a>
 				</div>
 				<div>
-					<a href="#"> <img alt="图片" src="" title="幽默与荒诞" />
+					<a href="/book/book/bookInfo?id=10" target="_blank"> <img alt="图片" src="image/yw.png" title="萤王" />
 					</a>
 				</div>
 				<div>
-					<a href="#"> <img alt="图片" src="" title="幽默与荒诞" />
+					<a href="/book/book/bookInfo?id=11" target="_blank"> <img alt="图片" src="image/firstPlayer.png" title="头号玩家" />
 					</a>
 				</div>
 				<div>
-					<a href="#"> <img alt="图片" src="" title="幽默与荒诞" />
+					<a href="/book/book/bookInfo?id=12" target="_blank"> <img alt="图片" src="image/tnd.png" title="听你的" />
 					</a>
 				</div>
 			</div>
@@ -145,12 +145,13 @@
 				</div>
 			</c:forEach>
 		</div>
+		<p class="footer">2018 @Online Book Store All Rights Reserved</p>
 	</div>
 	<div class="scroll-top">
 		<i class="layui-icon">&#xe604;</i>
 		<p>顶部</p>
 	</div>
-
+	
 	<script src="jquery/jquery-2.2.4.min.js"></script>
 	<script src="layui/layui.js"></script>
 	<script src="js/global.js"></script>

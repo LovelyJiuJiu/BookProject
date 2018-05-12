@@ -16,8 +16,6 @@
 }
 
 .photo{
-  margin-left: -50px;
-  position: absolute;
   clip: rect(0px,200px,200px,0px);
 }
 
@@ -25,6 +23,12 @@ img{
   width: 100%;
   height: 100%;
 }
+
+.layui-table img {
+	max-width: 60px;
+    height: 60px;
+}
+
 .top-item{
   margin-top: 30px;	
 }
