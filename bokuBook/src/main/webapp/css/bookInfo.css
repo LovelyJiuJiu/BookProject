@@ -19,7 +19,7 @@
   display: inline;
 }
 .summary{
-  max-height: 150px !important;
+  max-height: 100px !important;
   overflow: auto;
 } 
 .bookImage{
@@ -35,7 +35,7 @@
 .rightContainer{
   position: absolute;
   left: 420px;
-  top: 220px;
+  top: 240px;
   width: 600px;
 }
 .footerContainer{

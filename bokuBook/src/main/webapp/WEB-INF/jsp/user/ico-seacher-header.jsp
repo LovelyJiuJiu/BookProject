@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <head>
 <%
@@ -7,6 +8,9 @@
 	String basePath = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort()
 			+ path + "/";
 	pageContext.setAttribute("path", basePath);
+	String rPath = request.getRequestURI();
+	rPath = rPath.substring(rPath.lastIndexOf("/") + 1);
+	pageContext.setAttribute("rPath", rPath);
 %>
 <base href=${path }/>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -41,7 +45,12 @@
 <!-- 导航栏 -->
 <div>
 	<ul class="layui-nav nav-color" lay-filter="">
-		<li class="layui-nav-item layui-this"><a href="">首页</a></li>
+		<c:if test="${rPath == 'bookMain.jsp' }">
+			<li class="layui-nav-item layui-this"><a href="">首页</a></li>
+		</c:if>
+		<c:if test="${rPath != 'bookMain.jsp' }">
+			<li class="layui-nav-item"><a href="">首页</a></li>
+		</c:if>
 		<li class="layui-nav-item"><a href="">销量排行</a></li>
 		<li class="layui-nav-item"><a href="">分类</a></li>
 		<li class="layui-nav-item"><a href="">浏览榜单</a>

@@ -18,7 +18,7 @@
 <script src="layui/layui.js"></script>
 <script src="js/adminMain.js"></script>
 <script type="text/html" id="img">
-    <div><img class="photo" src=image/{{d.bookImage}}></div>
+    <div style="text-align: center;"><img class="photo" src=image/{{d.bookImage}}></div>
 </script>
 <script type="text/html" id="bookName">
     <a href="book/bookInfo?id={{d.id}}" target="_blank" title={{d.bookname}}>{{d.bookname}}</a>
