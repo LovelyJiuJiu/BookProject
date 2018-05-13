@@ -84,7 +84,7 @@ function orderSubmit (data) {
 		}}
 
 		{{ fn() }}
-	</script>
+</script>
 
 <script type="text/html" id="checkOrderStatus">
 		{{# if (d.status === 0) { }}

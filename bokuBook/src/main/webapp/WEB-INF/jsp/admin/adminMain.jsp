@@ -55,11 +55,7 @@ function hideOtherAndShowIt(id) {
     					</dl>
 				 </li>
 				 <li class="layui-nav-item">
-				 	<a href="javascript:;">订单管理</a>
-				 	    <dl class="layui-nav-child">
-      						<dd><a onclick="hideOtherAndShowIt('orderList'); return true;" href="javascript:;">查看订单</a></dd>
-      						<dd><a onclick="hideOtherAndShowIt('checkOrder'); return true;" href="javascript:;">处理订单</a></dd>
-    					</dl>
+				 	<a onclick="hideOtherAndShowIt('orderList'); return true;" href="admin/orderListPage" target="orderList">订单管理</a>
 				 </li>
 				 <li class="layui-nav-item">
 				 	<a id="adminLogout" href="javascript:;">退出</a>
@@ -72,7 +68,7 @@ function hideOtherAndShowIt(id) {
 		
 		<iframe class="hideIframs" id="bookList" name="bookList" frameborder="0"></iframe>
 		<iframe class="hideIframs" id="addBook" name="addBook" frameborder="0"></iframe>	
-		<iframe class="hideIframs" id="orderList" name="addBook" frameborder="0"></iframe>	
+		<iframe class="hideIframs" id="orderList" name="orderList" frameborder="0"></iframe>	
 		<iframe class="hideIframs" id="checkOrder" name="checkOrder" frameborder="0"></iframe> 
 		<div class="footerContainer">
 			<span>2018 @博库阅读</span>

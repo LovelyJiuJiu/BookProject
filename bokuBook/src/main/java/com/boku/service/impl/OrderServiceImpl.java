@@ -82,7 +82,6 @@ public class OrderServiceImpl implements OrderService {
 	@Override
 	public List<Order> queryOrderByUserId(Integer id) {
 		List<Order> orders = orderMapper.queryOrderByUserId(id);
-		System.out.println(orders);
 		return orders;
 	}
 

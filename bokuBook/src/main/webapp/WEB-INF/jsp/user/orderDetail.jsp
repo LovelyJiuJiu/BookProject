@@ -58,15 +58,36 @@ pageContext.setAttribute("path", basePath);
 				</ul>
 				<div style="margin-top: 60px; font-size: 13px;">
 					<div>订单创建时间：<fmt:formatDate value="${order.submitTime }"  type="both" /></div>
-					<div style="margin-top: 8px;">订单支付时间：<fmt:formatDate value="${order.payTime }"  type="both" /></div>
+					<c:if test="${order.status != 3 && order.status != 0}">
+						<div style="margin-top: 8px;">订单支付时间：<fmt:formatDate value="${order.payTime }"  type="both" /></div>
+					</c:if>
 					<div style="height: 32px; line-height: 32px;">
 						<span>订单总金额：<b style="font-size: 17px; color: #fa7a20;">${order.price }</b> 元</span>
-					<button class="layui-btn layui-btn-radius layui-btn-danger" id="goToCartPage" style="float: right; height: 32px; margin-right: 5px; margin-bottom: 5px;">返回购物车</button>
+						<c:if test="${type != 'admin' }">
+							<button class="layui-btn layui-btn-radius layui-btn-danger" id="goToCartPage" style="float: right; height: 32px; margin-right: 5px; margin-bottom: 5px;">返回购物车</button>
+						</c:if>
+						<c:if test="${type == 'admin' }">
+							<h2 style="float: right; color: #fa7a20; height: 32px; margin-right: 5px; margin-bottom: 5px;">
+								<c:if test="${order.status == 0 }">
+									订单待支付
+								</c:if>
+								<c:if test="${order.status == 1 }">
+									订单已支付
+								</c:if>
+								<c:if test="${order.status == 2 }">
+									订单已发货
+								</c:if>
+								<c:if test="${order.status == 3 }">
+									订单已取消
+								</c:if>
+							</h2>
+						</c:if>
 					</div>
 				</div>
 			</div>
 		</fieldset>
 	</div>
+	<input type="hidden" id="orderStatusNum" value="${order.status }" />
 </body>
 <script src="jquery/jquery-2.2.4.min.js"></script>
 <script src="layui/layui.js"></script>
@@ -74,6 +95,9 @@ pageContext.setAttribute("path", basePath);
 $(function () {
 	layui.use('layer', function(){
 		layer = layui.layer;
+		if ($('#orderStatusNum').val() === '3') {
+			layer.alert('该订单已被用户取消', {icon: 0, title: '注意', offset: '260px', area: '260px'});
+		}
 		$('#goToCartPage').on('click', function () {
 			layer.msg('返回购物车中.....', {time: 1500}, function () {
 					window.location.href = 'user/cartPage';

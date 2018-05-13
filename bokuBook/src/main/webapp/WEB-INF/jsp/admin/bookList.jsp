@@ -16,7 +16,6 @@
 <title>--查看书籍--</title>
 <script src="jquery/jquery-2.2.4.min.js"></script>
 <script src="layui/layui.js"></script>
-<script src="js/adminMain.js"></script>
 <script type="text/html" id="img">
     <div style="text-align: center;"><img class="photo" src=image/{{d.bookImage}}></div>
 </script>

@@ -9,6 +9,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.boku.pojo.Admin;
 import com.boku.pojo.Book;
+import com.boku.pojo.Order;
 import com.boku.pojo.Type;
 import com.boku.pojo.User;
 
@@ -27,4 +28,8 @@ public interface AdminService {
 	boolean addBook(Book book);
 	
 	boolean changeStatusByBookId(int bookId, int status);
+
+	List<Order> getOrderList();
+
+	int confirmOrder(Integer orderId);
 }
