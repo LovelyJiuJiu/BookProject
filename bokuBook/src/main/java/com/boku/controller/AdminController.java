@@ -18,12 +18,16 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.ModelAndView;
 
 import com.boku.pojo.Admin;
 import com.boku.pojo.Book;
+import com.boku.pojo.Order;
 import com.boku.pojo.Type;
 import com.boku.pojo.User;
+import com.boku.pojo.UserCart;
 import com.boku.service.AdminService;
+import com.boku.service.OrderService;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import com.google.gson.Gson;
@@ -34,6 +38,9 @@ public class AdminController {
 	
 	@Autowired
 	private AdminService adminService;
+	
+	@Autowired
+	private OrderService orderService;
 
 
 	@RequestMapping("login")
@@ -71,6 +78,11 @@ public class AdminController {
 	@RequestMapping("addBookPage")
 	public String addBookTemp(){
 		return "admin/addBook";
+	}
+	
+	@RequestMapping("orderListPage")
+	public String orderListTemp(){
+		return "admin/orderList";
 	}
 	
 	@RequestMapping("login-submit")
@@ -186,6 +198,47 @@ public class AdminController {
 			result.put("code", 0);
 		}		
 		return gson.toJson(result);
+	}
+	
+	@RequestMapping("orderList")
+	@ResponseBody
+	public String orderList(int page, int limit){
+		Gson gson = new Gson();
+		Map<String, Object> result = new HashMap<String, Object>();
+		PageHelper.startPage(page, limit);
+		List<Order> orderList = adminService.getOrderList();
+		PageInfo<Order> orders = new PageInfo<Order>(orderList);
+		result.put("code", 0);
+		result.put("msg", "");
+		result.put("count", orders.getTotal());
+		result.put("data", orders.getList());
+			
+		return gson.toJson(result);
+	}
+	
+	@RequestMapping("confirmOrder")
+	@ResponseBody
+	public String confirmOrder(Integer orderId){
+		Gson gson = new Gson();
+		Map<String, Object> resultMap = new HashMap<String, Object>();
+		int result = adminService.confirmOrder(orderId);
+		if (result == 1) {
+			resultMap.put("result", 1);
+		} else {
+			resultMap.put("result", 0);
+		}
+		return gson.toJson(resultMap);
+	}
+	
+	@RequestMapping("showOrderDetail")
+	public ModelAndView showOrderDetail(Integer orderId) {
+		ModelAndView modelAndView = new ModelAndView("user/orderDetail");
+		Order order = orderService.selectOrderByOrderId(orderId);
+		List<UserCart> orderDetail = orderService.selectOrderDetail(orderId);
+		modelAndView.addObject("orderDetail", orderDetail);
+		modelAndView.addObject("order", order);
+		modelAndView.addObject("type", "admin");
+		return modelAndView;
 	}
 	
 	@RequestMapping("logout")

@@ -59,4 +59,6 @@ public interface OrderMapper {
     
     int changeOrderStatus(Map<String, Object> params);
 
+	List<Order> getOrders();
+
 }

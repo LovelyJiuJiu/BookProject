@@ -3,7 +3,9 @@ package com.boku.service.impl;
 import java.io.File;
 import java.io.IOException;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -14,10 +16,12 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.boku.mapper.AdminMapper;
 import com.boku.mapper.BookMapper;
+import com.boku.mapper.OrderMapper;
 import com.boku.mapper.TypeMapper;
 import com.boku.mapper.UserMapper;
 import com.boku.pojo.Admin;
 import com.boku.pojo.Book;
+import com.boku.pojo.Order;
 import com.boku.pojo.Type;
 import com.boku.pojo.User;
 import com.boku.service.AdminService;
@@ -33,6 +37,9 @@ public class AdminServiceImpl implements AdminService {
 	
 	@Autowired
 	private BookMapper bookMapper;
+	
+	@Autowired
+	private OrderMapper orderMapper;
 	
 	@Autowired
 	private TypeMapper typeMapper;
@@ -102,5 +109,19 @@ public class AdminServiceImpl implements AdminService {
 			return true;
 		}
 		return false;
+	}
+
+	@Override
+	public List<Order> getOrderList() {
+		List<Order> orders = orderMapper.getOrders();
+		return orders;
+	}
+
+	@Override
+	public int confirmOrder(Integer orderId) {
+		Map<String, Object> params = new HashMap<String, Object>();
+		params.put("orderId", orderId);
+		params.put("type", "confirm");
+		return orderMapper.changeOrderStatus(params);
 	}
 }

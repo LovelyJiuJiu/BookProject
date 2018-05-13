@@ -11,6 +11,8 @@ public class Order {
 
     
     private Integer userId;
+    
+    private String userName;
 
     
     private Double price;
@@ -97,8 +99,18 @@ public class Order {
 
 	@Override
 	public String toString() {
-		return "Order [id=" + id + ", orderNo=" + orderNo + ", userId=" + userId + ", price=" + price + ", status="
+		return "Order [id=" + id + ", orderNo=" + orderNo + ", userId=" + userId + ", userName=" + userName + ", price=" + price + ", status="
 				+ status + ", submitTime=" + submitTime + ", payTime=" + payTime + "]";
+	}
+
+
+	public String getUserName() {
+		return userName;
+	}
+
+
+	public void setUserName(String userName) {
+		this.userName = userName;
 	}
     
     
