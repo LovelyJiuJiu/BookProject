@@ -11,8 +11,10 @@ pageContext.setAttribute("path", basePath);
 <base href="${path }"/>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Jumping...</title>
+<script>
+	window.location.href="user/bookMain";
+</script>
 </head>
 <body>
-	<jsp:forward page="bookMain"></jsp:forward>
 </body>
 </html>

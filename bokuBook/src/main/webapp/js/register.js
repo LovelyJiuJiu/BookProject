@@ -17,7 +17,7 @@ layui.use('form', function() {
 	})
 });
 function backToHome() {
-	window.location.href = "bookMain";
+	window.location.href = "user/bookMain";
 }
 
 function register(registerData) {
@@ -34,7 +34,7 @@ function register(registerData) {
 		},
 		success : function(data) {
 			if (data.result === 1) {
-				window.location.href = "bookMain";
+				window.location.href = "user/bookMain";
 			}
 		},
 		error : function(err) {

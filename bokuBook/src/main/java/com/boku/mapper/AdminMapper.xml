@@ -40,4 +40,12 @@
       </if>
     </trim>
   </insert>
+  
+    <select id="selectByAdminNameAndPassword" parameterType="com.boku.pojo.Admin" resultMap="BaseResultMap">
+    select *
+    from admin
+    where binary admin_username = #{adminUsername} and binary admin_password = #{adminPassword}
+  </select>
+  
+  
 </mapper>

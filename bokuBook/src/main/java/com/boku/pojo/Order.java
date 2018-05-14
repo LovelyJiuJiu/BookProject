@@ -1,6 +1,5 @@
 package com.boku.pojo;
 
-import java.math.BigDecimal;
 import java.util.Date;
 
 public class Order {
@@ -12,9 +11,11 @@ public class Order {
 
     
     private Integer userId;
+    
+    private String userName;
 
     
-    private BigDecimal price;
+    private Double price;
 
     
     private Integer status;
@@ -56,12 +57,12 @@ public class Order {
     }
 
     
-    public BigDecimal getPrice() {
+    public Double getPrice() {
         return price;
     }
 
     
-    public void setPrice(BigDecimal price) {
+    public void setPrice(Double price) {
         this.price = price;
     }
 
@@ -94,4 +95,23 @@ public class Order {
     public void setPayTime(Date payTime) {
         this.payTime = payTime;
     }
+
+
+	@Override
+	public String toString() {
+		return "Order [id=" + id + ", orderNo=" + orderNo + ", userId=" + userId + ", userName=" + userName + ", price=" + price + ", status="
+				+ status + ", submitTime=" + submitTime + ", payTime=" + payTime + "]";
+	}
+
+
+	public String getUserName() {
+		return userName;
+	}
+
+
+	public void setUserName(String userName) {
+		this.userName = userName;
+	}
+    
+    
 }

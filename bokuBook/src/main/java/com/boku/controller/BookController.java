@@ -22,6 +22,7 @@ import com.boku.pojo.Book;
 import com.boku.pojo.Reply;
 import com.boku.pojo.User;
 import com.boku.pojo.UserReply;
+import com.boku.service.BookService;
 import com.google.gson.Gson;
 
 @Controller
@@ -30,6 +31,10 @@ public class BookController {
 	
 	@Autowired
 	private BookMapper bookMapper;
+	
+	@Autowired
+	private BookService bookService;
+	
 	@Autowired
 	private ReplyMapper replyMapper;
 
@@ -54,7 +59,7 @@ public class BookController {
 		if (book != null) {
 			//get user and reply object order by replyTime		
 			List<UserReply> userReplyList = replyMapper.selectByBookId(book.getId());		
-			SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd hh:mm");
+			SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd HH:mm");
 			for(int i=0;i<userReplyList.size();i++) {
 				String sDate=sdf.format(userReplyList.get(i).getReplytime().getTime());
 				userReplyList.get(i).setDateStr(sDate);
@@ -81,6 +86,13 @@ public class BookController {
 		return gson.toJson(result);
 	}
 	
+	@RequestMapping("salesCountPage")
+	@ResponseBody
+	public ModelAndView salesCountPage(){
+		ModelAndView modelAndView = new ModelAndView("user/salesCountPage");		
+		modelAndView.addObject("hotBookList", bookService.getHotBookAndCountList());
+		return modelAndView;
+	}
 }
 
 

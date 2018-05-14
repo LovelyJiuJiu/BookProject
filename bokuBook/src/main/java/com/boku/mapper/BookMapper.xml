@@ -18,6 +18,17 @@
     <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
     <result column="last_update_time" jdbcType="TIMESTAMP" property="lastUpdateTime" />
   </resultMap>
+  
+   <resultMap id="BookTypeCount" type="com.boku.pojo.BookTypeCount">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="bookname" jdbcType="VARCHAR" property="bookname" />
+    <result column="type_id" jdbcType="INTEGER" property="typeId" />
+    <result column="book_author" jdbcType="VARCHAR" property="bookAuthor" />
+    <result column="book_image" jdbcType="VARCHAR" property="bookImage" />
+    <result column="book_price" jdbcType="DOUBLE" property="bookPrice" />
+    <result column="typename" jdbcType="VARCHAR" property="typename" />
+	<result column="purchasecount" jdbcType="INTEGER" property="purchaseCount" />
+  </resultMap>
   <sql id="Base_Column_List">
     <!--
       WARNING - @mbg.generated
@@ -204,4 +215,43 @@
     </foreach>
 	</where>
   </select>
+  
+  <select id="getBookList" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from book
+  </select>
+
+  <select id="selectBookByKeywords" resultMap="BaseResultMap">
+    select *
+    from book 
+    where bookname like concat('%', #{keyWords}, '%') and status = 0
+    <if test="symbol == null">
+		limit 0, 5
+	</if>		 
+  </select>
+  
+  <select id="getNewBookList" resultMap="BaseResultMap">
+    select *
+    from book where status = 0
+    ORDER BY create_time DESC
+	limit 0, 5		 
+  </select>
+  
+  <select id="getHotBookList" resultMap="BaseResultMap">
+	select book.id,book.bookname,book.book_author,book.book_image,book.book_introduction
+	from book, count 
+	where book.id=count.book_id and book.status = 0
+	ORDER BY count.purchasecount DESC
+	limit 0, 5		 
+  </select>
+  
+    <select id="getHotBookAndCountList" resultMap="BookTypeCount">
+		select * from book,count,type
+		where book.id=count.book_id and book.type_id =type.id and book.status = 0 and count.purchasecount > 0
+		order by count.purchasecount DESC
+		LIMIT 0,10	 
+  </select>
+  
+  
 </mapper>

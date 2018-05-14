@@ -18,7 +18,8 @@ public class LoginFilter implements Filter {
         HttpServletResponse response = (HttpServletResponse)resp;  
         String uri = request.getRequestURI();
         String path = uri.substring(uri.lastIndexOf("/"));
-		if ("/login".equals(path) || ("/bookNumber".equals(path)) || ("/login-submit".equals(path))) {
+
+		if ("/login".equals(path) || ("/bookNumber".equals(path)) || ("/login-submit".equals(path)) || ("/register".equals(path)) || ("/register-submit".equals(path)) || ("/bookMain".equals(path))) {
 			chain.doFilter(request, response);
 		} else {
 			HttpSession session = request.getSession();

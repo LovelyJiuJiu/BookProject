@@ -2,17 +2,18 @@ layui.use('form', function() {
 	var form = layui.form;
 
 	form.on('submit(login-btn)', function(data) {
+		$('#icon').css('display', "block");
 		login(data.field);
 		return false;
 	});
 });
 
 function backToHome() {
-	window.location.href = "bookMain";
+	window.location.href = "user/bookMain";
 }
 
 function goToRegister() {
-	window.location.href = "user/register";
+	window.location.href = getContextPath() +"/user/register";
 	return false;
 }
 
@@ -29,8 +30,9 @@ function login(data) {
 			rememberMe : data.rmbme
 		},
 		success : function(data) {
+			$('#icon').css('display', "none");
 			if (data.result === 1) {
-				window.location.href = "bookMain";
+				window.location.href = getContextPath()+"/user/bookMain";
 			} else if (data.result === 0) {
 				layer.msg('用户名或密码错误');
 				$('input[name=username]').val("");
@@ -39,11 +41,18 @@ function login(data) {
 			}
 		},
 		error : function(err) {
+			$('#icon').css('display', "none");
 			console.log(err);
 		}
 	});
 }
 
+function getContextPath() {
+    var pathName = document.location.pathname;
+    var index = pathName.substr(1).indexOf("/");
+    var result = pathName.substr(0,index+1);
+    return result;
+  }
 function getCookie(cname) {
 	var name = cname + "=";
 	var ca = document.cookie.split(';');
@@ -60,5 +69,6 @@ $(function() {
 	var userName = decodeURIComponent(getCookie("username"));
 	var password = decodeURIComponent(getCookie("password"));
 	$('input[name=username]').val(userName);
-	$('input[name=password]').val(password);
+	$('input[name=password]').val(password);	
+	$('#icon').css('display', "none");
 });

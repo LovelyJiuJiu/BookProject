@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.ModelAndView;
 
 import com.boku.pojo.CartBook;
 import com.boku.pojo.User;
@@ -43,6 +44,7 @@ public class UserController {
 	@ResponseBody
 	public String userRegister(User user, HttpSession session) {
 		Gson gson = new Gson();
+		user.setImgName("deafultPhoto.jpg");
 		User user1 = userService.register(user);
 		if (user1 != null) {
 			session.setAttribute("currentUser", user1);
@@ -98,6 +100,7 @@ public class UserController {
 		Gson gson = new Gson();
 		Map<String, Object> result = new HashMap<String, Object>();
 		User user = (User) session.getAttribute("currentUser");
+		@SuppressWarnings("unchecked")
 		List<UserCart> userCarts = (List<UserCart>) session.getAttribute("cart");
 		if (user != null) {
 			if (userCarts != null) {
@@ -265,4 +268,14 @@ public class UserController {
 		}
 		return gson.toJson(result);
 	}
+	
+	@RequestMapping("bookMain")
+	@ResponseBody
+	public ModelAndView getNewBookList(){	
+		ModelAndView modelAndView = new ModelAndView("user/bookMain");		
+		modelAndView.addObject("newBooks", bookService.getNewBookList());
+		modelAndView.addObject("hotBooks", bookService.getHotBookList());
+		return modelAndView;
+	}
+
 }

@@ -95,7 +95,6 @@ a {
 }
 
 .ico-header {
-	height: 120px;
     padding: 20px 0;
 }
 
@@ -106,7 +105,7 @@ a {
 
 .common-logo img {
 	width: 160px;
-    height: 100px;
+    height: 118px;
     margin-left: -17px;
 }
 
@@ -133,7 +132,7 @@ a {
 .suggestion-list {
 	visibility: hidden;
 	position: absolute;	
-	top: 77px;
+	top: 86px;
 	right: 0px;
 	width: 221px;
 	text-align: left;
@@ -204,21 +203,9 @@ a.list-item:hover {
     cursor: pointer;
 }
 
-.new-book {
-	height: 38px;
-	line-height: 38px;
-	overflow: hidden;
-	padding: 10px 20px 0;
-	border: 1px
+.footer {
+	text-align: center;
+	margin-top: 66px;
+	margin-bottom: 20px;
 }
-
-h3 {
-	font-size: 14px;
-	font-weight: bold;
-	color: #fa7a20;
-}
-
-
-
-
 
