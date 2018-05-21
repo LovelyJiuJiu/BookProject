@@ -115,7 +115,6 @@
 		$('#bookNum').on('input propertychange', function () {
 			bookNumber = $(this).val();
 			bookTotalPrice = accMul(bookNumber, bookPrice);
-			layer.msg(bookNumber);
 		});
 		
 		$('#buy').on('click', function () {

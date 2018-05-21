@@ -20,7 +20,11 @@
 <script src="layui/layui.js"></script>
 <script src="js/adminMain.js"></script>
 <script type="text/html" id="img">
-    <img name="img" class="photo" src=image/{{d.imgName}}>
+	{{# if (!d.imgName) { }}
+		<img name="img" class="photo" src="image/deafultPhoto.jpg">
+	{{# } else { }}
+    	<img name="img" class="photo" src=image/{{d.imgName}}>
+	{{# } }}
 </script>
 <script>
 function hideAllIframes() {

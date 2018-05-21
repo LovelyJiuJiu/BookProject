@@ -21,6 +21,40 @@ Date.prototype.format = function(fmt) {
 	return fmt;
 }
 
+function numAdd(num1, num2) {  
+    var baseNum, baseNum1, baseNum2;  
+    try {  
+        baseNum1 = num1.toString().split(".")[1].length;  
+    } catch (e) {  
+        baseNum1 = 0;  
+    }  
+    try {  
+        baseNum2 = num2.toString().split(".")[1].length;  
+    } catch (e) {  
+        baseNum2 = 0;  
+    }  
+    baseNum = Math.pow(10, Math.max(baseNum1, baseNum2));  
+    return (num1 * baseNum + num2 * baseNum) / baseNum;  
+}
+
+function numSub(num1, num2) {  
+    var baseNum, baseNum1, baseNum2;  
+    var precision;
+    try {  
+        baseNum1 = num1.toString().split(".")[1].length;  
+    } catch (e) {  
+        baseNum1 = 0;  
+    }  
+    try {  
+        baseNum2 = num2.toString().split(".")[1].length;  
+    } catch (e) {  
+        baseNum2 = 0;  
+    }  
+    baseNum = Math.pow(10, Math.max(baseNum1, baseNum2));  
+    precision = (baseNum1 >= baseNum2) ? baseNum1 : baseNum2;  
+    return ((num1 * baseNum - num2 * baseNum) / baseNum).toFixed(precision);  
+}
+
 function getContextPath() {
     var pathName = document.location.pathname;
     var index = pathName.substr(1).indexOf("/");
@@ -172,7 +206,7 @@ function addEvent(table) {
 			if (obj.checked) {
 				var price = 0;
 				checkStatus.data.forEach(function (item, index) {
-					price += item.totalPrice;
+					price = numAdd(price, item.totalPrice);
 				});
 				totalPrice.text(price);
 			} else {
@@ -180,9 +214,9 @@ function addEvent(table) {
 			}
 		} else if (obj.type === 'one') {
 			if (obj.checked) {
-				totalPrice.text(parseFloat(totalPrice.text()) + obj.data.totalPrice);
+				totalPrice.text(numAdd(totalPrice.text(), obj.data.totalPrice));
 			} else {
-				totalPrice.text(parseFloat(totalPrice.text()) - obj.data.totalPrice);
+				totalPrice.text(numSub(totalPrice.text(), obj.data.totalPrice));
 			}
 		}
 	});
