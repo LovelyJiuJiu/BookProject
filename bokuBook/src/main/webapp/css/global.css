@@ -103,6 +103,10 @@ a {
 	padding: 10px 0px;
 }
 
+.layui-nav-bar {
+	opacity: 0 !important;
+}
+
 .common-logo img {
 	width: 160px;
     height: 118px;
