@@ -12,7 +12,7 @@
 %>
 <base href=${path } />
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>${keyWord }_搜索详情</title>
+<title>关于${keyWord }的搜索详情</title>
 <link rel="icon" type="image/x-icon" href="image/favicon.ico" />  
 <link rel="stylesheet" href="layui/css/layui.css" media="all">
 <link rel="stylesheet" href="css/global.css">

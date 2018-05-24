@@ -2,6 +2,7 @@ package com.boku.controller;
 
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -20,6 +21,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.boku.mapper.TypeMapper;
 import com.boku.pojo.Admin;
 import com.boku.pojo.Book;
 import com.boku.pojo.Order;
@@ -27,6 +29,7 @@ import com.boku.pojo.Type;
 import com.boku.pojo.User;
 import com.boku.pojo.UserCart;
 import com.boku.service.AdminService;
+import com.boku.service.BookService;
 import com.boku.service.OrderService;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
@@ -42,6 +45,8 @@ public class AdminController {
 	@Autowired
 	private OrderService orderService;
 
+	@Autowired
+	private BookService bookService;
 
 	@RequestMapping("login")
 	public String loginTemp(){
@@ -160,6 +165,7 @@ public class AdminController {
 	@RequestMapping("addBook")
 	@ResponseBody	
 	public String addBook(Book book){
+		System.out.println(book.toString());
 		Gson gson = new Gson();
 		Map<String, Object> result = new HashMap<String, Object>();
 		
@@ -178,6 +184,23 @@ public class AdminController {
 		Map<String, Object> result = new HashMap<String, Object>();
 			try {
 				String imgName = adminService.uploadBookImg(request, file);
+				result.put("code", 1);
+				result.put("imgName", imgName);
+			} catch (Exception e) {
+				e.printStackTrace();
+				result.put("code", 0);
+			}
+		return gson.toJson(result);
+	}
+	
+	
+	@RequestMapping("uploadBookQR")
+	@ResponseBody	
+	public String uploadBookQR(HttpServletRequest request, MultipartFile file){
+		Gson gson = new Gson();
+		Map<String, Object> result = new HashMap<String, Object>();
+			try {
+				String imgName = adminService.uploadBookQR(request, file);
 				result.put("code", 1);
 				result.put("imgName", imgName);
 			} catch (Exception e) {
@@ -251,6 +274,36 @@ public class AdminController {
 			session.removeAttribute("currentAdminUser");
 			result.put("result", 1);	
 		}
+		return gson.toJson(result);
+	}
+	
+	@RequestMapping("bookMainPage")
+	public String bookMainPageTemp(){
+		return "admin/bookMain";
+	}
+	
+	@RequestMapping("getSaleInfo")
+	@ResponseBody
+	public String getSaleInfo(){
+		Gson gson = new Gson();
+		Map<String, Object> result = new HashMap<String, Object>();
+		List<String> labels = new ArrayList<>();
+		labels.add("一月");
+		labels.add("二月");
+		labels.add("三月");
+		labels.add("四月");
+		labels.add("五月");
+		labels.add("六月");
+		labels.add("七月");
+		labels.add("八月");
+		labels.add("九月");
+		labels.add("十月");
+		labels.add("十一月");
+		labels.add("十二月");
+		result.put("labels", labels);
+		
+		int[] data={1,2,3,6,3,4,5,6,3,3,4,46};  
+		result.put("data", data);
 		return gson.toJson(result);
 	}
 	

@@ -18,11 +18,11 @@
 <div class="ico-header">
 	<div class="v-align">
 		<a class="common-logo" href=""> <img alt="web-logo"
-			src="image/web-logo.png" title="博库书城">
+			src="image/logo.jpg" title="博库书城">
 		</a>
 		<div class="search-input">
 			<input type="text" name="keyWords" id="keyWords"
-				placeholder="搜索书名..." autocomplete="off" class="layui-input">
+				placeholder="搜索书名..." autocomplete="off" class="layui-input1">
 			<i class="layui-icon search-btn">&#xe615;</i>
 		</div>
 		<div class="suggestion-list">
@@ -46,12 +46,24 @@
 <div>
 	<ul class="layui-nav nav-color" lay-filter="">
 		<c:if test="${rPath == 'bookMain.jsp' }">
-			<li class="layui-nav-item layui-this"><a href="">首页</a></li>
+			<li class="layui-nav-item layui-this"><a href="/book/user/bookMain">首页</a></li>
 		</c:if>
 		<c:if test="${rPath != 'bookMain.jsp' }">
-			<li class="layui-nav-item"><a href="">首页</a></li>
+			<li class="layui-nav-item"><a href="/book/user/bookMain">首页</a></li>
 		</c:if>
-		<li class="layui-nav-item"><a href="">销量排行</a></li>
-		<li class="layui-nav-item"><a href="">分类</a></li>
+		<c:if test="${rPath != 'salesCountPage.jsp' }">
+			<li class="layui-nav-item"><a href="/book/book/salesCountPage">销量排行</a></li>
+		</c:if>
+		<c:if test="${rPath == 'salesCountPage.jsp' }">
+			<li class="layui-nav-item layui-this"><a href="/book/book/salesCountPage">销量排行</a></li>
+		</c:if>
+		<c:if test="${rPath != 'classification.jsp' }">
+			<li class="layui-nav-item"><a href="/book/book/classification">分类</a></li>
+		</c:if>
+		<c:if test="${rPath == 'classification.jsp' }">
+			<li class="layui-nav-item layui-this"><a href="/book/book/classification">分类</a></li>
+		</c:if>
+
+		<li class="layui-nav-item"><a href="/book/book/salesCountPage">我的喜欢</a></li>
 	</ul>
 </div>

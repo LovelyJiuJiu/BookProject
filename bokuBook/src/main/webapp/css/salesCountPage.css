@@ -20,7 +20,7 @@
 .index,.indexNum{
 	margin-left: 30px;
 	margin-right: 20px;
-	width: 10%;
+	 width: 10%;
 	display: inline-block;
 	text-align: center;	
 }
@@ -30,6 +30,7 @@
 .bookName{
 	margin-right: 20px;
 	width: 20%;
+	white-space: nowrap;
 	display: inline-block;
 	text-align: center;
 }

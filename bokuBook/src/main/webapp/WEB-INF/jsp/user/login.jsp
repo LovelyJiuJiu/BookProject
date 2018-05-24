@@ -21,7 +21,7 @@
 
 	<div class="loginContainer">
 		<div class="formContent">
-			<div class="title">博库阅读</div>
+			<div class="title">博库书城</div>
 			<div class="iconContent" onclick="backToHome();">
 				<i class="layui-icon">&#xe68e;</i>
 			</div>

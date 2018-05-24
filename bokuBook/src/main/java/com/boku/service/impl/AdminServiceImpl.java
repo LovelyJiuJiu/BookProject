@@ -92,7 +92,6 @@ public class AdminServiceImpl implements AdminService {
 		Date date = new Date();
 		book.setCreateTime(date);
 		book.setLastUpdateTime(date);
-		System.out.println("book2"+book.toString());
 		int result = bookMapper.insert(book);
 		if (result == 1) {
 			return true;
@@ -123,5 +122,18 @@ public class AdminServiceImpl implements AdminService {
 		params.put("orderId", orderId);
 		params.put("type", "confirm");
 		return orderMapper.changeOrderStatus(params);
+	}
+
+	@Override
+	public String uploadBookQR(HttpServletRequest request, MultipartFile file)
+			throws IllegalStateException, IOException {
+		String name = RandomStringUtils.randomAlphanumeric(10);  // 随机数
+		String newFileName = name + ".png";
+
+		File newFile = new File(request.getServletContext().getRealPath("/image/QR"), newFileName);
+		newFile.getParentFile().mkdirs();
+		file.transferTo(newFile);
+		
+		return newFileName;	
 	}
 }

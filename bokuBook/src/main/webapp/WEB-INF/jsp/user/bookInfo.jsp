@@ -115,7 +115,6 @@
 		$('#bookNum').on('input propertychange', function () {
 			bookNumber = $(this).val();
 			bookTotalPrice = accMul(bookNumber, bookPrice);
-			layer.msg(bookNumber);
 		});
 		
 		$('#buy').on('click', function () {
@@ -238,6 +237,9 @@
 					</div>
 					<div class="readBook layui-btn layui-btn-danger layui-btn-radius" id="buy">立即购买</div>
 					<div class="purchse layui-btn layui-btn-radius" id="addToCart">加入购物车</div>
+				</div>
+				<div class="bookQRCode">
+					<img src="image/QR/${book.bookQr}"/>
 				</div>
 
 				<div class=" layui-collapse" lay-filter="collapseFilter">

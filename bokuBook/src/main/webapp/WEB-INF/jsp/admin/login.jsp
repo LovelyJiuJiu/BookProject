@@ -24,7 +24,7 @@
 
 	<div class="loginContainer">
 		<div class="formContent">
-			<div class="title">博库阅读-管理员登录</div>
+			<div class="title">博库书城-管理员登录</div>
 			<form class="layui-form" onsubmit="return false;">
 				<div class="layui-form-item">
 					<span class="layui-form-label">用户名:</span>

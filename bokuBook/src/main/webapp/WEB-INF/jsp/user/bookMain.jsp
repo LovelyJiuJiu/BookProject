@@ -26,19 +26,19 @@
 		<div class="layui-carousel" id="test1">
 			<div carousel-item>
 				<div>
-					<a href="/book/book/bookInfo?id=9" target="_blank"> <img alt="图片" src="image/how.png" title="半小时漫画世界史" />
+					<a href="/book/book/bookInfo?id=15" target="_blank"> <img alt="图片" src="image/how.png" title="半小时漫画世界史" />
 					</a>
 				</div>
 				<div>
-					<a href="/book/book/bookInfo?id=10" target="_blank"> <img alt="图片" src="image/yw.png" title="萤王" />
+					<a href="/book/book/bookInfo?id=17" target="_blank"> <img alt="图片" src="image/yw.png" title="萤王" />
 					</a>
 				</div>
 				<div>
-					<a href="/book/book/bookInfo?id=11" target="_blank"> <img alt="图片" src="image/firstPlayer.png" title="头号玩家" />
+					<a href="/book/book/bookInfo?id=16" target="_blank"> <img alt="图片" src="image/firstPlayer.png" title="头号玩家" />
 					</a>
 				</div>
 				<div>
-					<a href="/book/book/bookInfo?id=12" target="_blank"> <img alt="图片" src="image/tnd.png" title="听你的" />
+					<a href="/book/book/bookInfo?id=14" target="_blank"> <img alt="图片" src="image/tnd.png" title="听你的" />
 					</a>
 				</div>
 			</div>

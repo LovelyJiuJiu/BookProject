@@ -1,22 +1,22 @@
 .layui-form-checkbox[lay-skin=primary]{
-  top: 20px !important;	
+	top: 20px !important;	
 }
 .layui-table-view{
-  margin-top: 30px !important;	
+	margin-top: 30px !important;	
 }
 .rightContainer{
-  margin-left: 200px;
-  width: 1000px;	
+	margin-left: 200px;
+	width: 1000px;	
 }
 
 #bookList, #orderList{
-  margin-left: 200px;	
-  width: 1000px;
-  height: 600px;		
+	margin-left: 200px;	
+	width: 1000px;
+	height: 600px;		
 }
 
 .photo{
-  clip: rect(0px,200px,200px,0px);
+	clip: rect(0px,200px,200px,0px);
 }
 
 img{
@@ -30,29 +30,29 @@ img{
 }
 
 .top-item{
-  margin-top: 30px;	
+	margin-top: 30px;	
 }
 /* .choose{
   background-color: #009688;
   color: #fff;
 } */
 .layui-nav-item{
-  margin-bottom: 50px !important;	
+	  margin-bottom: 50px !important;	
 }
 .laytable-cell-1-imgName{
-  height: 100%;
-  max-width: 100%;
+	height: 100%;
+	max-width: 100%;
 }
 .layui-table-cell{
-  height: 60px !important;
-  text-align: center;
-  line-height: 60px;	
+	height: 60px !important;
+	text-align: center;
+	line-height: 60px;	
 }
 .footerContainer{
-  position: fixed;
-  bottom: 0;
-  margin-left: 250px;
-  font-size: 13px;	
+	position: fixed;
+	bottom: 0;
+	margin-left: 250px;
+	font-size: 13px;	
 }
 
 /*
@@ -60,43 +60,54 @@ about add book
 */
 
 #addBook{
-  margin-left: 200px;
-  width: 1000px;
-  height: 600px;	
+	margin-left: 200px;
+	width: 1000px;
+	height: 600px;	
 }
 .addBookContainer{
-  margin-top: 30px !important;		
-  margin-left: 15px;	
+	margin-top: 30px !important;		
+	margin-left: 15px;	
 }
 
 .bookImg{
-  width: 200px !important;
-  height: 150px !important;
-  margin-left: 310px !important;
+	width: 200px !important;
+	height: 150px !important;
+	margin-left: 310px !important;
+	margin-bottom: 10px !important;
 }
 #uploadPic{
-  margin-left: 110px;
-  margin-left: 110px;
-  margin-bottom: 5px;
-  position: absolute;
-  left: 430px;
-  top: 110px;	
+	margin-left: 350px;
+	margin-bottom: 5px;
+	left: 430px;
+	top: 110px;	
+}
+#uploadQR{
+	margin-left: 140px;
+    margin-bottom: 5px;
+}
+.bookQR{
+	width: 200px !important;
+    height: 150px !important;
+    margin-left: 310px !important;
+    position: absolute;
+    top: 2px;
+    left: 240px;
 }
 .layui-input-block{
-  width: inherit;
+	  width: inherit;
 }
 .layui-form-item{
-  margin-left: 200px;
-  margin-right: 200px;
-  width: auto;	
+	margin-left: 200px;
+	margin-right: 200px;
+	width: auto;	
 }
 .layui-textarea{
-  resize: none !important;	
+	resize: none !important;	
 }
 #add-book-btn{
-  margin-left: 440px;
-  width: 100px;
-  margin-right: 400px;
+	margin-left: 440px;
+	width: 100px;
+	margin-right: 400px;
 }
 
 
@@ -105,15 +116,15 @@ about bookList
 */
 
 .twoBtns{
-  width: 45px !important;
-  padding: 0px !important;
-  border-radius: 30px;	
+	width: 45px !important;
+	padding: 0px !important;
+	border-radius: 30px;	
 }
 .oneBtn{
-  width: 45px !important;
-  padding: 0px !important;
-  margin-top: 10px;
-  border-radius: 30px;		
+	width: 45px !important;
+	padding: 0px !important;
+	margin-top: 10px;
+	border-radius: 30px;		
 }
 /*
 order bookList 
@@ -122,4 +133,23 @@ order bookList
 .order{
 	margin-top: 20px;	
 
+}
+
+/*
+pic
+*/
+
+#bookMain{
+	margin-left: 200px;
+	width: 800px;
+    height: 700px;
+}
+
+.title{
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+#myChart{
+	
 }

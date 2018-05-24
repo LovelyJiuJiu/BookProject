@@ -32,4 +32,6 @@ public interface AdminService {
 	List<Order> getOrderList();
 
 	int confirmOrder(Integer orderId);
+	
+	String uploadBookQR(HttpServletRequest request, MultipartFile file) throws IllegalStateException, IOException;
 }

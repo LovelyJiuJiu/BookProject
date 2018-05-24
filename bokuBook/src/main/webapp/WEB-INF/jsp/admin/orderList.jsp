@@ -27,7 +27,7 @@
 	<a class="order layui-btn layui-btn-radius  layui-btn-danger layui-btn-sm" lay-event="show">查看订单</a>
 {{# }}}
 {{#  if(d.status == 1){ }}
-	<a class="layui-btn layui-btn-radius layui-btn-danger layui-btn-sm" lay-event="confirm">发货</a>
+	<a class="order layui-btn layui-btn-radius layui-btn-danger layui-btn-sm" lay-event="confirm">发货</a>
 {{# }}}
 </script>
 

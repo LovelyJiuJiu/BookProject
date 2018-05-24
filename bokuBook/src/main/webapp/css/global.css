@@ -106,7 +106,6 @@ a {
 .common-logo img {
 	width: 160px;
     height: 118px;
-    margin-left: -17px;
 }
 
 .search-input {
@@ -122,11 +121,12 @@ a {
     z-index: 10;
 }
 
-.layui-input {
-	margin-top: 2px;
-	height: 26px;
-	width: 60%;
-	border-width: 0px;
+.layui-input1 {
+    margin-top: 2px;
+    height: 26px;
+    width: inherit;
+    border-width: 0px;
+    background-color: #fff;
 }
 
 .suggestion-list {
@@ -209,3 +209,6 @@ a.list-item:hover {
 	margin-bottom: 20px;
 }
 
+.layui-nav-bar {
+	opacity: 0 !important;
+}

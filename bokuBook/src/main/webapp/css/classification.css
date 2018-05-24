@@ -1,0 +1,14 @@
+.typeForm{
+    padding-top: 20px;
+	width:500px;
+	margin-top: 30px;
+	
+}
+.typeTopContainer{
+	background-color: #fff;
+	height: 600px;
+}
+.layui-form-label{
+	font-size: 15px;
+	color: #fa7a20;
+}

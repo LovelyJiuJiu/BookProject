@@ -15,10 +15,18 @@ public class Book {
     private Integer status;
     private Date createTime;
     private Date lastUpdateTime;
+    private String bookQr;
     
     
-    
-    public Integer getId() {
+    public String getBookQr() {
+		return bookQr;
+	}
+
+	public void setBookQr(String bookQr) {
+		this.bookQr = bookQr;
+	}
+
+	public Integer getId() {
         return id;
     }
 
@@ -129,8 +137,7 @@ public class Book {
 		return "Book [id=" + id + ", bookname=" + bookname + ", typeId=" + typeId + ", bookAuthor=" + bookAuthor
 				+ ", bookIntroduction=" + bookIntroduction + ", bookPublisher=" + bookPublisher + ", bookImage="
 				+ bookImage + ", bookPrice=" + bookPrice + ", status=" + status + ", createTime=" + createTime
-				+ ", lastUpdateTime=" + lastUpdateTime + "]";
+				+ ", lastUpdateTime=" + lastUpdateTime + ", bookQr=" + bookQr + "]";
 	}
-    
-    
+
 }

@@ -22,6 +22,7 @@ import com.boku.pojo.Book;
 import com.boku.pojo.Reply;
 import com.boku.pojo.User;
 import com.boku.pojo.UserReply;
+import com.boku.service.AdminService;
 import com.boku.service.BookService;
 import com.google.gson.Gson;
 
@@ -38,6 +39,8 @@ public class BookController {
 	@Autowired
 	private ReplyMapper replyMapper;
 
+	@Autowired
+	private AdminService adminService;
 	
 	@RequestMapping("accessCountPage")
 	public String cartPageTemp(){
@@ -53,7 +56,7 @@ public class BookController {
 		ModelAndView modelAndView = new ModelAndView();
 		
 		//get bookObj
-		Book book = bookMapper.selectByPrimaryKey(id);		
+		Book book = bookMapper.selectByPrimaryKey(id);	
 		modelAndView.addObject("book", book);
 		
 		if (book != null) {
@@ -91,6 +94,15 @@ public class BookController {
 	public ModelAndView salesCountPage(){
 		ModelAndView modelAndView = new ModelAndView("user/salesCountPage");		
 		modelAndView.addObject("hotBookList", bookService.getHotBookAndCountList());
+		return modelAndView;
+	}
+	
+	
+	@RequestMapping("classification")
+	@ResponseBody
+	public ModelAndView getClassificationList(){	
+		ModelAndView modelAndView = new ModelAndView("user/classification");		
+		modelAndView.addObject("typeList", adminService.getAllType());
 		return modelAndView;
 	}
 }

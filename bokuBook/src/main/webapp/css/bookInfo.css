@@ -36,7 +36,7 @@
   position: absolute;
   left: 420px;
   top: 240px;
-  width: 600px;
+/*   width: 600px; */
 }
 .footerContainer{
   margin-top: 50px;
@@ -62,7 +62,7 @@
   margin-left: 40px !important;
 }
 .bookTitle{
-  font-size: 21px;	
+  font-size: 19px;	
 }
 
 .commentContent{
@@ -150,7 +150,7 @@ img{
 
 .readBook, .purchse  {
 	font-size: 12px !important;
-	width: 16%;
+/* 	width: 16%; */
 	height: 32px !important;
 	line-height: 32px !important;
 }
@@ -168,4 +168,14 @@ img{
 .book-price-num {
 	color: #fa7a20;
 	font-size: 16px;
+}
+.bookQRCode{
+	position: absolute; 
+    top: 27px;
+    width: 150px;
+    height: 150px;
+    left: 180px;
+    display: inline-block !important;
+    overflow: hidden;
+
 }
