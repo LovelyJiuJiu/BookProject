@@ -76,5 +76,18 @@ public class BookServiceImpl implements BookService {
 	public List<BookTypeCount> getHotBookAndCountList() {
 		return bookMapper.getHotBookAndCountList();
 	}
+
+	@Override
+	public List<Book> seachBook(String order,Integer type, Integer priceMin, Integer priceMax) {
+		List<Book> result = new ArrayList<>();
+		if("hot".equals(order)) {
+			result = bookMapper.getBookOrderByPurchaseCount(type, priceMin, priceMax);
+		}
+		if("new".equals(order)) {
+			result = bookMapper.getBookOrderByTime(type, priceMin, priceMax);
+		}
+		return result;
+	}
+
 	
 }

@@ -63,7 +63,21 @@
 		<c:if test="${rPath == 'classification.jsp' }">
 			<li class="layui-nav-item layui-this"><a href="/book/book/classification">分类</a></li>
 		</c:if>
-
-		<li class="layui-nav-item"><a href="/book/book/salesCountPage">我的喜欢</a></li>
+		<c:choose>
+			<c:when test="${currentUser != null}">
+				<c:set var="href" value="/book/book/myCollect" />
+			</c:when>
+			<c:otherwise>
+				<c:set var="href" value="/book/user/login" />
+			</c:otherwise>
+		</c:choose>
+		
+		<c:if test="${rPath != 'myCollect.jsp' }">
+			<li class="layui-nav-item"><a href="${href }">我的收藏</a></li>
+		</c:if>
+		<c:if test="${rPath == 'myCollect.jsp' }">
+			<li class="layui-nav-item layui-this"><a href="${href }">我的收藏</a></li>
+		</c:if>
+		
 	</ul>
 </div>

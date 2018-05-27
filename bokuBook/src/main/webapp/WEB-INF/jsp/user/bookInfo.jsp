@@ -21,7 +21,6 @@
 <script src="js/global.js"></script>
 <script>
 	$(document).ready(function() {
-		
 		function accMul(arg1,arg2) {
 			var m=0,
 				s1=arg1.toString(),
@@ -203,6 +202,71 @@
 		}); 
 		
 	}
+ 	var bookId = ${book.id};
+ 	
+ 	function addToMyCollect(){
+		var currentUser="<%=session.getAttribute("currentUser")%>";
+		if(currentUser=="null") {
+			layer.msg('请先登录再收藏该书籍');
+			return false;
+		}
+   		$.ajax({
+			url : 'book/addBookToCollect',
+			async : true,
+			dataType : 'json',
+			data : {
+				bookId: bookId
+			},
+			success : function(data) {
+				if(data.result == 1) {
+					layer.msg('收藏成功可以在  我的收藏  中进行查看', {time: 2000}, function () {
+						window.location.href = "book/bookInfo?id="+bookId;
+					});	
+				}else{
+					layer.msg("收藏书籍失败，请重试");
+				}	
+			},
+			error : function(err) {
+				console.log(err);
+			}
+		}); 
+ 	}
+ 	
+ 	function delInMyCollect() {
+ 		layer.confirm('确认取消收藏该书籍吗？', {
+            btn : [ '确定', '取消' ]//按钮
+        }, function(){
+        	layer.closeAll('dialog');  
+        	
+        	$.ajax({
+    			url : 'book/delBookToCollect',
+    			async : true,
+    			dataType : 'json',
+    			data : {
+    				bookId: bookId
+    			},
+    			success : function(data) {
+    				if(data.result == 1) {
+    					layer.msg('取消收藏该书籍成功', {time: 2000}, function () {
+    						window.location.href = "book/bookInfo?id="+bookId;
+    					});	
+    				}else{
+    					layer.msg("取消收藏该书籍失败，请重试");
+    				}	
+    			},
+    			error : function(err) {
+    				console.log(err);
+    			}
+    		}); 
+        
+        
+        
+        
+        
+        })
+ 		
+ 		
+ 	}
 
 </script>
 
@@ -223,6 +287,12 @@
 
 			<div class="rightContainer">
 				<div class="bookTitle">${book.bookname}</div>
+				<c:if test="${collectResult==1}">
+					<i class="layui-icon collect2" onclick="delInMyCollect();">&#xe658;</i> 
+				</c:if> 
+				<c:if test="${collectResult==0}">
+					<i class="layui-icon collect" onclick="addToMyCollect();">&#xe600;</i>  
+				</c:if> 
 				<div class="bookContent">作者：<span>${book.bookAuthor}</span></div>
 				<div class="moreChoice">
 					<div class="price">
@@ -237,9 +307,6 @@
 					</div>
 					<div class="readBook layui-btn layui-btn-danger layui-btn-radius" id="buy">立即购买</div>
 					<div class="purchse layui-btn layui-btn-radius" id="addToCart">加入购物车</div>
-				</div>
-				<div class="bookQRCode">
-					<img src="image/QR/${book.bookQr}"/>
 				</div>
 
 				<div class=" layui-collapse" lay-filter="collapseFilter">
@@ -284,6 +351,9 @@
 			</form>
 		</div>
 
-
+		<div class="scroll-top">
+			<i class="layui-icon">&#xe604;</i>
+			<p>顶部</p>
+		</div>
 	</div>
 </body>

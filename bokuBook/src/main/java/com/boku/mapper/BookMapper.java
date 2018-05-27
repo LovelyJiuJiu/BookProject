@@ -66,4 +66,8 @@ public interface BookMapper {
     List<Book> getHotBookList();
     
     List<BookTypeCount> getHotBookAndCountList();
+    
+    List<Book> getBookOrderByPurchaseCount(Integer type,Integer priceMin, Integer priceMax);
+    
+    List<Book> getBookOrderByTime(Integer type,Integer priceMin, Integer priceMax);
 }

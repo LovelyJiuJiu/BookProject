@@ -2,6 +2,7 @@ package com.boku.controller;
 
 
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
@@ -19,11 +20,13 @@ import org.springframework.web.servlet.ModelAndView;
 import com.boku.mapper.BookMapper;
 import com.boku.mapper.ReplyMapper;
 import com.boku.pojo.Book;
+import com.boku.pojo.Collect;
 import com.boku.pojo.Reply;
 import com.boku.pojo.User;
 import com.boku.pojo.UserReply;
 import com.boku.service.AdminService;
 import com.boku.service.BookService;
+import com.boku.service.CollectService;
 import com.google.gson.Gson;
 
 @Controller
@@ -42,6 +45,9 @@ public class BookController {
 	@Autowired
 	private AdminService adminService;
 	
+	@Autowired
+	private CollectService collectService;
+	
 	@RequestMapping("accessCountPage")
 	public String cartPageTemp(){
 		return "user/accessCountPage";
@@ -52,7 +58,7 @@ public class BookController {
 	
 	
 	@RequestMapping("bookInfo")
-	public ModelAndView bookInfo(@RequestParam(value = "id") int id){
+	public ModelAndView bookInfo(@RequestParam(value = "id") int id,HttpSession session){
 		ModelAndView modelAndView = new ModelAndView();
 		
 		//get bookObj
@@ -69,6 +75,19 @@ public class BookController {
 			}
 			modelAndView.addObject("userReplyList", userReplyList);
 			modelAndView.setViewName("user/bookInfo");
+		}
+		
+		User user = (User) session.getAttribute("currentUser");
+		if(user != null) {
+			List<Collect> collectBook = collectService.getCollectList(user.getId());
+			modelAndView.addObject("collectResult", 0);
+			for (int i = 0; i<collectBook.size(); i++) {
+				if (id == collectBook.get(i).getBookId()) {
+					modelAndView.addObject("collectResult", 1);
+				}
+			}
+		} else{
+			modelAndView.addObject("collectResult", 0);
 		}
 		return modelAndView;
 	}
@@ -105,6 +124,57 @@ public class BookController {
 		modelAndView.addObject("typeList", adminService.getAllType());
 		return modelAndView;
 	}
+	
+	@RequestMapping("search")
+	@ResponseBody
+	public String search(String order,Integer type, Integer priceMin, Integer priceMax){
+		Gson gson = new Gson();
+		Map<String, Object> result = new HashMap<String, Object>();
+		result.put("bookList", bookService.seachBook(order, type, priceMin, priceMax));
+		return gson.toJson(result);
+	}
+	
+	@RequestMapping("addBookToCollect")
+	@ResponseBody
+	public String addBookToCollect(Integer bookId,HttpSession session){
+		Gson gson = new Gson();
+		Map<String, Object> result = new HashMap<String, Object>();
+		User user = (User) session.getAttribute("currentUser");
+		int resultCount = collectService.addBookInCollect(bookId, user.getId());
+		result.put("result", resultCount);
+		return gson.toJson(result);
+	}
+	
+	
+	@RequestMapping("delBookToCollect")
+	@ResponseBody
+	public String delBookToCollect(Integer bookId,HttpSession session){
+		Gson gson = new Gson();
+		Map<String, Object> result = new HashMap<String, Object>();
+		User user = (User) session.getAttribute("currentUser");
+		int resultCount = collectService.deleteBookInCollect(bookId, user.getId());
+		result.put("result", resultCount);
+		return gson.toJson(result);
+	}
+	
+	
+	@RequestMapping("myCollect")
+	@ResponseBody
+	public ModelAndView myCollect(HttpSession session){
+		User user = (User) session.getAttribute("currentUser");
+		ModelAndView modelAndView = new ModelAndView("user/myCollect");	
+		
+		if(user!=null) {
+			List<Collect> collectBook = collectService.getCollectList(user.getId());
+			List<Integer> bookIds = new ArrayList<>();
+			for(int i = 0;i <collectBook.size();i++) {
+				bookIds.add(collectBook.get(i).getBookId());
+			}
+			modelAndView.addObject("bookList", bookMapper.getBookListByIds(bookIds));
+		}
+		return modelAndView;
+	}
+	
 }
 
 

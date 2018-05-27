@@ -21,4 +21,6 @@ public interface BookService {
     List<Book> getHotBookList();
     
     List<BookTypeCount> getHotBookAndCountList();
+    
+    List<Book> seachBook(String order,Integer type, Integer priceMin, Integer priceMax);
 }

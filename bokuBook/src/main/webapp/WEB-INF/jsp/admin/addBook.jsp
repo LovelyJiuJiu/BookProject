@@ -20,7 +20,6 @@
 <script>
 $(document).ready(function() {
 	$('#uploadImg').attr('src', 'image/deafultBook.jpg');
-	$('#QRImg').attr('src', 'image/QR/deafultQR.png');
 	$("#uploadImg").attr({title: "默认书籍图片"});		
 	getBookType();
 })
@@ -72,7 +71,6 @@ function addBook() {
 			bookPrice :$('input[name=bookPrice]').val(),
 			typeId : $('#bookType').val(),		
 			bookImage: $('#photoUrl').val(),
-			bookQr: $('#photoQR').val()
 		},
 		success : function(data) {
 			if (data.code === 1) {
@@ -110,23 +108,6 @@ layui.use('upload', function() {
 			}
 		}
 	})
-	
-		var uploadInst = upload.render({
-		elem : '#uploadQR',
-		url : 'admin/uploadBookQR',
-		 before: function(obj) {
-			obj.preview(function(index, file, result) {
-				$('#QRImg').attr('src', result); // 图片链接（base64）
-			});
-		},
-		done : function(res) {
-			if(res.code == 1) {
-				$('#photoQR').val(res.imgName);
-			}
-		}
-	})
-	
-	
 })
 
 </script>
@@ -140,12 +121,6 @@ layui.use('upload', function() {
 			<input type="hidden" name="photoUrl" id="photoUrl"/>
 			<button type="button" class="layui-btn layui-btn-radius" id="uploadPic">上传图片</button>
 			
- 			<div class="layui-form-item bookQR">
-				<img class="layui-upload-img" id="QRImg">
-			</div>
-			<input type="hidden" name="photoQR" id="photoQR"/>
-			<button type="button" class="layui-btn layui-btn-radius" id="uploadQR">上传书籍二维码</button>
-			
 			<div class="layui-form-item">
 				<label class="layui-form-label">书籍名称</label>
 				<div class="layui-input-block">
@@ -153,7 +128,6 @@ layui.use('upload', function() {
 						placeholder="请输入书籍名称" autocomplete="off" class="layui-input">
 				</div>
 			</div>
-
 			<div class="layui-form-item">
 				<label class="layui-form-label">作者</label>
 				<div class="layui-input-block">

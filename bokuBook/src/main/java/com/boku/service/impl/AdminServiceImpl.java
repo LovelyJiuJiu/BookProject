@@ -124,16 +124,4 @@ public class AdminServiceImpl implements AdminService {
 		return orderMapper.changeOrderStatus(params);
 	}
 
-	@Override
-	public String uploadBookQR(HttpServletRequest request, MultipartFile file)
-			throws IllegalStateException, IOException {
-		String name = RandomStringUtils.randomAlphanumeric(10);  // 随机数
-		String newFileName = name + ".png";
-
-		File newFile = new File(request.getServletContext().getRealPath("/image/QR"), newFileName);
-		newFile.getParentFile().mkdirs();
-		file.transferTo(newFile);
-		
-		return newFileName;	
-	}
 }

@@ -193,23 +193,6 @@ public class AdminController {
 		return gson.toJson(result);
 	}
 	
-	
-	@RequestMapping("uploadBookQR")
-	@ResponseBody	
-	public String uploadBookQR(HttpServletRequest request, MultipartFile file){
-		Gson gson = new Gson();
-		Map<String, Object> result = new HashMap<String, Object>();
-			try {
-				String imgName = adminService.uploadBookQR(request, file);
-				result.put("code", 1);
-				result.put("imgName", imgName);
-			} catch (Exception e) {
-				e.printStackTrace();
-				result.put("code", 0);
-			}
-		return gson.toJson(result);
-	}
-	
 	@RequestMapping("changeStatus")
 	@ResponseBody
 	public String changeStatus(int bookId, int status){

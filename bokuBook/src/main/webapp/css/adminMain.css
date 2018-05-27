@@ -76,10 +76,12 @@ about add book
 	margin-bottom: 10px !important;
 }
 #uploadPic{
-	margin-left: 350px;
+	margin-left: 110px;
+	margin-left: 110px;
 	margin-bottom: 5px;
+	position: absolute;
 	left: 430px;
-	top: 110px;	
+	top: 110px;
 }
 #uploadQR{
 	margin-left: 140px;

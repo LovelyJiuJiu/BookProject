@@ -169,13 +169,15 @@ img{
 	color: #fa7a20;
 	font-size: 16px;
 }
-.bookQRCode{
-	position: absolute; 
-    top: 27px;
-    width: 150px;
-    height: 150px;
-    left: 180px;
-    display: inline-block !important;
-    overflow: hidden;
 
+.collect{
+	position: absolute;
+    left: 200px;
+    font-size: 20px;
+}
+.collect2{
+	position: absolute;
+	color: red;
+	left: 200px;
+    font-size: 20px;
 }
